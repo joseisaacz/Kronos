@@ -1,9 +1,5 @@
 <!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
+
 <html>
     <head>
         <title> Gestor de acuerdos </title>
@@ -12,13 +8,26 @@ and open the template in the editor.
         <link href="css/default.css" rel="stylesheet" type="text/css"/>
         <link href="css/bootstrap.css" rel="stylesheet" type="text/css"/>
         <script src="js/bootstrap.js" type="text/javascript"></script>
+        
+        
     </head>
     <body>
         <div id="wrapper">
+            <section class="menu">
+                
+                
+            </section>
+            <section class="plan">
+                <header> Bienvenido al gestor de acuerdos </header>
             
             
-            Bienvenido al gestor de acuerdos
-        
+            </section>
+            <section>
+                
+      
+                <a href="login.jsp"> to login</a>
+            </section>      
+            
         
         </div>
     </body>
