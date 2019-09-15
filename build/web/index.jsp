@@ -8,31 +8,30 @@
         <link href="css/default.css" rel="stylesheet" type="text/css"/>
         <link href="css/bootstrap.css" rel="stylesheet" type="text/css"/>
         <script src="js/bootstrap.js" type="text/javascript"></script>
-        
-        
     </head>
     <body>
         <div id="wrapper">
             <section class="menu">
-                
-                
+                <section id="menu">
+                    <div>
+                        <%@include file="principalMenu.jsp" %>
+                    </div>
+                </section>
+
             </section>
             <section class="plan">
                 <header> Bienvenido al gestor de acuerdos </header>
-            
-            
             </section>
             <section>
-                
-      
                 <a href="login.jsp"> to login</a>
             </section>      
             <section>
-                
-      
                 <a href="addAccord.jsp"> addAccord</a>
             </section>   
-        
+            <section>
+                <a href="principalMenu.jsp"> prinipal Menu</a>
+            </section> 
+
         </div>
     </body>
 </html>

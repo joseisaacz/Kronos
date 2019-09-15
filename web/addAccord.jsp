@@ -14,31 +14,33 @@
 
     </head>
     <body>
-        <div id="wrapper">
+        <div>
+            <section class="menu">
 
-            <section class="container">
-                <form class="col-4">
-                    <div  class="form-group">
-                        <label for=""> Oficio: </label>
-                        <input type="text" class="form-control"> 
+                <section id="menu">
+                    <div>
+                        <%@include file="principalMenu.jsp" %>
                     </div>
-                    <div class="form-group">
-                        <label for="">Vencimiento:</label>
-                        <input type="date" class="form-control">
-                    </div>
-                    <div class="form-group">
-                        <label for> Observaciones</label>
-                        <input type="text" placeholder="Digite en este espacio sus observaciones" class="form-control">
-                    </div>
-                    <div class="form-group">
-                        <button type="submit" class="btn btn-light">Cancelar</button>
-                        
-                        <button type="submit" class="btn btn-light">Agregar</button>
+                </section>
+
+            </section>
+            <div class="row">
+                <form action="">
+
+                    <div class ="col-6">
+                        <div class="form-group row">
+                            <label for="" class="col-2 col-form-label">Oficio</label>
+                            <input type="text" class="form-control col-10">
+                            
+                        </div>
                     </div>
                 </form>
+            </div>
+            <section >
+                <p>Hola</p>
             </section>
-            
-            
+
+
         </div>
     </body>
 </html>
