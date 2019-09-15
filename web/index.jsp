@@ -27,7 +27,11 @@
       
                 <a href="login.jsp"> to login</a>
             </section>      
-            
+            <section>
+                
+      
+                <a href="addAccord.jsp"> addAccord</a>
+            </section>   
         
         </div>
     </body>

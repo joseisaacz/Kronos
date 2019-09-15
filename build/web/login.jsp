@@ -17,17 +17,16 @@
                 <div class="col-sm-8  main-section">
                     <div class="modal-content">
                         <div class="col-12 user-img">
-                            <img src="imagen/user.png" width="150" height="150">
+                            <img src="imagen/user.png" width="100" height="100">
                         </div>
                         <form class ="col-12">
                             <div class="form-group">
                                 <input type="text" class="form-control" placeholder="Usuario"/>
-
                             </div>
                             <div class="form-group">
                                 <input type="password" class="form-control" placeholder="Contraseña"/>
-
                             </div>
+                            <button type="" > <i class="fas fa-sing-in-alt"></i></i>Ingresar</button>
                         </form>
 
                     </div>
