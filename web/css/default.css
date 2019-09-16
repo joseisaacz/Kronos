@@ -1,0 +1,20 @@
+:root{
+    --kronosDarkBlue: #1f3140;
+    --kronosDark: #0d0d0d;
+    --kronosGreen: #667306;
+    --kronosCyan: #6BCCF2; 
+    --kronosGray: #BBC9B4;
+    
+}
+
+
+#wrapper {
+    padding: 130px;
+    background-color: #6BCCF2;
+    
+}
+#container{
+    padding: 50px;
+    background-color: floralwhite;
+    
+}
