@@ -9,21 +9,19 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link href="css/bootstrap.css" rel="stylesheet" type="text/css"/>
         <link href="css/default.css" rel="stylesheet" type="text/css"/>
-        
-        
+        <link href="css/menu.css" rel="stylesheet" type="text/css"/>
+
         <script src="js/bootstrap.js" type="text/javascript"></script>
         <title>Agregar acuerdo</title>
 
     </head>
     <body>
-        <div class="menu">
-            <section id="menu">
-                                
-            </section>
-
-        </div>
-         <div id="wrapper">            
-            <section class="container">
+          <div>
+            <%@include file="principalMenu.jsp" %>
+            
+        </div> 
+        <div id="wrapper">   
+            <section class="container" id="container">
                 <div class="row">
                     <div class="col-6">
                         <form action="">
@@ -31,17 +29,17 @@
                                 <label for="" class="col-2 col-form-label"> Oficio: </label>
                                 <input type="text" class="form-control col-10"> 
                             </div>
-                            
-                              <div class="form-group">
-                                  <label for="" class="col-7 col-form-label">Fecha de sesión:</label>
+
+                            <div class="form-group">
+                                <label for="" class="col-7 col-form-label">Fecha de sesión:</label>
                                 <input type="date" class="form-control col-4">
                             </div>
-                            
+
                             <div class="form-group">
                                 <label for="" class="col-7 col-form-label">Vencimiento:</label>
                                 <input type="date" class="form-control col-4">
                             </div>
-                            
+
                             <div class="form-group">
                                 <label for="" class="col-2 col-form-label"> Observaciones</label>
                                 <input type="text" placeholder="Digite en este espacio sus observaciones" class="form-control col-10">

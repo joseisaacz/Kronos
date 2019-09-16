@@ -6,13 +6,14 @@
     --kronosGray: #BBC9B4;
     
 }
-
-
-.wrapper{
+.wrapperMenu{
   float:left;
+  
   width:100%;
-  min-height:250px;
+  min-height:30px;
+  background-color: #1f3140;
 }
+
 .navigation{
     float: left;
     width: 100%;

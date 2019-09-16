@@ -8,7 +8,7 @@
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 <link href="css/menu.css" rel="stylesheet" type="text/css"/>
 <!DOCTYPE html>
-<div class="wrapper">
+<div class="wrapperMenu">
     <!--Navigation Start-->
     <nav class="navigation">
         <ul>
