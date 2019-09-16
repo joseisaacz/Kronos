@@ -7,6 +7,9 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link href="css/default.css" rel="stylesheet" type="text/css"/>
         <link href="css/bootstrap.css" rel="stylesheet" type="text/css"/>
+        <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+        <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+        <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
         <script src="js/bootstrap.js" type="text/javascript"></script>
     </head>
     <body>
@@ -25,13 +28,6 @@
             <section>
                 <a href="login.jsp"> to login</a>
             </section>      
-            <section>
-                <a href="addAccord.jsp"> addAccord</a>
-            </section>   
-            <section>
-                <a href="principalMenu.jsp"> prinipal Menu</a>
-            </section> 
-
         </div>
     </body>
 </html>

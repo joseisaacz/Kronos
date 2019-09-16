@@ -14,7 +14,6 @@
         <ul>
             <li class="active">
                 <a href="index.jsp">Gestor de acuerdos</a>
-
             </li>
             <li>
                 <a href="#">Acuerdos</a>

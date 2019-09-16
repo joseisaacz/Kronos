@@ -1,3 +1,13 @@
+:root{
+    --kronosDarkBlue: #1f3140;
+    --kronosDark: #0d0d0d;
+    --kronosGreen: #667306;
+    --kronosCyan: #6BCCF2; 
+    --kronosGray: #BBC9B4;
+    
+}
+
+
 .wrapper{
   float:left;
   width:100%;
