@@ -99,5 +99,7 @@ public class DBConnection {
             return -1;
         }
     }    
-    
+    public Connection getConnection(){
+        return this.cnx;
+    }
 }
