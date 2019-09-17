@@ -1,8 +1,8 @@
 
 CREATE PROCEDURE insertAccord(
-IN accNumber VARCHAR(100), IN incorDate DATE, 
+IN accNumber VARCHAR(45), IN incorDate DATE, 
 IN deadLine DATE, IN sessionDate DATE, IN types
-VARCHAR(100), IN observations longtext, IN publics TINYINT(4),
+VARCHAR(45), IN observations longtext, IN publics TINYINT(4),
 IN notified TINYINT(4), IN states CHAR(1), IN office VARCHAR(45) 
 )
 BEGIN
