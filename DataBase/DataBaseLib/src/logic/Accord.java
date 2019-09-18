@@ -5,25 +5,25 @@
  */
 package logic;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
-/**
- *
- * @author jonathan
- */
+
+
+
 public class Accord {
 
     private String accNumber;
     private Date incorporatedDate;
     private Date deadline;
-    //private Act act;
     private  Date sessionDate; 
     private String type;
     private String observations;
     private boolean published;
     private boolean notified;
     private char state;
-    //private office
+    List<String> URL;
 
      public Accord() {
     }
@@ -38,6 +38,7 @@ public class Accord {
         this.notified = notified;
         this.state = state;
         this.sessionDate=sessionDate;
+        this.URL= new ArrayList();
     }
     
     
@@ -111,6 +112,14 @@ public class Accord {
 
     public void setSessionDate(Date sessionDate) {
         this.sessionDate = sessionDate;
+    }
+
+    public List<String> getURL() {
+        return URL;
+    }
+
+    public void setURL(List<String> URL) {
+        this.URL = URL;
     }
     
 }
