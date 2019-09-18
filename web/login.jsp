@@ -12,7 +12,7 @@
         <title>Loing</title>
     </head>
     <body>
-        <div id ="wrapper">
+        <div id ="wrapper" >
             <div class="modal-dialog text-center">
                 <div class="col-sm-8  main-section">
                     <div class="modal-content">

@@ -22,7 +22,7 @@
                         <a href="addAccord.jsp">Registrar</a>
                     </li>
                     <li>
-                        <a href="changeAccord.jsp">Modificar</a>
+                        <a href="listAccord.jsp">Lista</a>
                     </li>
                 </ul>
             </li>
