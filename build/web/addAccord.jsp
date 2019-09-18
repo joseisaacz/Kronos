@@ -27,7 +27,7 @@
                         <form action="">
                             <div  class="form-group row">
                                 <label for="" class="col-2 col-form-label"> Oficio: </label>
-                                <input type="text" class="form-control col-10"> 
+                                <input type="text" class="form-control col-10" name="office"> 
                             </div>
 
                             <div class="form-group">
