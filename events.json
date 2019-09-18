@@ -1,0 +1,1722 @@
+{
+ "kind": "calendar#events",
+ "etag": "\"p338bl2fkgfbu80g\"",
+ "summary": "Holidays in Costa Rica",
+ "updated": "2019-09-15T18:04:27.000Z",
+ "timeZone": "UTC",
+ "accessRole": "reader",
+ "defaultReminders": [],
+ "nextSyncToken": "CMDBpYu10-QCEAAYAQ==",
+ "items": [
+  {
+   "kind": "calendar#event",
+   "etag": "\"3101480486000000\"",
+   "id": "20180101_60o30cpkcoo30c1g60o30dr568",
+   "status": "confirmed",
+   "htmlLink": "https://www.google.com/calendar/event?eid=MjAxODAxMDFfNjBvMzBjcGtjb28zMGMxZzYwbzMwZHI1NjggZW4uY3IjaG9saWRheUB2",
+   "created": "2019-02-21T09:10:43.000Z",
+   "updated": "2019-02-21T09:10:43.000Z",
+   "summary": "New Year's Day",
+   "creator": {
+    "email": "en.cr#holiday@group.v.calendar.google.com",
+    "displayName": "Holidays in Costa Rica",
+    "self": true
+   },
+   "organizer": {
+    "email": "en.cr#holiday@group.v.calendar.google.com",
+    "displayName": "Holidays in Costa Rica",
+    "self": true
+   },
+   "start": {
+    "date": "2018-01-01"
+   },
+   "end": {
+    "date": "2018-01-02"
+   },
+   "transparency": "transparent",
+   "visibility": "public",
+   "iCalUID": "20180101_60o30cpkcoo30c1g60o30dr568@google.com",
+   "sequence": 0
+  },
+  {
+   "kind": "calendar#event",
+   "etag": "\"3101480486000000\"",
+   "id": "20180319_60o30cpl60o30c1g60o30dr568",
+   "status": "confirmed",
+   "htmlLink": "https://www.google.com/calendar/event?eid=MjAxODAzMTlfNjBvMzBjcGw2MG8zMGMxZzYwbzMwZHI1NjggZW4uY3IjaG9saWRheUB2",
+   "created": "2019-02-21T09:10:43.000Z",
+   "updated": "2019-02-21T09:10:43.000Z",
+   "summary": "Saint Joseph's Day",
+   "creator": {
+    "email": "en.cr#holiday@group.v.calendar.google.com",
+    "displayName": "Holidays in Costa Rica",
+    "self": true
+   },
+   "organizer": {
+    "email": "en.cr#holiday@group.v.calendar.google.com",
+    "displayName": "Holidays in Costa Rica",
+    "self": true
+   },
+   "start": {
+    "date": "2018-03-19"
+   },
+   "end": {
+    "date": "2018-03-20"
+   },
+   "transparency": "transparent",
+   "visibility": "public",
+   "iCalUID": "20180319_60o30cpl60o30c1g60o30dr568@google.com",
+   "sequence": 0
+  },
+  {
+   "kind": "calendar#event",
+   "etag": "\"3101480486000000\"",
+   "id": "20180329_60o30cplcko30c1g60o30dr568",
+   "status": "confirmed",
+   "htmlLink": "https://www.google.com/calendar/event?eid=MjAxODAzMjlfNjBvMzBjcGxja28zMGMxZzYwbzMwZHI1NjggZW4uY3IjaG9saWRheUB2",
+   "created": "2019-02-21T09:10:43.000Z",
+   "updated": "2019-02-21T09:10:43.000Z",
+   "summary": "Maundy Thursday",
+   "creator": {
+    "email": "en.cr#holiday@group.v.calendar.google.com",
+    "displayName": "Holidays in Costa Rica",
+    "self": true
+   },
+   "organizer": {
+    "email": "en.cr#holiday@group.v.calendar.google.com",
+    "displayName": "Holidays in Costa Rica",
+    "self": true
+   },
+   "start": {
+    "date": "2018-03-29"
+   },
+   "end": {
+    "date": "2018-03-30"
+   },
+   "transparency": "transparent",
+   "visibility": "public",
+   "iCalUID": "20180329_60o30cplcko30c1g60o30dr568@google.com",
+   "sequence": 0
+  },
+  {
+   "kind": "calendar#event",
+   "etag": "\"3101480486000000\"",
+   "id": "20180330_60o30cplcoo30c1g60o30dr568",
+   "status": "confirmed",
+   "htmlLink": "https://www.google.com/calendar/event?eid=MjAxODAzMzBfNjBvMzBjcGxjb28zMGMxZzYwbzMwZHI1NjggZW4uY3IjaG9saWRheUB2",
+   "created": "2019-02-21T09:10:43.000Z",
+   "updated": "2019-02-21T09:10:43.000Z",
+   "summary": "Good Friday",
+   "creator": {
+    "email": "en.cr#holiday@group.v.calendar.google.com",
+    "displayName": "Holidays in Costa Rica",
+    "self": true
+   },
+   "organizer": {
+    "email": "en.cr#holiday@group.v.calendar.google.com",
+    "displayName": "Holidays in Costa Rica",
+    "self": true
+   },
+   "start": {
+    "date": "2018-03-30"
+   },
+   "end": {
+    "date": "2018-03-31"
+   },
+   "transparency": "transparent",
+   "visibility": "public",
+   "iCalUID": "20180330_60o30cplcoo30c1g60o30dr568@google.com",
+   "sequence": 0
+  },
+  {
+   "kind": "calendar#event",
+   "etag": "\"3101480486000000\"",
+   "id": "20180411_60o30cpl64o30c1g60o30dr568",
+   "status": "confirmed",
+   "htmlLink": "https://www.google.com/calendar/event?eid=MjAxODA0MTFfNjBvMzBjcGw2NG8zMGMxZzYwbzMwZHI1NjggZW4uY3IjaG9saWRheUB2",
+   "created": "2019-02-21T09:10:43.000Z",
+   "updated": "2019-02-21T09:10:43.000Z",
+   "summary": "Battle of Rivas",
+   "creator": {
+    "email": "en.cr#holiday@group.v.calendar.google.com",
+    "displayName": "Holidays in Costa Rica",
+    "self": true
+   },
+   "organizer": {
+    "email": "en.cr#holiday@group.v.calendar.google.com",
+    "displayName": "Holidays in Costa Rica",
+    "self": true
+   },
+   "start": {
+    "date": "2018-04-11"
+   },
+   "end": {
+    "date": "2018-04-12"
+   },
+   "transparency": "transparent",
+   "visibility": "public",
+   "iCalUID": "20180411_60o30cpl64o30c1g60o30dr568@google.com",
+   "sequence": 0
+  },
+  {
+   "kind": "calendar#event",
+   "etag": "\"3101480486000000\"",
+   "id": "20180501_60o30cpl68o30c1g60o30dr568",
+   "status": "confirmed",
+   "htmlLink": "https://www.google.com/calendar/event?eid=MjAxODA1MDFfNjBvMzBjcGw2OG8zMGMxZzYwbzMwZHI1NjggZW4uY3IjaG9saWRheUB2",
+   "created": "2019-02-21T09:10:43.000Z",
+   "updated": "2019-02-21T09:10:43.000Z",
+   "summary": "Labor Day / May Day",
+   "creator": {
+    "email": "en.cr#holiday@group.v.calendar.google.com",
+    "displayName": "Holidays in Costa Rica",
+    "self": true
+   },
+   "organizer": {
+    "email": "en.cr#holiday@group.v.calendar.google.com",
+    "displayName": "Holidays in Costa Rica",
+    "self": true
+   },
+   "start": {
+    "date": "2018-05-01"
+   },
+   "end": {
+    "date": "2018-05-02"
+   },
+   "transparency": "transparent",
+   "visibility": "public",
+   "iCalUID": "20180501_60o30cpl68o30c1g60o30dr568@google.com",
+   "sequence": 0
+  },
+  {
+   "kind": "calendar#event",
+   "etag": "\"3101480486000000\"",
+   "id": "20180725_60o30or3c4o30c1g60o30dr568",
+   "status": "confirmed",
+   "htmlLink": "https://www.google.com/calendar/event?eid=MjAxODA3MjVfNjBvMzBvcjNjNG8zMGMxZzYwbzMwZHI1NjggZW4uY3IjaG9saWRheUB2",
+   "created": "2019-02-21T09:10:43.000Z",
+   "updated": "2019-02-21T09:10:43.000Z",
+   "summary": "Annexation of Guanacaste",
+   "creator": {
+    "email": "en.cr#holiday@group.v.calendar.google.com",
+    "displayName": "Holidays in Costa Rica",
+    "self": true
+   },
+   "organizer": {
+    "email": "en.cr#holiday@group.v.calendar.google.com",
+    "displayName": "Holidays in Costa Rica",
+    "self": true
+   },
+   "start": {
+    "date": "2018-07-25"
+   },
+   "end": {
+    "date": "2018-07-26"
+   },
+   "transparency": "transparent",
+   "visibility": "public",
+   "iCalUID": "20180725_60o30or3c4o30c1g60o30dr568@google.com",
+   "sequence": 0
+  },
+  {
+   "kind": "calendar#event",
+   "etag": "\"3101480486000000\"",
+   "id": "20180802_60o30cpl6go30c1g60o30dr568",
+   "status": "confirmed",
+   "htmlLink": "https://www.google.com/calendar/event?eid=MjAxODA4MDJfNjBvMzBjcGw2Z28zMGMxZzYwbzMwZHI1NjggZW4uY3IjaG9saWRheUB2",
+   "created": "2019-02-21T09:10:43.000Z",
+   "updated": "2019-02-21T09:10:43.000Z",
+   "summary": "Our Lady of Los Ángeles",
+   "creator": {
+    "email": "en.cr#holiday@group.v.calendar.google.com",
+    "displayName": "Holidays in Costa Rica",
+    "self": true
+   },
+   "organizer": {
+    "email": "en.cr#holiday@group.v.calendar.google.com",
+    "displayName": "Holidays in Costa Rica",
+    "self": true
+   },
+   "start": {
+    "date": "2018-08-02"
+   },
+   "end": {
+    "date": "2018-08-03"
+   },
+   "transparency": "transparent",
+   "visibility": "public",
+   "iCalUID": "20180802_60o30cpl6go30c1g60o30dr568@google.com",
+   "sequence": 0
+  },
+  {
+   "kind": "calendar#event",
+   "etag": "\"3101480486000000\"",
+   "id": "20180915_60o30cpl70o30c1g60o30dr568",
+   "status": "confirmed",
+   "htmlLink": "https://www.google.com/calendar/event?eid=MjAxODA5MTVfNjBvMzBjcGw3MG8zMGMxZzYwbzMwZHI1NjggZW4uY3IjaG9saWRheUB2",
+   "created": "2019-02-21T09:10:43.000Z",
+   "updated": "2019-02-21T09:10:43.000Z",
+   "summary": "Independence Day",
+   "creator": {
+    "email": "en.cr#holiday@group.v.calendar.google.com",
+    "displayName": "Holidays in Costa Rica",
+    "self": true
+   },
+   "organizer": {
+    "email": "en.cr#holiday@group.v.calendar.google.com",
+    "displayName": "Holidays in Costa Rica",
+    "self": true
+   },
+   "start": {
+    "date": "2018-09-15"
+   },
+   "end": {
+    "date": "2018-09-16"
+   },
+   "transparency": "transparent",
+   "visibility": "public",
+   "iCalUID": "20180915_60o30cpl70o30c1g60o30dr568@google.com",
+   "sequence": 0
+  },
+  {
+   "kind": "calendar#event",
+   "etag": "\"3101480486000000\"",
+   "id": "20181012_60o32cr6coo30c1g60o30dr568",
+   "status": "confirmed",
+   "htmlLink": "https://www.google.com/calendar/event?eid=MjAxODEwMTJfNjBvMzJjcjZjb28zMGMxZzYwbzMwZHI1NjggZW4uY3IjaG9saWRheUB2",
+   "created": "2019-02-21T09:10:43.000Z",
+   "updated": "2019-02-21T09:10:43.000Z",
+   "summary": "Day of the Cultures",
+   "creator": {
+    "email": "en.cr#holiday@group.v.calendar.google.com",
+    "displayName": "Holidays in Costa Rica",
+    "self": true
+   },
+   "organizer": {
+    "email": "en.cr#holiday@group.v.calendar.google.com",
+    "displayName": "Holidays in Costa Rica",
+    "self": true
+   },
+   "start": {
+    "date": "2018-10-12"
+   },
+   "end": {
+    "date": "2018-10-13"
+   },
+   "transparency": "transparent",
+   "visibility": "public",
+   "iCalUID": "20181012_60o32cr6coo30c1g60o30dr568@google.com",
+   "sequence": 0
+  },
+  {
+   "kind": "calendar#event",
+   "etag": "\"3101480486000000\"",
+   "id": "20181102_60o30cplc4o32c1g60o30dr568",
+   "status": "confirmed",
+   "htmlLink": "https://www.google.com/calendar/event?eid=MjAxODExMDJfNjBvMzBjcGxjNG8zMmMxZzYwbzMwZHI1NjggZW4uY3IjaG9saWRheUB2",
+   "created": "2019-02-21T09:10:43.000Z",
+   "updated": "2019-02-21T09:10:43.000Z",
+   "summary": "All Souls' Day",
+   "creator": {
+    "email": "en.cr#holiday@group.v.calendar.google.com",
+    "displayName": "Holidays in Costa Rica",
+    "self": true
+   },
+   "organizer": {
+    "email": "en.cr#holiday@group.v.calendar.google.com",
+    "displayName": "Holidays in Costa Rica",
+    "self": true
+   },
+   "start": {
+    "date": "2018-11-02"
+   },
+   "end": {
+    "date": "2018-11-03"
+   },
+   "transparency": "transparent",
+   "visibility": "public",
+   "iCalUID": "20181102_60o30cplc4o32c1g60o30dr568@google.com",
+   "sequence": 0
+  },
+  {
+   "kind": "calendar#event",
+   "etag": "\"3101480486000000\"",
+   "id": "20181208_60o30cplc8o30c1g60o30dr568",
+   "status": "confirmed",
+   "htmlLink": "https://www.google.com/calendar/event?eid=MjAxODEyMDhfNjBvMzBjcGxjOG8zMGMxZzYwbzMwZHI1NjggZW4uY3IjaG9saWRheUB2",
+   "created": "2019-02-21T09:10:43.000Z",
+   "updated": "2019-02-21T09:10:43.000Z",
+   "summary": "Feast of the Immaculate Conception",
+   "creator": {
+    "email": "en.cr#holiday@group.v.calendar.google.com",
+    "displayName": "Holidays in Costa Rica",
+    "self": true
+   },
+   "organizer": {
+    "email": "en.cr#holiday@group.v.calendar.google.com",
+    "displayName": "Holidays in Costa Rica",
+    "self": true
+   },
+   "start": {
+    "date": "2018-12-08"
+   },
+   "end": {
+    "date": "2018-12-09"
+   },
+   "transparency": "transparent",
+   "visibility": "public",
+   "iCalUID": "20181208_60o30cplc8o30c1g60o30dr568@google.com",
+   "sequence": 0
+  },
+  {
+   "kind": "calendar#event",
+   "etag": "\"3101480486000000\"",
+   "id": "20181225_60o30cplcgo30c1g60o30dr568",
+   "status": "confirmed",
+   "htmlLink": "https://www.google.com/calendar/event?eid=MjAxODEyMjVfNjBvMzBjcGxjZ28zMGMxZzYwbzMwZHI1NjggZW4uY3IjaG9saWRheUB2",
+   "created": "2019-02-21T09:10:43.000Z",
+   "updated": "2019-02-21T09:10:43.000Z",
+   "summary": "Christmas Day",
+   "creator": {
+    "email": "en.cr#holiday@group.v.calendar.google.com",
+    "displayName": "Holidays in Costa Rica",
+    "self": true
+   },
+   "organizer": {
+    "email": "en.cr#holiday@group.v.calendar.google.com",
+    "displayName": "Holidays in Costa Rica",
+    "self": true
+   },
+   "start": {
+    "date": "2018-12-25"
+   },
+   "end": {
+    "date": "2018-12-26"
+   },
+   "transparency": "transparent",
+   "visibility": "public",
+   "iCalUID": "20181225_60o30cplcgo30c1g60o30dr568@google.com",
+   "sequence": 0
+  },
+  {
+   "kind": "calendar#event",
+   "etag": "\"3101480486000000\"",
+   "id": "20190101_60o30cpkcoo30c1g60o30dr56c",
+   "status": "confirmed",
+   "htmlLink": "https://www.google.com/calendar/event?eid=MjAxOTAxMDFfNjBvMzBjcGtjb28zMGMxZzYwbzMwZHI1NmMgZW4uY3IjaG9saWRheUB2",
+   "created": "2019-02-21T09:10:43.000Z",
+   "updated": "2019-02-21T09:10:43.000Z",
+   "summary": "New Year's Day",
+   "creator": {
+    "email": "en.cr#holiday@group.v.calendar.google.com",
+    "displayName": "Holidays in Costa Rica",
+    "self": true
+   },
+   "organizer": {
+    "email": "en.cr#holiday@group.v.calendar.google.com",
+    "displayName": "Holidays in Costa Rica",
+    "self": true
+   },
+   "start": {
+    "date": "2019-01-01"
+   },
+   "end": {
+    "date": "2019-01-02"
+   },
+   "transparency": "transparent",
+   "visibility": "public",
+   "iCalUID": "20190101_60o30cpkcoo30c1g60o30dr56c@google.com",
+   "sequence": 0
+  },
+  {
+   "kind": "calendar#event",
+   "etag": "\"3101480486000000\"",
+   "id": "20190319_60o30cpl60o30c1g60o30dr56c",
+   "status": "confirmed",
+   "htmlLink": "https://www.google.com/calendar/event?eid=MjAxOTAzMTlfNjBvMzBjcGw2MG8zMGMxZzYwbzMwZHI1NmMgZW4uY3IjaG9saWRheUB2",
+   "created": "2019-02-21T09:10:43.000Z",
+   "updated": "2019-02-21T09:10:43.000Z",
+   "summary": "Saint Joseph's Day",
+   "creator": {
+    "email": "en.cr#holiday@group.v.calendar.google.com",
+    "displayName": "Holidays in Costa Rica",
+    "self": true
+   },
+   "organizer": {
+    "email": "en.cr#holiday@group.v.calendar.google.com",
+    "displayName": "Holidays in Costa Rica",
+    "self": true
+   },
+   "start": {
+    "date": "2019-03-19"
+   },
+   "end": {
+    "date": "2019-03-20"
+   },
+   "transparency": "transparent",
+   "visibility": "public",
+   "iCalUID": "20190319_60o30cpl60o30c1g60o30dr56c@google.com",
+   "sequence": 0
+  },
+  {
+   "kind": "calendar#event",
+   "etag": "\"3101480486000000\"",
+   "id": "20190411_60o30cpl64o30c1g60o30dr56c",
+   "status": "confirmed",
+   "htmlLink": "https://www.google.com/calendar/event?eid=MjAxOTA0MTFfNjBvMzBjcGw2NG8zMGMxZzYwbzMwZHI1NmMgZW4uY3IjaG9saWRheUB2",
+   "created": "2019-02-21T09:10:43.000Z",
+   "updated": "2019-02-21T09:10:43.000Z",
+   "summary": "Battle of Rivas",
+   "creator": {
+    "email": "en.cr#holiday@group.v.calendar.google.com",
+    "displayName": "Holidays in Costa Rica",
+    "self": true
+   },
+   "organizer": {
+    "email": "en.cr#holiday@group.v.calendar.google.com",
+    "displayName": "Holidays in Costa Rica",
+    "self": true
+   },
+   "start": {
+    "date": "2019-04-11"
+   },
+   "end": {
+    "date": "2019-04-12"
+   },
+   "transparency": "transparent",
+   "visibility": "public",
+   "iCalUID": "20190411_60o30cpl64o30c1g60o30dr56c@google.com",
+   "sequence": 0
+  },
+  {
+   "kind": "calendar#event",
+   "etag": "\"3101480486000000\"",
+   "id": "20190418_60o30cplcko30c1g60o30dr56c",
+   "status": "confirmed",
+   "htmlLink": "https://www.google.com/calendar/event?eid=MjAxOTA0MThfNjBvMzBjcGxja28zMGMxZzYwbzMwZHI1NmMgZW4uY3IjaG9saWRheUB2",
+   "created": "2019-02-21T09:10:43.000Z",
+   "updated": "2019-02-21T09:10:43.000Z",
+   "summary": "Maundy Thursday",
+   "creator": {
+    "email": "en.cr#holiday@group.v.calendar.google.com",
+    "displayName": "Holidays in Costa Rica",
+    "self": true
+   },
+   "organizer": {
+    "email": "en.cr#holiday@group.v.calendar.google.com",
+    "displayName": "Holidays in Costa Rica",
+    "self": true
+   },
+   "start": {
+    "date": "2019-04-18"
+   },
+   "end": {
+    "date": "2019-04-19"
+   },
+   "transparency": "transparent",
+   "visibility": "public",
+   "iCalUID": "20190418_60o30cplcko30c1g60o30dr56c@google.com",
+   "sequence": 0
+  },
+  {
+   "kind": "calendar#event",
+   "etag": "\"3101480486000000\"",
+   "id": "20190419_60o30cplcoo30c1g60o30dr56c",
+   "status": "confirmed",
+   "htmlLink": "https://www.google.com/calendar/event?eid=MjAxOTA0MTlfNjBvMzBjcGxjb28zMGMxZzYwbzMwZHI1NmMgZW4uY3IjaG9saWRheUB2",
+   "created": "2019-02-21T09:10:43.000Z",
+   "updated": "2019-02-21T09:10:43.000Z",
+   "summary": "Good Friday",
+   "creator": {
+    "email": "en.cr#holiday@group.v.calendar.google.com",
+    "displayName": "Holidays in Costa Rica",
+    "self": true
+   },
+   "organizer": {
+    "email": "en.cr#holiday@group.v.calendar.google.com",
+    "displayName": "Holidays in Costa Rica",
+    "self": true
+   },
+   "start": {
+    "date": "2019-04-19"
+   },
+   "end": {
+    "date": "2019-04-20"
+   },
+   "transparency": "transparent",
+   "visibility": "public",
+   "iCalUID": "20190419_60o30cplcoo30c1g60o30dr56c@google.com",
+   "sequence": 0
+  },
+  {
+   "kind": "calendar#event",
+   "etag": "\"3101480486000000\"",
+   "id": "20190501_60o30cpl68o30c1g60o30dr56c",
+   "status": "confirmed",
+   "htmlLink": "https://www.google.com/calendar/event?eid=MjAxOTA1MDFfNjBvMzBjcGw2OG8zMGMxZzYwbzMwZHI1NmMgZW4uY3IjaG9saWRheUB2",
+   "created": "2019-02-21T09:10:43.000Z",
+   "updated": "2019-02-21T09:10:43.000Z",
+   "summary": "Labor Day / May Day",
+   "creator": {
+    "email": "en.cr#holiday@group.v.calendar.google.com",
+    "displayName": "Holidays in Costa Rica",
+    "self": true
+   },
+   "organizer": {
+    "email": "en.cr#holiday@group.v.calendar.google.com",
+    "displayName": "Holidays in Costa Rica",
+    "self": true
+   },
+   "start": {
+    "date": "2019-05-01"
+   },
+   "end": {
+    "date": "2019-05-02"
+   },
+   "transparency": "transparent",
+   "visibility": "public",
+   "iCalUID": "20190501_60o30cpl68o30c1g60o30dr56c@google.com",
+   "sequence": 0
+  },
+  {
+   "kind": "calendar#event",
+   "etag": "\"3101480486000000\"",
+   "id": "20190725_60o30or3c4o30c1g60o30dr56c",
+   "status": "confirmed",
+   "htmlLink": "https://www.google.com/calendar/event?eid=MjAxOTA3MjVfNjBvMzBvcjNjNG8zMGMxZzYwbzMwZHI1NmMgZW4uY3IjaG9saWRheUB2",
+   "created": "2019-02-21T09:10:43.000Z",
+   "updated": "2019-02-21T09:10:43.000Z",
+   "summary": "Annexation of Guanacaste",
+   "creator": {
+    "email": "en.cr#holiday@group.v.calendar.google.com",
+    "displayName": "Holidays in Costa Rica",
+    "self": true
+   },
+   "organizer": {
+    "email": "en.cr#holiday@group.v.calendar.google.com",
+    "displayName": "Holidays in Costa Rica",
+    "self": true
+   },
+   "start": {
+    "date": "2019-07-25"
+   },
+   "end": {
+    "date": "2019-07-26"
+   },
+   "transparency": "transparent",
+   "visibility": "public",
+   "iCalUID": "20190725_60o30or3c4o30c1g60o30dr56c@google.com",
+   "sequence": 0
+  },
+  {
+   "kind": "calendar#event",
+   "etag": "\"3101480486000000\"",
+   "id": "20190802_60o30cpl6go30c1g60o30dr56c",
+   "status": "confirmed",
+   "htmlLink": "https://www.google.com/calendar/event?eid=MjAxOTA4MDJfNjBvMzBjcGw2Z28zMGMxZzYwbzMwZHI1NmMgZW4uY3IjaG9saWRheUB2",
+   "created": "2019-02-21T09:10:43.000Z",
+   "updated": "2019-02-21T09:10:43.000Z",
+   "summary": "Our Lady of Los Ángeles",
+   "creator": {
+    "email": "en.cr#holiday@group.v.calendar.google.com",
+    "displayName": "Holidays in Costa Rica",
+    "self": true
+   },
+   "organizer": {
+    "email": "en.cr#holiday@group.v.calendar.google.com",
+    "displayName": "Holidays in Costa Rica",
+    "self": true
+   },
+   "start": {
+    "date": "2019-08-02"
+   },
+   "end": {
+    "date": "2019-08-03"
+   },
+   "transparency": "transparent",
+   "visibility": "public",
+   "iCalUID": "20190802_60o30cpl6go30c1g60o30dr56c@google.com",
+   "sequence": 0
+  },
+  {
+   "kind": "calendar#event",
+   "etag": "\"3101480486000000\"",
+   "id": "20190915_60o30cpl70o30c1g60o30dr56c",
+   "status": "confirmed",
+   "htmlLink": "https://www.google.com/calendar/event?eid=MjAxOTA5MTVfNjBvMzBjcGw3MG8zMGMxZzYwbzMwZHI1NmMgZW4uY3IjaG9saWRheUB2",
+   "created": "2019-02-21T09:10:43.000Z",
+   "updated": "2019-02-21T09:10:43.000Z",
+   "summary": "Independence Day",
+   "creator": {
+    "email": "en.cr#holiday@group.v.calendar.google.com",
+    "displayName": "Holidays in Costa Rica",
+    "self": true
+   },
+   "organizer": {
+    "email": "en.cr#holiday@group.v.calendar.google.com",
+    "displayName": "Holidays in Costa Rica",
+    "self": true
+   },
+   "start": {
+    "date": "2019-09-15"
+   },
+   "end": {
+    "date": "2019-09-16"
+   },
+   "transparency": "transparent",
+   "visibility": "public",
+   "iCalUID": "20190915_60o30cpl70o30c1g60o30dr56c@google.com",
+   "sequence": 0
+  },
+  {
+   "kind": "calendar#event",
+   "etag": "\"3101480486000000\"",
+   "id": "20191012_60o32cr6coo30c1g60o30dr56c",
+   "status": "confirmed",
+   "htmlLink": "https://www.google.com/calendar/event?eid=MjAxOTEwMTJfNjBvMzJjcjZjb28zMGMxZzYwbzMwZHI1NmMgZW4uY3IjaG9saWRheUB2",
+   "created": "2019-02-21T09:10:43.000Z",
+   "updated": "2019-02-21T09:10:43.000Z",
+   "summary": "Day of the Cultures",
+   "creator": {
+    "email": "en.cr#holiday@group.v.calendar.google.com",
+    "displayName": "Holidays in Costa Rica",
+    "self": true
+   },
+   "organizer": {
+    "email": "en.cr#holiday@group.v.calendar.google.com",
+    "displayName": "Holidays in Costa Rica",
+    "self": true
+   },
+   "start": {
+    "date": "2019-10-12"
+   },
+   "end": {
+    "date": "2019-10-13"
+   },
+   "transparency": "transparent",
+   "visibility": "public",
+   "iCalUID": "20191012_60o32cr6coo30c1g60o30dr56c@google.com",
+   "sequence": 0
+  },
+  {
+   "kind": "calendar#event",
+   "etag": "\"3101480486000000\"",
+   "id": "20191102_60o30cplc4o32c1g60o30dr56c",
+   "status": "confirmed",
+   "htmlLink": "https://www.google.com/calendar/event?eid=MjAxOTExMDJfNjBvMzBjcGxjNG8zMmMxZzYwbzMwZHI1NmMgZW4uY3IjaG9saWRheUB2",
+   "created": "2019-02-21T09:10:43.000Z",
+   "updated": "2019-02-21T09:10:43.000Z",
+   "summary": "All Souls' Day",
+   "creator": {
+    "email": "en.cr#holiday@group.v.calendar.google.com",
+    "displayName": "Holidays in Costa Rica",
+    "self": true
+   },
+   "organizer": {
+    "email": "en.cr#holiday@group.v.calendar.google.com",
+    "displayName": "Holidays in Costa Rica",
+    "self": true
+   },
+   "start": {
+    "date": "2019-11-02"
+   },
+   "end": {
+    "date": "2019-11-03"
+   },
+   "transparency": "transparent",
+   "visibility": "public",
+   "iCalUID": "20191102_60o30cplc4o32c1g60o30dr56c@google.com",
+   "sequence": 0
+  },
+  {
+   "kind": "calendar#event",
+   "etag": "\"3101480486000000\"",
+   "id": "20191208_60o30cplc8o30c1g60o30dr56c",
+   "status": "confirmed",
+   "htmlLink": "https://www.google.com/calendar/event?eid=MjAxOTEyMDhfNjBvMzBjcGxjOG8zMGMxZzYwbzMwZHI1NmMgZW4uY3IjaG9saWRheUB2",
+   "created": "2019-02-21T09:10:43.000Z",
+   "updated": "2019-02-21T09:10:43.000Z",
+   "summary": "Feast of the Immaculate Conception",
+   "creator": {
+    "email": "en.cr#holiday@group.v.calendar.google.com",
+    "displayName": "Holidays in Costa Rica",
+    "self": true
+   },
+   "organizer": {
+    "email": "en.cr#holiday@group.v.calendar.google.com",
+    "displayName": "Holidays in Costa Rica",
+    "self": true
+   },
+   "start": {
+    "date": "2019-12-08"
+   },
+   "end": {
+    "date": "2019-12-09"
+   },
+   "transparency": "transparent",
+   "visibility": "public",
+   "iCalUID": "20191208_60o30cplc8o30c1g60o30dr56c@google.com",
+   "sequence": 0
+  },
+  {
+   "kind": "calendar#event",
+   "etag": "\"3101480486000000\"",
+   "id": "20191225_60o30cplcgo30c1g60o30dr56c",
+   "status": "confirmed",
+   "htmlLink": "https://www.google.com/calendar/event?eid=MjAxOTEyMjVfNjBvMzBjcGxjZ28zMGMxZzYwbzMwZHI1NmMgZW4uY3IjaG9saWRheUB2",
+   "created": "2019-02-21T09:10:43.000Z",
+   "updated": "2019-02-21T09:10:43.000Z",
+   "summary": "Christmas Day",
+   "creator": {
+    "email": "en.cr#holiday@group.v.calendar.google.com",
+    "displayName": "Holidays in Costa Rica",
+    "self": true
+   },
+   "organizer": {
+    "email": "en.cr#holiday@group.v.calendar.google.com",
+    "displayName": "Holidays in Costa Rica",
+    "self": true
+   },
+   "start": {
+    "date": "2019-12-25"
+   },
+   "end": {
+    "date": "2019-12-26"
+   },
+   "transparency": "transparent",
+   "visibility": "public",
+   "iCalUID": "20191225_60o30cplcgo30c1g60o30dr56c@google.com",
+   "sequence": 0
+  },
+  {
+   "kind": "calendar#event",
+   "etag": "\"3101480486000000\"",
+   "id": "20200101_60o30cpkcoo30c1g60o30dr56g",
+   "status": "confirmed",
+   "htmlLink": "https://www.google.com/calendar/event?eid=MjAyMDAxMDFfNjBvMzBjcGtjb28zMGMxZzYwbzMwZHI1NmcgZW4uY3IjaG9saWRheUB2",
+   "created": "2019-02-21T09:10:43.000Z",
+   "updated": "2019-02-21T09:10:43.000Z",
+   "summary": "New Year's Day",
+   "creator": {
+    "email": "en.cr#holiday@group.v.calendar.google.com",
+    "displayName": "Holidays in Costa Rica",
+    "self": true
+   },
+   "organizer": {
+    "email": "en.cr#holiday@group.v.calendar.google.com",
+    "displayName": "Holidays in Costa Rica",
+    "self": true
+   },
+   "start": {
+    "date": "2020-01-01"
+   },
+   "end": {
+    "date": "2020-01-02"
+   },
+   "transparency": "transparent",
+   "visibility": "public",
+   "iCalUID": "20200101_60o30cpkcoo30c1g60o30dr56g@google.com",
+   "sequence": 0
+  },
+  {
+   "kind": "calendar#event",
+   "etag": "\"3101480486000000\"",
+   "id": "20200319_60o30cpl60o30c1g60o30dr56g",
+   "status": "confirmed",
+   "htmlLink": "https://www.google.com/calendar/event?eid=MjAyMDAzMTlfNjBvMzBjcGw2MG8zMGMxZzYwbzMwZHI1NmcgZW4uY3IjaG9saWRheUB2",
+   "created": "2019-02-21T09:10:43.000Z",
+   "updated": "2019-02-21T09:10:43.000Z",
+   "summary": "Saint Joseph's Day",
+   "creator": {
+    "email": "en.cr#holiday@group.v.calendar.google.com",
+    "displayName": "Holidays in Costa Rica",
+    "self": true
+   },
+   "organizer": {
+    "email": "en.cr#holiday@group.v.calendar.google.com",
+    "displayName": "Holidays in Costa Rica",
+    "self": true
+   },
+   "start": {
+    "date": "2020-03-19"
+   },
+   "end": {
+    "date": "2020-03-20"
+   },
+   "transparency": "transparent",
+   "visibility": "public",
+   "iCalUID": "20200319_60o30cpl60o30c1g60o30dr56g@google.com",
+   "sequence": 0
+  },
+  {
+   "kind": "calendar#event",
+   "etag": "\"3101480486000000\"",
+   "id": "20200409_60o30cplcko30c1g60o30dr56g",
+   "status": "confirmed",
+   "htmlLink": "https://www.google.com/calendar/event?eid=MjAyMDA0MDlfNjBvMzBjcGxja28zMGMxZzYwbzMwZHI1NmcgZW4uY3IjaG9saWRheUB2",
+   "created": "2019-02-21T09:10:43.000Z",
+   "updated": "2019-02-21T09:10:43.000Z",
+   "summary": "Maundy Thursday",
+   "creator": {
+    "email": "en.cr#holiday@group.v.calendar.google.com",
+    "displayName": "Holidays in Costa Rica",
+    "self": true
+   },
+   "organizer": {
+    "email": "en.cr#holiday@group.v.calendar.google.com",
+    "displayName": "Holidays in Costa Rica",
+    "self": true
+   },
+   "start": {
+    "date": "2020-04-09"
+   },
+   "end": {
+    "date": "2020-04-10"
+   },
+   "transparency": "transparent",
+   "visibility": "public",
+   "iCalUID": "20200409_60o30cplcko30c1g60o30dr56g@google.com",
+   "sequence": 0
+  },
+  {
+   "kind": "calendar#event",
+   "etag": "\"3101480486000000\"",
+   "id": "20200410_60o30cplcoo30c1g60o30dr56g",
+   "status": "confirmed",
+   "htmlLink": "https://www.google.com/calendar/event?eid=MjAyMDA0MTBfNjBvMzBjcGxjb28zMGMxZzYwbzMwZHI1NmcgZW4uY3IjaG9saWRheUB2",
+   "created": "2019-02-21T09:10:43.000Z",
+   "updated": "2019-02-21T09:10:43.000Z",
+   "summary": "Good Friday",
+   "creator": {
+    "email": "en.cr#holiday@group.v.calendar.google.com",
+    "displayName": "Holidays in Costa Rica",
+    "self": true
+   },
+   "organizer": {
+    "email": "en.cr#holiday@group.v.calendar.google.com",
+    "displayName": "Holidays in Costa Rica",
+    "self": true
+   },
+   "start": {
+    "date": "2020-04-10"
+   },
+   "end": {
+    "date": "2020-04-11"
+   },
+   "transparency": "transparent",
+   "visibility": "public",
+   "iCalUID": "20200410_60o30cplcoo30c1g60o30dr56g@google.com",
+   "sequence": 0
+  },
+  {
+   "kind": "calendar#event",
+   "etag": "\"3101480486000000\"",
+   "id": "20200411_60o30cpl64o30c1g60o30dr56g",
+   "status": "confirmed",
+   "htmlLink": "https://www.google.com/calendar/event?eid=MjAyMDA0MTFfNjBvMzBjcGw2NG8zMGMxZzYwbzMwZHI1NmcgZW4uY3IjaG9saWRheUB2",
+   "created": "2019-02-21T09:10:43.000Z",
+   "updated": "2019-02-21T09:10:43.000Z",
+   "summary": "Battle of Rivas",
+   "creator": {
+    "email": "en.cr#holiday@group.v.calendar.google.com",
+    "displayName": "Holidays in Costa Rica",
+    "self": true
+   },
+   "organizer": {
+    "email": "en.cr#holiday@group.v.calendar.google.com",
+    "displayName": "Holidays in Costa Rica",
+    "self": true
+   },
+   "start": {
+    "date": "2020-04-11"
+   },
+   "end": {
+    "date": "2020-04-12"
+   },
+   "transparency": "transparent",
+   "visibility": "public",
+   "iCalUID": "20200411_60o30cpl64o30c1g60o30dr56g@google.com",
+   "sequence": 0
+  },
+  {
+   "kind": "calendar#event",
+   "etag": "\"3101480486000000\"",
+   "id": "20200501_60o30cpl68o30c1g60o30dr56g",
+   "status": "confirmed",
+   "htmlLink": "https://www.google.com/calendar/event?eid=MjAyMDA1MDFfNjBvMzBjcGw2OG8zMGMxZzYwbzMwZHI1NmcgZW4uY3IjaG9saWRheUB2",
+   "created": "2019-02-21T09:10:43.000Z",
+   "updated": "2019-02-21T09:10:43.000Z",
+   "summary": "Labor Day / May Day",
+   "creator": {
+    "email": "en.cr#holiday@group.v.calendar.google.com",
+    "displayName": "Holidays in Costa Rica",
+    "self": true
+   },
+   "organizer": {
+    "email": "en.cr#holiday@group.v.calendar.google.com",
+    "displayName": "Holidays in Costa Rica",
+    "self": true
+   },
+   "start": {
+    "date": "2020-05-01"
+   },
+   "end": {
+    "date": "2020-05-02"
+   },
+   "transparency": "transparent",
+   "visibility": "public",
+   "iCalUID": "20200501_60o30cpl68o30c1g60o30dr56g@google.com",
+   "sequence": 0
+  },
+  {
+   "kind": "calendar#event",
+   "etag": "\"3101480486000000\"",
+   "id": "20200725_60o30or3c4o30c1g60o30dr56g",
+   "status": "confirmed",
+   "htmlLink": "https://www.google.com/calendar/event?eid=MjAyMDA3MjVfNjBvMzBvcjNjNG8zMGMxZzYwbzMwZHI1NmcgZW4uY3IjaG9saWRheUB2",
+   "created": "2019-02-21T09:10:43.000Z",
+   "updated": "2019-02-21T09:10:43.000Z",
+   "summary": "Annexation of Guanacaste",
+   "creator": {
+    "email": "en.cr#holiday@group.v.calendar.google.com",
+    "displayName": "Holidays in Costa Rica",
+    "self": true
+   },
+   "organizer": {
+    "email": "en.cr#holiday@group.v.calendar.google.com",
+    "displayName": "Holidays in Costa Rica",
+    "self": true
+   },
+   "start": {
+    "date": "2020-07-25"
+   },
+   "end": {
+    "date": "2020-07-26"
+   },
+   "transparency": "transparent",
+   "visibility": "public",
+   "iCalUID": "20200725_60o30or3c4o30c1g60o30dr56g@google.com",
+   "sequence": 0
+  },
+  {
+   "kind": "calendar#event",
+   "etag": "\"3101480486000000\"",
+   "id": "20200802_60o30cpl6go30c1g60o30dr56g",
+   "status": "confirmed",
+   "htmlLink": "https://www.google.com/calendar/event?eid=MjAyMDA4MDJfNjBvMzBjcGw2Z28zMGMxZzYwbzMwZHI1NmcgZW4uY3IjaG9saWRheUB2",
+   "created": "2019-02-21T09:10:43.000Z",
+   "updated": "2019-02-21T09:10:43.000Z",
+   "summary": "Our Lady of Los Ángeles",
+   "creator": {
+    "email": "en.cr#holiday@group.v.calendar.google.com",
+    "displayName": "Holidays in Costa Rica",
+    "self": true
+   },
+   "organizer": {
+    "email": "en.cr#holiday@group.v.calendar.google.com",
+    "displayName": "Holidays in Costa Rica",
+    "self": true
+   },
+   "start": {
+    "date": "2020-08-02"
+   },
+   "end": {
+    "date": "2020-08-03"
+   },
+   "transparency": "transparent",
+   "visibility": "public",
+   "iCalUID": "20200802_60o30cpl6go30c1g60o30dr56g@google.com",
+   "sequence": 0
+  },
+  {
+   "kind": "calendar#event",
+   "etag": "\"3101480486000000\"",
+   "id": "20200915_60o30cpl70o30c1g60o30dr56g",
+   "status": "confirmed",
+   "htmlLink": "https://www.google.com/calendar/event?eid=MjAyMDA5MTVfNjBvMzBjcGw3MG8zMGMxZzYwbzMwZHI1NmcgZW4uY3IjaG9saWRheUB2",
+   "created": "2019-02-21T09:10:43.000Z",
+   "updated": "2019-02-21T09:10:43.000Z",
+   "summary": "Independence Day",
+   "creator": {
+    "email": "en.cr#holiday@group.v.calendar.google.com",
+    "displayName": "Holidays in Costa Rica",
+    "self": true
+   },
+   "organizer": {
+    "email": "en.cr#holiday@group.v.calendar.google.com",
+    "displayName": "Holidays in Costa Rica",
+    "self": true
+   },
+   "start": {
+    "date": "2020-09-15"
+   },
+   "end": {
+    "date": "2020-09-16"
+   },
+   "transparency": "transparent",
+   "visibility": "public",
+   "iCalUID": "20200915_60o30cpl70o30c1g60o30dr56g@google.com",
+   "sequence": 0
+  },
+  {
+   "kind": "calendar#event",
+   "etag": "\"3101480486000000\"",
+   "id": "20201012_60o32cr6coo30c1g60o30dr56g",
+   "status": "confirmed",
+   "htmlLink": "https://www.google.com/calendar/event?eid=MjAyMDEwMTJfNjBvMzJjcjZjb28zMGMxZzYwbzMwZHI1NmcgZW4uY3IjaG9saWRheUB2",
+   "created": "2019-02-21T09:10:43.000Z",
+   "updated": "2019-02-21T09:10:43.000Z",
+   "summary": "Day of the Cultures",
+   "creator": {
+    "email": "en.cr#holiday@group.v.calendar.google.com",
+    "displayName": "Holidays in Costa Rica",
+    "self": true
+   },
+   "organizer": {
+    "email": "en.cr#holiday@group.v.calendar.google.com",
+    "displayName": "Holidays in Costa Rica",
+    "self": true
+   },
+   "start": {
+    "date": "2020-10-12"
+   },
+   "end": {
+    "date": "2020-10-13"
+   },
+   "transparency": "transparent",
+   "visibility": "public",
+   "iCalUID": "20201012_60o32cr6coo30c1g60o30dr56g@google.com",
+   "sequence": 0
+  },
+  {
+   "kind": "calendar#event",
+   "etag": "\"3101480486000000\"",
+   "id": "20201102_60o30cplc4o32c1g60o30dr56g",
+   "status": "confirmed",
+   "htmlLink": "https://www.google.com/calendar/event?eid=MjAyMDExMDJfNjBvMzBjcGxjNG8zMmMxZzYwbzMwZHI1NmcgZW4uY3IjaG9saWRheUB2",
+   "created": "2019-02-21T09:10:43.000Z",
+   "updated": "2019-02-21T09:10:43.000Z",
+   "summary": "All Souls' Day",
+   "creator": {
+    "email": "en.cr#holiday@group.v.calendar.google.com",
+    "displayName": "Holidays in Costa Rica",
+    "self": true
+   },
+   "organizer": {
+    "email": "en.cr#holiday@group.v.calendar.google.com",
+    "displayName": "Holidays in Costa Rica",
+    "self": true
+   },
+   "start": {
+    "date": "2020-11-02"
+   },
+   "end": {
+    "date": "2020-11-03"
+   },
+   "transparency": "transparent",
+   "visibility": "public",
+   "iCalUID": "20201102_60o30cplc4o32c1g60o30dr56g@google.com",
+   "sequence": 0
+  },
+  {
+   "kind": "calendar#event",
+   "etag": "\"3101480486000000\"",
+   "id": "20201208_60o30cplc8o30c1g60o30dr56g",
+   "status": "confirmed",
+   "htmlLink": "https://www.google.com/calendar/event?eid=MjAyMDEyMDhfNjBvMzBjcGxjOG8zMGMxZzYwbzMwZHI1NmcgZW4uY3IjaG9saWRheUB2",
+   "created": "2019-02-21T09:10:43.000Z",
+   "updated": "2019-02-21T09:10:43.000Z",
+   "summary": "Feast of the Immaculate Conception",
+   "creator": {
+    "email": "en.cr#holiday@group.v.calendar.google.com",
+    "displayName": "Holidays in Costa Rica",
+    "self": true
+   },
+   "organizer": {
+    "email": "en.cr#holiday@group.v.calendar.google.com",
+    "displayName": "Holidays in Costa Rica",
+    "self": true
+   },
+   "start": {
+    "date": "2020-12-08"
+   },
+   "end": {
+    "date": "2020-12-09"
+   },
+   "transparency": "transparent",
+   "visibility": "public",
+   "iCalUID": "20201208_60o30cplc8o30c1g60o30dr56g@google.com",
+   "sequence": 0
+  },
+  {
+   "kind": "calendar#event",
+   "etag": "\"3101480486000000\"",
+   "id": "20201225_60o30cplcgo30c1g60o30dr56g",
+   "status": "confirmed",
+   "htmlLink": "https://www.google.com/calendar/event?eid=MjAyMDEyMjVfNjBvMzBjcGxjZ28zMGMxZzYwbzMwZHI1NmcgZW4uY3IjaG9saWRheUB2",
+   "created": "2019-02-21T09:10:43.000Z",
+   "updated": "2019-02-21T09:10:43.000Z",
+   "summary": "Christmas Day",
+   "creator": {
+    "email": "en.cr#holiday@group.v.calendar.google.com",
+    "displayName": "Holidays in Costa Rica",
+    "self": true
+   },
+   "organizer": {
+    "email": "en.cr#holiday@group.v.calendar.google.com",
+    "displayName": "Holidays in Costa Rica",
+    "self": true
+   },
+   "start": {
+    "date": "2020-12-25"
+   },
+   "end": {
+    "date": "2020-12-26"
+   },
+   "transparency": "transparent",
+   "visibility": "public",
+   "iCalUID": "20201225_60o30cplcgo30c1g60o30dr56g@google.com",
+   "sequence": 0
+  },
+  {
+   "kind": "calendar#event",
+   "etag": "\"3102968680000000\"",
+   "id": "20180815_60o30cpl6ko30c1g60o30dr568",
+   "status": "confirmed",
+   "htmlLink": "https://www.google.com/calendar/event?eid=MjAxODA4MTVfNjBvMzBjcGw2a28zMGMxZzYwbzMwZHI1NjggZW4uY3IjaG9saWRheUB2",
+   "created": "2019-03-01T23:52:20.000Z",
+   "updated": "2019-03-01T23:52:20.000Z",
+   "summary": "Mother's Day",
+   "creator": {
+    "email": "en.cr#holiday@group.v.calendar.google.com",
+    "displayName": "Holidays in Costa Rica",
+    "self": true
+   },
+   "organizer": {
+    "email": "en.cr#holiday@group.v.calendar.google.com",
+    "displayName": "Holidays in Costa Rica",
+    "self": true
+   },
+   "start": {
+    "date": "2018-08-15"
+   },
+   "end": {
+    "date": "2018-08-16"
+   },
+   "transparency": "transparent",
+   "visibility": "public",
+   "iCalUID": "20180815_60o30cpl6ko30c1g60o30dr568@google.com",
+   "sequence": 0
+  },
+  {
+   "kind": "calendar#event",
+   "etag": "\"3102968680000000\"",
+   "id": "20190815_60o30cpl6ko30c1g60o30dr56c",
+   "status": "confirmed",
+   "htmlLink": "https://www.google.com/calendar/event?eid=MjAxOTA4MTVfNjBvMzBjcGw2a28zMGMxZzYwbzMwZHI1NmMgZW4uY3IjaG9saWRheUB2",
+   "created": "2019-03-01T23:52:20.000Z",
+   "updated": "2019-03-01T23:52:20.000Z",
+   "summary": "Mother's Day",
+   "creator": {
+    "email": "en.cr#holiday@group.v.calendar.google.com",
+    "displayName": "Holidays in Costa Rica",
+    "self": true
+   },
+   "organizer": {
+    "email": "en.cr#holiday@group.v.calendar.google.com",
+    "displayName": "Holidays in Costa Rica",
+    "self": true
+   },
+   "start": {
+    "date": "2019-08-15"
+   },
+   "end": {
+    "date": "2019-08-16"
+   },
+   "transparency": "transparent",
+   "visibility": "public",
+   "iCalUID": "20190815_60o30cpl6ko30c1g60o30dr56c@google.com",
+   "sequence": 0
+  },
+  {
+   "kind": "calendar#event",
+   "etag": "\"3102968680000000\"",
+   "id": "20200815_60o30cpl6ko30c1g60o30dr56g",
+   "status": "confirmed",
+   "htmlLink": "https://www.google.com/calendar/event?eid=MjAyMDA4MTVfNjBvMzBjcGw2a28zMGMxZzYwbzMwZHI1NmcgZW4uY3IjaG9saWRheUB2",
+   "created": "2019-03-01T23:52:20.000Z",
+   "updated": "2019-03-01T23:52:20.000Z",
+   "summary": "Mother's Day",
+   "creator": {
+    "email": "en.cr#holiday@group.v.calendar.google.com",
+    "displayName": "Holidays in Costa Rica",
+    "self": true
+   },
+   "organizer": {
+    "email": "en.cr#holiday@group.v.calendar.google.com",
+    "displayName": "Holidays in Costa Rica",
+    "self": true
+   },
+   "start": {
+    "date": "2020-08-15"
+   },
+   "end": {
+    "date": "2020-08-16"
+   },
+   "transparency": "transparent",
+   "visibility": "public",
+   "iCalUID": "20200815_60o30cpl6ko30c1g60o30dr56g@google.com",
+   "sequence": 0
+  },
+  {
+   "kind": "calendar#event",
+   "etag": "\"3131991160000000\"",
+   "id": "20180909_60o30cpm60o30c1g60o30dr568",
+   "status": "confirmed",
+   "htmlLink": "https://www.google.com/calendar/event?eid=MjAxODA5MDlfNjBvMzBjcG02MG8zMGMxZzYwbzMwZHI1NjggZW4uY3IjaG9saWRheUB2",
+   "created": "2019-08-16T22:46:20.000Z",
+   "updated": "2019-08-16T22:46:20.000Z",
+   "summary": "Children's Day",
+   "creator": {
+    "email": "en.cr#holiday@group.v.calendar.google.com",
+    "displayName": "Holidays in Costa Rica",
+    "self": true
+   },
+   "organizer": {
+    "email": "en.cr#holiday@group.v.calendar.google.com",
+    "displayName": "Holidays in Costa Rica",
+    "self": true
+   },
+   "start": {
+    "date": "2018-09-09"
+   },
+   "end": {
+    "date": "2018-09-10"
+   },
+   "transparency": "transparent",
+   "visibility": "public",
+   "iCalUID": "20180909_60o30cpm60o30c1g60o30dr568@google.com",
+   "sequence": 0
+  },
+  {
+   "kind": "calendar#event",
+   "etag": "\"3131991160000000\"",
+   "id": "20181231_60o30cplcco30c1g60o30dr568",
+   "status": "confirmed",
+   "htmlLink": "https://www.google.com/calendar/event?eid=MjAxODEyMzFfNjBvMzBjcGxjY28zMGMxZzYwbzMwZHI1NjggZW4uY3IjaG9saWRheUB2",
+   "created": "2019-08-16T22:46:20.000Z",
+   "updated": "2019-08-16T22:46:20.000Z",
+   "summary": "New Year's Eve",
+   "creator": {
+    "email": "en.cr#holiday@group.v.calendar.google.com",
+    "displayName": "Holidays in Costa Rica",
+    "self": true
+   },
+   "organizer": {
+    "email": "en.cr#holiday@group.v.calendar.google.com",
+    "displayName": "Holidays in Costa Rica",
+    "self": true
+   },
+   "start": {
+    "date": "2018-12-31"
+   },
+   "end": {
+    "date": "2019-01-01"
+   },
+   "transparency": "transparent",
+   "visibility": "public",
+   "iCalUID": "20181231_60o30cplcco30c1g60o30dr568@google.com",
+   "sequence": 0
+  },
+  {
+   "kind": "calendar#event",
+   "etag": "\"3131991160000000\"",
+   "id": "20190909_60o30cpm60o30c1g60o30dr56c",
+   "status": "confirmed",
+   "htmlLink": "https://www.google.com/calendar/event?eid=MjAxOTA5MDlfNjBvMzBjcG02MG8zMGMxZzYwbzMwZHI1NmMgZW4uY3IjaG9saWRheUB2",
+   "created": "2019-08-16T22:46:20.000Z",
+   "updated": "2019-08-16T22:46:20.000Z",
+   "summary": "Children's Day",
+   "creator": {
+    "email": "en.cr#holiday@group.v.calendar.google.com",
+    "displayName": "Holidays in Costa Rica",
+    "self": true
+   },
+   "organizer": {
+    "email": "en.cr#holiday@group.v.calendar.google.com",
+    "displayName": "Holidays in Costa Rica",
+    "self": true
+   },
+   "start": {
+    "date": "2019-09-09"
+   },
+   "end": {
+    "date": "2019-09-10"
+   },
+   "transparency": "transparent",
+   "visibility": "public",
+   "iCalUID": "20190909_60o30cpm60o30c1g60o30dr56c@google.com",
+   "sequence": 0
+  },
+  {
+   "kind": "calendar#event",
+   "etag": "\"3131991160000000\"",
+   "id": "20191231_60o30cplcco30c1g60o30dr56c",
+   "status": "confirmed",
+   "htmlLink": "https://www.google.com/calendar/event?eid=MjAxOTEyMzFfNjBvMzBjcGxjY28zMGMxZzYwbzMwZHI1NmMgZW4uY3IjaG9saWRheUB2",
+   "created": "2019-08-16T22:46:20.000Z",
+   "updated": "2019-08-16T22:46:20.000Z",
+   "summary": "New Year's Eve",
+   "creator": {
+    "email": "en.cr#holiday@group.v.calendar.google.com",
+    "displayName": "Holidays in Costa Rica",
+    "self": true
+   },
+   "organizer": {
+    "email": "en.cr#holiday@group.v.calendar.google.com",
+    "displayName": "Holidays in Costa Rica",
+    "self": true
+   },
+   "start": {
+    "date": "2019-12-31"
+   },
+   "end": {
+    "date": "2020-01-01"
+   },
+   "transparency": "transparent",
+   "visibility": "public",
+   "iCalUID": "20191231_60o30cplcco30c1g60o30dr56c@google.com",
+   "sequence": 0
+  },
+  {
+   "kind": "calendar#event",
+   "etag": "\"3131991160000000\"",
+   "id": "20200909_60o30cpm60o30c1g60o30dr56g",
+   "status": "confirmed",
+   "htmlLink": "https://www.google.com/calendar/event?eid=MjAyMDA5MDlfNjBvMzBjcG02MG8zMGMxZzYwbzMwZHI1NmcgZW4uY3IjaG9saWRheUB2",
+   "created": "2019-08-16T22:46:20.000Z",
+   "updated": "2019-08-16T22:46:20.000Z",
+   "summary": "Children's Day",
+   "creator": {
+    "email": "en.cr#holiday@group.v.calendar.google.com",
+    "displayName": "Holidays in Costa Rica",
+    "self": true
+   },
+   "organizer": {
+    "email": "en.cr#holiday@group.v.calendar.google.com",
+    "displayName": "Holidays in Costa Rica",
+    "self": true
+   },
+   "start": {
+    "date": "2020-09-09"
+   },
+   "end": {
+    "date": "2020-09-10"
+   },
+   "transparency": "transparent",
+   "visibility": "public",
+   "iCalUID": "20200909_60o30cpm60o30c1g60o30dr56g@google.com",
+   "sequence": 0
+  },
+  {
+   "kind": "calendar#event",
+   "etag": "\"3131991160000000\"",
+   "id": "20201231_60o30cplcco30c1g60o30dr56g",
+   "status": "confirmed",
+   "htmlLink": "https://www.google.com/calendar/event?eid=MjAyMDEyMzFfNjBvMzBjcGxjY28zMGMxZzYwbzMwZHI1NmcgZW4uY3IjaG9saWRheUB2",
+   "created": "2019-08-16T22:46:20.000Z",
+   "updated": "2019-08-16T22:46:20.000Z",
+   "summary": "New Year's Eve",
+   "creator": {
+    "email": "en.cr#holiday@group.v.calendar.google.com",
+    "displayName": "Holidays in Costa Rica",
+    "self": true
+   },
+   "organizer": {
+    "email": "en.cr#holiday@group.v.calendar.google.com",
+    "displayName": "Holidays in Costa Rica",
+    "self": true
+   },
+   "start": {
+    "date": "2020-12-31"
+   },
+   "end": {
+    "date": "2021-01-01"
+   },
+   "transparency": "transparent",
+   "visibility": "public",
+   "iCalUID": "20201231_60o30cplcco30c1g60o30dr56g@google.com",
+   "sequence": 0
+  },
+  {
+   "kind": "calendar#event",
+   "etag": "\"3132513874000000\"",
+   "id": "20180617_60o30cpl6oo30e1g60o30dr568",
+   "status": "confirmed",
+   "htmlLink": "https://www.google.com/calendar/event?eid=MjAxODA2MTdfNjBvMzBjcGw2b28zMGUxZzYwbzMwZHI1NjggZW4uY3IjaG9saWRheUB2",
+   "created": "2019-08-19T23:22:17.000Z",
+   "updated": "2019-08-19T23:22:17.000Z",
+   "summary": "Father's Day",
+   "creator": {
+    "email": "en.cr#holiday@group.v.calendar.google.com",
+    "displayName": "Holidays in Costa Rica",
+    "self": true
+   },
+   "organizer": {
+    "email": "en.cr#holiday@group.v.calendar.google.com",
+    "displayName": "Holidays in Costa Rica",
+    "self": true
+   },
+   "start": {
+    "date": "2018-06-17"
+   },
+   "end": {
+    "date": "2018-06-18"
+   },
+   "transparency": "transparent",
+   "visibility": "public",
+   "iCalUID": "20180617_60o30cpl6oo30e1g60o30dr568@google.com",
+   "sequence": 0
+  },
+  {
+   "kind": "calendar#event",
+   "etag": "\"3132513874000000\"",
+   "id": "20180824_60o30cpm64o30c1g60o30dr568",
+   "status": "confirmed",
+   "htmlLink": "https://www.google.com/calendar/event?eid=MjAxODA4MjRfNjBvMzBjcG02NG8zMGMxZzYwbzMwZHI1NjggZW4uY3IjaG9saWRheUB2",
+   "created": "2019-08-19T23:22:17.000Z",
+   "updated": "2019-08-19T23:22:17.000Z",
+   "summary": "National Parks Day",
+   "creator": {
+    "email": "en.cr#holiday@group.v.calendar.google.com",
+    "displayName": "Holidays in Costa Rica",
+    "self": true
+   },
+   "organizer": {
+    "email": "en.cr#holiday@group.v.calendar.google.com",
+    "displayName": "Holidays in Costa Rica",
+    "self": true
+   },
+   "start": {
+    "date": "2018-08-24"
+   },
+   "end": {
+    "date": "2018-08-25"
+   },
+   "transparency": "transparent",
+   "visibility": "public",
+   "iCalUID": "20180824_60o30cpm64o30c1g60o30dr568@google.com",
+   "sequence": 0
+  },
+  {
+   "kind": "calendar#event",
+   "etag": "\"3132513874000000\"",
+   "id": "20181122_60o30cpl74o30c1g60o30dr568",
+   "status": "confirmed",
+   "htmlLink": "https://www.google.com/calendar/event?eid=MjAxODExMjJfNjBvMzBjcGw3NG8zMGMxZzYwbzMwZHI1NjggZW4uY3IjaG9saWRheUB2",
+   "created": "2019-08-19T23:22:17.000Z",
+   "updated": "2019-08-19T23:22:17.000Z",
+   "summary": "Teacher's Day",
+   "creator": {
+    "email": "en.cr#holiday@group.v.calendar.google.com",
+    "displayName": "Holidays in Costa Rica",
+    "self": true
+   },
+   "organizer": {
+    "email": "en.cr#holiday@group.v.calendar.google.com",
+    "displayName": "Holidays in Costa Rica",
+    "self": true
+   },
+   "start": {
+    "date": "2018-11-22"
+   },
+   "end": {
+    "date": "2018-11-23"
+   },
+   "transparency": "transparent",
+   "visibility": "public",
+   "iCalUID": "20181122_60o30cpl74o30c1g60o30dr568@google.com",
+   "sequence": 0
+  },
+  {
+   "kind": "calendar#event",
+   "etag": "\"3132513874000000\"",
+   "id": "20190616_60o30cpl6oo30e1g60o30dr56c",
+   "status": "confirmed",
+   "htmlLink": "https://www.google.com/calendar/event?eid=MjAxOTA2MTZfNjBvMzBjcGw2b28zMGUxZzYwbzMwZHI1NmMgZW4uY3IjaG9saWRheUB2",
+   "created": "2019-08-19T23:22:17.000Z",
+   "updated": "2019-08-19T23:22:17.000Z",
+   "summary": "Father's Day",
+   "creator": {
+    "email": "en.cr#holiday@group.v.calendar.google.com",
+    "displayName": "Holidays in Costa Rica",
+    "self": true
+   },
+   "organizer": {
+    "email": "en.cr#holiday@group.v.calendar.google.com",
+    "displayName": "Holidays in Costa Rica",
+    "self": true
+   },
+   "start": {
+    "date": "2019-06-16"
+   },
+   "end": {
+    "date": "2019-06-17"
+   },
+   "transparency": "transparent",
+   "visibility": "public",
+   "iCalUID": "20190616_60o30cpl6oo30e1g60o30dr56c@google.com",
+   "sequence": 0
+  },
+  {
+   "kind": "calendar#event",
+   "etag": "\"3132513874000000\"",
+   "id": "20190824_60o30cpm64o30c1g60o30dr56c",
+   "status": "confirmed",
+   "htmlLink": "https://www.google.com/calendar/event?eid=MjAxOTA4MjRfNjBvMzBjcG02NG8zMGMxZzYwbzMwZHI1NmMgZW4uY3IjaG9saWRheUB2",
+   "created": "2019-08-19T23:22:17.000Z",
+   "updated": "2019-08-19T23:22:17.000Z",
+   "summary": "National Parks Day",
+   "creator": {
+    "email": "en.cr#holiday@group.v.calendar.google.com",
+    "displayName": "Holidays in Costa Rica",
+    "self": true
+   },
+   "organizer": {
+    "email": "en.cr#holiday@group.v.calendar.google.com",
+    "displayName": "Holidays in Costa Rica",
+    "self": true
+   },
+   "start": {
+    "date": "2019-08-24"
+   },
+   "end": {
+    "date": "2019-08-25"
+   },
+   "transparency": "transparent",
+   "visibility": "public",
+   "iCalUID": "20190824_60o30cpm64o30c1g60o30dr56c@google.com",
+   "sequence": 0
+  },
+  {
+   "kind": "calendar#event",
+   "etag": "\"3132513874000000\"",
+   "id": "20191122_60o30cpl74o30c1g60o30dr56c",
+   "status": "confirmed",
+   "htmlLink": "https://www.google.com/calendar/event?eid=MjAxOTExMjJfNjBvMzBjcGw3NG8zMGMxZzYwbzMwZHI1NmMgZW4uY3IjaG9saWRheUB2",
+   "created": "2019-08-19T23:22:17.000Z",
+   "updated": "2019-08-19T23:22:17.000Z",
+   "summary": "Teacher's Day",
+   "creator": {
+    "email": "en.cr#holiday@group.v.calendar.google.com",
+    "displayName": "Holidays in Costa Rica",
+    "self": true
+   },
+   "organizer": {
+    "email": "en.cr#holiday@group.v.calendar.google.com",
+    "displayName": "Holidays in Costa Rica",
+    "self": true
+   },
+   "start": {
+    "date": "2019-11-22"
+   },
+   "end": {
+    "date": "2019-11-23"
+   },
+   "transparency": "transparent",
+   "visibility": "public",
+   "iCalUID": "20191122_60o30cpl74o30c1g60o30dr56c@google.com",
+   "sequence": 0
+  },
+  {
+   "kind": "calendar#event",
+   "etag": "\"3132513874000000\"",
+   "id": "20200621_60o30cpl6oo30e1g60o30dr56g",
+   "status": "confirmed",
+   "htmlLink": "https://www.google.com/calendar/event?eid=MjAyMDA2MjFfNjBvMzBjcGw2b28zMGUxZzYwbzMwZHI1NmcgZW4uY3IjaG9saWRheUB2",
+   "created": "2019-08-19T23:22:17.000Z",
+   "updated": "2019-08-19T23:22:17.000Z",
+   "summary": "Father's Day",
+   "creator": {
+    "email": "en.cr#holiday@group.v.calendar.google.com",
+    "displayName": "Holidays in Costa Rica",
+    "self": true
+   },
+   "organizer": {
+    "email": "en.cr#holiday@group.v.calendar.google.com",
+    "displayName": "Holidays in Costa Rica",
+    "self": true
+   },
+   "start": {
+    "date": "2020-06-21"
+   },
+   "end": {
+    "date": "2020-06-22"
+   },
+   "transparency": "transparent",
+   "visibility": "public",
+   "iCalUID": "20200621_60o30cpl6oo30e1g60o30dr56g@google.com",
+   "sequence": 0
+  },
+  {
+   "kind": "calendar#event",
+   "etag": "\"3132513874000000\"",
+   "id": "20200824_60o30cpm64o30c1g60o30dr56g",
+   "status": "confirmed",
+   "htmlLink": "https://www.google.com/calendar/event?eid=MjAyMDA4MjRfNjBvMzBjcG02NG8zMGMxZzYwbzMwZHI1NmcgZW4uY3IjaG9saWRheUB2",
+   "created": "2019-08-19T23:22:17.000Z",
+   "updated": "2019-08-19T23:22:17.000Z",
+   "summary": "National Parks Day",
+   "creator": {
+    "email": "en.cr#holiday@group.v.calendar.google.com",
+    "displayName": "Holidays in Costa Rica",
+    "self": true
+   },
+   "organizer": {
+    "email": "en.cr#holiday@group.v.calendar.google.com",
+    "displayName": "Holidays in Costa Rica",
+    "self": true
+   },
+   "start": {
+    "date": "2020-08-24"
+   },
+   "end": {
+    "date": "2020-08-25"
+   },
+   "transparency": "transparent",
+   "visibility": "public",
+   "iCalUID": "20200824_60o30cpm64o30c1g60o30dr56g@google.com",
+   "sequence": 0
+  },
+  {
+   "kind": "calendar#event",
+   "etag": "\"3132513874000000\"",
+   "id": "20201122_60o30cpl74o30c1g60o30dr56g",
+   "status": "confirmed",
+   "htmlLink": "https://www.google.com/calendar/event?eid=MjAyMDExMjJfNjBvMzBjcGw3NG8zMGMxZzYwbzMwZHI1NmcgZW4uY3IjaG9saWRheUB2",
+   "created": "2019-08-19T23:22:17.000Z",
+   "updated": "2019-08-19T23:22:17.000Z",
+   "summary": "Teacher's Day",
+   "creator": {
+    "email": "en.cr#holiday@group.v.calendar.google.com",
+    "displayName": "Holidays in Costa Rica",
+    "self": true
+   },
+   "organizer": {
+    "email": "en.cr#holiday@group.v.calendar.google.com",
+    "displayName": "Holidays in Costa Rica",
+    "self": true
+   },
+   "start": {
+    "date": "2020-11-22"
+   },
+   "end": {
+    "date": "2020-11-23"
+   },
+   "transparency": "transparent",
+   "visibility": "public",
+   "iCalUID": "20201122_60o30cpl74o30c1g60o30dr56g@google.com",
+   "sequence": 0
+  }
+ ]
+}
