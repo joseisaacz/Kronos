@@ -3,13 +3,13 @@ DROP procedure IF EXISTS insertAccord;
 DELIMITER $$
 USE `KRONOS`$$
 CREATE PROCEDURE insertAccord (IN accNumber VARCHAR(45), IN incorDate DATE, 
-IN deadLine DATE, IN sessionDate DATE, IN typpe
-VARCHAR(45), IN observations longtext, IN publics TINYINT(4),
-IN notified TINYINT(4), IN states CHAR(1))
+IN deadLine DATE, IN sessionDate DATE, IN type_id
+CHAR(1), IN observations longtext, IN publics TINYINT(4),
+IN notified TINYINT(4), IN states INT)
 BEGIN
 INSERT INTO T_ACCORD (ACCNUMBER, INCORDATE, 
-DEADLINE, SESSIONDATE, TYPE, OBSERVATIONS, PUBLIC, NOTIFIED,  STATE) 
-VALUES (accNumber, incorDate, deadLine, sessionDate, typpe, observations, publics, notified, states);
+DEADLINE, SESSIONDATE, OBSERVATIONS, PUBLIC, NOTIFIED,  STATE, TYPE_ID) 
+VALUES (accNumber, incorDate, deadLine, sessionDate, observations, publics, notified, states, type_id);
 commit; 
 END$$
 DELIMITER ;
@@ -19,9 +19,9 @@ DROP procedure IF EXISTS insertAccPdf;
 DELIMiTER $$
 USE `KRONOS`$$
 create procedure insertAccPdf(
-in accNumber varchar(45), in url varchar(100));
+in accord varchar(45), in url varchar(100))
 begin
-insert into T_ACCPDF (ACCNUMBER, URL) values (accNumber, url);
+insert into T_ACCPDF (ACCORD, URL) values (accord, url);
 commit;  
 end$$ 
 DELIMITER ;
@@ -54,11 +54,11 @@ USE `KRONOS`;
 DROP procedure IF EXISTS searchAccordType;
 DELIMITER $$
 USE `KRONOS`$$
-create procedure searchAccordType(in typpe varchar(45)
+create procedure searchAccordType(in type_id char(1)
 )
 begin
 select ACCNUMBER, INCORDATE, 
-DEADLINE, SESSIONDATE, TYPE, OBSERVATIONS, PUBLIC, NOTIFIED,  STATE from T_ACCORD where TYPE like (typpe);
+DEADLINE, SESSIONDATE, TYPE_ID, OBSERVATIONS, PUBLIC, NOTIFIED,  STATE, T_ACCPDF.URL  from T_ACCORD, T_ACCPDF where ACCNUMBER= T_ACCPDF.ACCORD and TYPE_ID = type_id;
 end$$
 DELIMITER ;
 
@@ -70,7 +70,7 @@ create procedure searchAccordNumber(in accNumber varchar(45)
 )
 begin
 select ACCNUMBER, INCORDATE, 
-DEADLINE, SESSIONDATE, TYPE, OBSERVATIONS, PUBLIC, NOTIFIED,  STATE from T_ACCORD where ACCNUMBER like (accNumber);
+DEADLINE, SESSIONDATE, TYPE_ID, OBSERVATIONS, PUBLIC, NOTIFIED,  STATE, T_ACCPDF.URL  from T_ACCORD, T_ACCPDF where ACCNUMBER= T_ACCPDF.ACCORD and ACCNUMBER = accNumber;
 end$$
 DELIMITER ; 
 
@@ -82,7 +82,7 @@ create procedure searchAccordIncorDate(in incorDate  date
 )
 begin
 select ACCNUMBER, INCORDATE, 
-DEADLINE, SESSIONDATE, TYPE, OBSERVATIONS, PUBLIC, NOTIFIED,  STATE from T_ACCORD where INCORDATE = incorDate;
+DEADLINE, SESSIONDATE, TYPE_ID, OBSERVATIONS, PUBLIC, NOTIFIED,  STATE, T_ACCPDF.URL  from T_ACCORD, T_ACCPDF where ACCNUMBER= T_ACCPDF.ACCORD and INCORDATE = incorDate;
 end$$
 DELIMITER ; 
 
@@ -94,6 +94,6 @@ create procedure searchAccordsessionDate(in sessionDate date
 )
 begin
 select ACCNUMBER, INCORDATE, 
-DEADLINE, SESSIONDATE, TYPE, OBSERVATIONS, PUBLIC, NOTIFIED,  STATE from T_ACCORD where SESSIONDATE = sessionDate;
+DEADLINE, SESSIONDATE, TYPE_ID, OBSERVATIONS, PUBLIC, NOTIFIED,  STATE, T_ACCPDF.URL  from T_ACCORD, T_ACCPDF where ACCNUMBER= T_ACCPDF.ACCORD and SESSIONDATE = sessionDate;
 end$$
 DELIMITER ; 
