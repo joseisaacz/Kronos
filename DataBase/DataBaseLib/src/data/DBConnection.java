@@ -36,7 +36,9 @@ public class DBConnection {
         Create a Mysql connection everytime this method is called
       */
         try {
-            Class.forName(driver).newInstance();
+            
+            String url="jdbc:mysql://localhost:3306/KRONOS?zeroDateTimeBehavior=convertToNull&useSSL=false";
+              Class.forName(driver).newInstance();
            this.cnx = DriverManager.getConnection(URL_connection);
            this.cnx.setAutoCommit(false);
         } catch (Exception e) {
