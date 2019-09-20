@@ -32,17 +32,17 @@
 
                             <div class="form-group">
                                 <label for="" class="col-7 col-form-label">Fecha de sesión:</label>
-                                <input type="date" class="form-control col-4">
+                                <input type="date" class="form-control col-4" name ="incorporatedDate">
                             </div>
 
                             <div class="form-group">
                                 <label for="" class="col-7 col-form-label">Vencimiento:</label>
-                                <input type="date" class="form-control col-4">
+                                <input type="date" class="form-control col-4" name="deadline">
                             </div>
 
                             <div class="form-group">
                                 <label for="" class="col-2 col-form-label"> Observaciones</label>
-                                <input type="text" placeholder="Digite en este espacio sus observaciones" class="form-control col-10">
+                                <input type="text" placeholder="Digite en este espacio sus observaciones" class="form-control col-10" name ="observations">
                             </div>
                             <div>
                                 <label for="">Adjuntar archivo:</label>
