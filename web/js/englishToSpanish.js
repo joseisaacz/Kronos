@@ -1,4 +1,3 @@
-
 $(document).ready(function() {    
     $('#tableAcc').DataTable({
         "language": {
@@ -9,7 +8,7 @@ $(document).ready(function() {
                 "infoFiltered": "(filtrado de un total de _MAX_ Acuerdos)",
                 "sSearch": "Buscar:",
                 "oPaginate": {
-                    "sFirst": "Primero",
+                    "sFirst":"Primero",
                     "sLast":"Último",
                     "sNext":"Siguiente",
                     "sPrevious": "Anterior"
