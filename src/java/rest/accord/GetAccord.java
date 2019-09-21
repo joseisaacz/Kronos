@@ -7,6 +7,10 @@ package rest.accord;
 
 import data.Dao;
 import java.io.File;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
 import javax.ws.rs.GET;
 import javax.ws.rs.NotFoundException;
 import javax.ws.rs.Path;
@@ -15,6 +19,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import logic.Accord;
+import java.util.List;
 
 /**
  *
@@ -48,16 +53,79 @@ public class GetAccord {
     
     	@GET
 	@Path("/getaccord/{accnumber}")
-	@Produces({MediaType.APPLICATION_JSON})
-	public Accord getAccord(@PathParam("accnumber") String accnumber) {
-                
+	@Produces(MediaType.APPLICATION_JSON)
+	public ToRestAccord getAccord(@PathParam("accnumber") String accnumber ) {
+               
            try{ 
-		return Dao.getDao().getAccordByAccNumber(accnumber);
+              
+		Accord a= Dao.getDao().getAccordByAccNumber("CMSPH-45");
+               ToRestAccord b= ToRestAccord.toRestAcc(a);
+               return b;
            }
            catch(Exception e){
                throw new NotFoundException();
            }
 
 	}
+        
+        @GET
+	@Path("/getaccord/sessiondate/{sessiondate}")
+	@Produces(MediaType.APPLICATION_JSON)
+        public List<ToRestAccord> getAccordBySessionDate(@PathParam("sessiondate") String sessiondate){
+            try{
+                DateFormat format= new SimpleDateFormat("yyyy-dd-MM");
+                
+                List<Accord> list= Dao.getDao().searchAccordBySessionDate(format.parse(sessiondate));
+                List<ToRestAccord> result= new ArrayList();
+                for(Accord item: list){
+                    result.add(ToRestAccord.toRestAcc(item));
+                }
+                return result;
+            }
+            catch(Exception e){
+                throw new NotFoundException();
+            }
+        }
+        
+        
+        @GET
+	@Path("/getaccord/type/{type}")
+	@Produces(MediaType.APPLICATION_JSON)
+        public List<ToRestAccord> getAccordByType(@PathParam("type") char type){
+            try{
+                DateFormat format= new SimpleDateFormat("yyyy-dd-MM");
+                
+                List<Accord> list= Dao.getDao().searchAccordByType(type);
+                List<ToRestAccord> result= new ArrayList();
+                for(Accord item: list){
+                    result.add(ToRestAccord.toRestAcc(item));
+                }
+                return result;
+            }
+            catch(Exception e){
+                throw new NotFoundException();
+            }
+        }
+        
+          @GET
+	@Path("/getaccord/incordate/{incordate}")
+	@Produces(MediaType.APPLICATION_JSON)
+        public List<ToRestAccord> getAccordByIncorDate(@PathParam("incordate") String incordate){
+            try{
+                DateFormat format= new SimpleDateFormat("yyyy-dd-MM");
+                
+                List<Accord> list= Dao.getDao().searchAccordByIcorporatedDate(format.parse(incordate));
+                List<ToRestAccord> result= new ArrayList();
+                for(Accord item: list){
+                    result.add(ToRestAccord.toRestAcc(item));
+                }
+                return result;
+            }
+            catch(Exception e){
+                throw new NotFoundException();
+            }
+        }
+        
+        
     
 }

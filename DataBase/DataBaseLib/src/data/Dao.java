@@ -146,7 +146,10 @@ public class Dao {
                 a.setState(rs.getInt("STATE"));
                 a.getURL().add(rs.getString("URL"));
             } else {
-                a.getURL().add(rs.getString("URL"));
+                String url =rs.getString("URL");
+                if(!a.getURL().contains(url))
+                    a.getURL().add(url);
+                    
             }
 
             flag = true;

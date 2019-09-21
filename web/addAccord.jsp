@@ -11,14 +11,14 @@
         <link href="css/default.css" rel="stylesheet" type="text/css"/>
         <link href="css/menu.css" rel="stylesheet" type="text/css"/>
 
-        <script src="js/bootstrap.js" type="text/javascript"></script>
+
         <title>Agregar acuerdo</title>
 
     </head>
     <body>
-          <div>
+        <div>
             <%@include file="principalMenu.jsp" %>
-            
+
         </div> 
         <div id="wrapper">   
             <section class="container" id="container">
@@ -32,7 +32,10 @@
 
                             <div class="form-group">
                                 <label for="" class="col-7 col-form-label">Fecha de sesión:</label>
-                                <input type="date" class="form-control col-4" name ="incorporatedDate">
+                                <input type="date"  class="form-control col-4" name ="incorporatedDate">
+
+
+
                             </div>
 
                             <div class="form-group">
@@ -56,5 +59,8 @@
                     </div>
             </section>            
         </div>
+        <script src="js/bootstrap.js" type="text/javascript"></script>
+        <script src="js/jquery-3.3.1.min.js" type="text/javascript"></script>
+        <script src="js/addAccord.js" type="text/javascript"></script>
     </body>
 </html>
