@@ -1,0 +1,16 @@
+SMAP
+listAccord_jsp.java
+JSP
+*S JSP
+*F
++ 0 listAccord.jsp
+listAccord.jsp
++ 1 principalMenu.jsp
+principalMenu.jsp
+*L
+3,11:49
+15,9:60
+3#1,51:69
+23#0,84:120
+108,19:204
+*E
