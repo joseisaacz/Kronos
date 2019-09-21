@@ -137,6 +137,8 @@ public class AddAccord extends HttpServlet {
                acc.setIncorporatedDate(format.parse(incorDate));
                String observations= request.getParameter("observations");
                acc.setObservations(observations);
+               acc.setState(Integer.parseInt(request.getParameter("state")));
+               acc.setType(request.getParameter("type").charAt(0));
                acc.setNotified(true ? request.getParameter("notify") != null : false);
                acc.setPublished(true ? request.getParameter("public") != null : false);
                
