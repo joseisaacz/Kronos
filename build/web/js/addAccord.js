@@ -4,13 +4,11 @@
  * and open the template in the editor.
  */
 
+
+
 //This function validates if a given date is weekend or holyday
 function isValidDate(date){
     date_aux=date.replace(/-/g, '\/'); 
-
-function isValidDate(date){
-    date_aux=date.replace(/-/g, '\/'); //change every '-' to '/'. This is because the Date
-    //object of javascript has a non UTC default time-zone. Ex. 2019-25-25 => 2019/25/25
     let fecha=new Date(date_aux);
     //if day is saturday or sunday
     if(fecha.getDay()===0 || fecha.getDay()===6){
@@ -22,24 +20,16 @@ function isValidDate(date){
     let holiday =['01-01','04-11','05-01','07-25','08-02','08-15','09-15','10-12','12-25'];
 
     for(let i=0; i<holiday.length; i++){
-
         let aux=''+fecha.getFullYear+'-'+holiday[i]; 
-        let aux=''+fecha.getFullYear+'-'+holiday[i]; //append the year of the parameter to the posible holiday day and month. Ej 
         if(date===aux)
           return false;
     }
 
-  
-    /*
-     If neither the day is on a weekend or the day is a possible holiday 
-     It has to check if the date is on easter or not
-    */
 
 let URL="https://www.googleapis.com/calendar/v3/calendars/es.cr%23holiday%40group.v.calendar.google.com/events?key=AIzaSyAJuTl-gxVHcY80RvGL8T9fzY8sgfwU8Xw";
 var result=true;
 $.getJSON(URL).then(data=>{
   data.items.forEach(item=>{
-
    //if the day is eastern   
  if(item.summary==='Jueves Santo' || item.summary==='Viernes Santo' ){
      if(date===item.start.date){
@@ -56,3 +46,53 @@ $.getJSON(URL).then(data=>{
 
 }
 
+/*
+ * -------------------------------------------------------------------------------------
+ * 
+ **/
+var states =null;
+var types= null;
+
+
+//this function initialize all functions of formulary
+function init(){
+    fullComboStay();
+    
+    
+}
+function initData1(newData){
+    stays = newData;
+    
+}
+
+//this funtion upload the stay of accord on comboBox
+ function fullComboState() 
+    {
+      var comboState = document.getElementsByName("comboState");
+      if(comboState){
+          comboState.options.length =0;
+          
+     
+        {
+            var opc = document.createElement("OPTION");
+            opc.setAttribute("value", "null");
+            opc.setAttribute("selected", "selected");
+            opc.appendChild(document.createTextNode("(Estado)"));
+            refMenu.appendChild(opc);
+        }
+
+        for (var i = 0; i < states.length; i++) {
+            var sta = comercios[i];
+
+            var opc = document.createElement("OPTION");
+            opc.setAttribute("value", sta.id + " " + sta.description);
+            opc.appendChild(document.createTextNode(local.ciudad+ " " + local.direccion));
+            refMenu.appendChild(opc);
+
+        }
+          
+      }
+    }
+
+
+//this funtion upload the type on comboBox 
