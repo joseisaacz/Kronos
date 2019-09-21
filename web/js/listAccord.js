@@ -5,6 +5,9 @@
  */
 
 
+
+// It changes the value of date field, text field and the combo box of the states
+// depending of the option selected in the select
 function changeSelect(value) {
     let field = document.getElementById('searchText');
     let button = document.getElementById('seacrhButton');
@@ -12,22 +15,34 @@ function changeSelect(value) {
     console.log(field);
     if (value === 'sessionDate' || value === 'incorDate') {
         field.type = 'date';
+        field.value="";
         button.style.visibility = 'visible';
+        combo.value='A';
         combo.style.visibility = 'hidden';
+        combo.value='A';
+        
     } else
     if (value === 'accNumber') {
+        field.value="";
         field.type = 'text';
         button.style.visibility = 'visible';
+          combo.value='A';
         combo.style.visibility = 'hidden';
     } else if (value === 'sessionType') {
-        field.type = 'hidden';
-        button.style.visibility = 'hidden';
-        combo.style.visibility = 'visible';
-    } else if (value === 'allAccords') {
+        field.value="";
         field.type = 'hidden';
         button.style.visibility = 'visible';
+        combo.value='A';
+        combo.style.visibility = 'visible';
+    } else if (value === 'allAccords') {
+        field.value="";
+        field.type = 'hidden';
+        button.style.visibility = 'visible';
+        combo.value='A';
         combo.style.visibility = 'hidden';
     } else {
+        field.value="";
+        combo.value='A';
         field.type = 'hidden';
         button.style.visibility = 'hidden';
         combo.style.visibility = 'hidden';
@@ -41,6 +56,7 @@ function changeSelect(value) {
 //    document.getElementById('seacrhButton').style.visibility = 'hidden';
 //});
 
+// list the values of the accord and append it to the table body.
 function list(parent, accord) {
     var tr = $("<tr/>");
     tr.html(
@@ -56,7 +72,7 @@ function list(parent, accord) {
     parent.append(tr);
 }
 
-
+// it converts the int value of the state to the string description 
 function stateToString(state) {
     let stateInt = parseInt(state, 10);
     switch (stateInt) {
@@ -77,6 +93,8 @@ function stateToString(state) {
             return '';
     }
 }
+
+// converts the value of the given char type to the string description
 function typeToString(type) {
     switch (type) {
         case 'A':
@@ -114,6 +132,7 @@ function typeToString(type) {
 
     }
 }
+// api call to get accords by session Date
 function SearchBySessionDate() {
     let sessiondate = document.getElementById('searchText').value;
     let _url = "api/accord/getaccord/sessiondate/" + sessiondate;
@@ -135,7 +154,7 @@ function SearchBySessionDate() {
             });
 }
 
-
+ // api call to ge accords by session type
 function searchBySessionType() {
     let type = document.getElementById('selectType').value;
     let _url = "api/accord/getaccord/type/" + type;
@@ -156,7 +175,7 @@ function searchBySessionType() {
                 console.log(error);
             });
 }
-
+// api call to get accords by incorporated date
 function searchByIncorDate() {
 
     let incordate = document.getElementById('searchText').value;
@@ -179,7 +198,7 @@ function searchByIncorDate() {
             });
 }
 
-
+// api call to get accords by accordNumber
 function searchByAccNumber() {
     let accnumber = document.getElementById('searchText').value;
     let _url = "api/accord/getaccord/accord/" + accnumber;
@@ -200,13 +219,12 @@ function searchByAccNumber() {
                 console.log(error);
             });
 }
-
-function searchAllAccords(){
-     let _url = "api/accord/getaccord/all/";
-         fetch(_url)
+// api call to get all accords
+function searchAllAccords() {
+    let _url = "api/accord/getaccord/all";
+    fetch(_url)
             .then(res =>
-                res.json()
-            )
+                res.json())
             .then(accords => {
                 var parent = $("#accordList");
                 parent.html("");
@@ -220,7 +238,7 @@ function searchAllAccords(){
             });
 }
 
-
+// button function depending of the option selected in the main combo box
 function searchAccord() {
     let parameter = document.getElementById('serchType').value;
     if (parameter !== 'notSelected') {

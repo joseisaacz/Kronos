@@ -32,7 +32,6 @@
                             <option value="sessionType">Tipo de Sesión</option>
                             <option value="accNumber">Número de Oficio</option>
                             <option value="allAccords">Todos los Acuerdos</option>
-                            <option>5</option>
                         </select> 
                     </div>
                     <div class="col" id="searchDiv">

@@ -125,7 +125,24 @@ public class GetAccord {
                 throw new NotFoundException();
             }
         }
+       
         
+        @GET
+	@Path("/getaccord/all")
+	@Produces(MediaType.APPLICATION_JSON)
+        public List<ToRestAccord> getAllAccords(){
+            try{     
+                List<Accord> list= Dao.getDao().searchAllAccords();
+                List<ToRestAccord> result= new ArrayList();
+                for(Accord item: list){
+                    result.add(ToRestAccord.toRestAcc(item));
+                }
+                return result;
+            }
+            catch(Exception e){
+                throw new NotFoundException();
+            }
+        }
         
     
 }

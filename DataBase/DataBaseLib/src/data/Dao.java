@@ -232,5 +232,40 @@ public class Dao {
         this.db.disconnect();
        return new ArrayList<>(map.values());
     }
+    
+    public List<Accord> searchAllAccords() throws Exception{
+         this.db.connect();
+        CallableStatement statement = this.db.getConnection().prepareCall("{call searchAllAccords()}");
+        ResultSet rs = statement.executeQuery();
+        Map<String, Accord> map = new HashMap();
+
+        while (rs.next()) {
+       
+            String accNumber = rs.getString("ACCNUMBER");
+            if (map.isEmpty() || ! map.containsKey(accNumber)) { //if the map is empty or the result isn't
+                Accord a = new Accord();                                                 //in the map
+                a.setAccNumber(accNumber);
+                a.setIncorporatedDate(rs.getDate("INCORDATE"));
+                a.setDeadline(rs.getDate("DEADLINE"));
+                a.setSessionDate(rs.getDate("SESSIONDATE"));
+                a.setType(rs.getString("TYPE_ID").charAt(0));
+                a.setObservations(rs.getString("OBSERVATIONS"));
+                a.setNotified(rs.getBoolean("NOTIFIED"));
+                a.setPublished(rs.getBoolean("PUBLIC"));
+                a.setState(rs.getInt("STATE"));
+                a.getURL().add(rs.getString("URL"));
+                map.put(accNumber, a);
+            }
+            else {
+                    //if the result isn't  in the map or the map isn't empty, just add the URL into result
+                    map.get(accNumber).getURL().add(rs.getString("URL"));
+                
+            }
+        }
+       
+        statement.close();
+        this.db.disconnect();
+       return new ArrayList<>(map.values());
+    }
 
 }
