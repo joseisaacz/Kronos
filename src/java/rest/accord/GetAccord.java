@@ -5,6 +5,7 @@
  */
 package rest.accord;
 
+import data.Dao;
 import java.io.File;
 import javax.ws.rs.GET;
 import javax.ws.rs.NotFoundException;
@@ -13,6 +14,7 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import logic.Accord;
 
 /**
  *
@@ -44,6 +46,18 @@ public class GetAccord {
 
 	}
     
-    
+    	@GET
+	@Path("/getaccord/{accnumber}")
+	@Produces({MediaType.APPLICATION_JSON})
+	public Accord getAccord(@PathParam("accnumber") String accnumber) {
+                
+           try{ 
+		return Dao.getDao().getAccordByAccNumber(accnumber);
+           }
+           catch(Exception e){
+               throw new NotFoundException();
+           }
+
+	}
     
 }

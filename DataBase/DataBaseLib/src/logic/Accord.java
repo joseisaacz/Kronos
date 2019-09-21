@@ -18,17 +18,18 @@ public class Accord {
     private Date incorporatedDate;
     private Date deadline;
     private  Date sessionDate; 
-    private String type;
+    private char type;
     private String observations;
     private boolean published;
     private boolean notified;
-    private char state;
+    private int state;
     List<String> URL;
 
      public Accord() {
+         this.URL=new ArrayList();
     }
 
-    public Accord(String accNumber, Date incorporatedDate, Date deadline, String type, String observations, boolean published, boolean notified, char state, Date sessionDate) {
+    public Accord(String accNumber, Date incorporatedDate, Date deadline, char type, String observations, boolean published, boolean notified, int state, Date sessionDate) {
         this.accNumber = accNumber;
         this.incorporatedDate = incorporatedDate;
         this.deadline = deadline;
@@ -66,11 +67,11 @@ public class Accord {
         this.deadline = deadline;
     }
 
-    public String getType() {
+    public char getType() {
         return type;
     }
 
-    public void setType(String type) {
+    public void setType(char type) {
         this.type = type;
     }
 
@@ -98,11 +99,11 @@ public class Accord {
         this.notified = notified;
     }
 
-    public char getState() {
+    public int getState() {
         return state;
     }
 
-    public void setState(char state) {
+    public void setState(int state) {
         this.state = state;
     }
 
