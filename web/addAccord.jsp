@@ -2,6 +2,7 @@
     Document   : addAccord
 --%>
 
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <!DOCTYPE html>
@@ -24,17 +25,16 @@
             <%@include file="principalMenu.jsp" %>
         </div> 
         <div id="wrapper">  
-
             <h4 align="center">Agregar Acuerdo</h4>
-            <div class="container" >
-                <form action="/Kronos/accord/addAccord" method="POST" enctype="multipart/form-data" id="uploadForm">
+            <div class="container" id="container" >
+                <form action="">
 
                     <div class="row">
                         <!--                        <div class="row">-->
                         <div class="col">
                             <div  class="form-group">
                                 <label for="form-control col-9" class="form-label"> Oficio: </label>
-                                <input type="text" class="form-control" name="accNumber" id="accNumber"> 
+                                <input type="text" class="form-control" name="office"> 
                             </div> 
                         </div>
 
@@ -49,7 +49,7 @@
                             <div class="row">
                                 <div class="form-group">
                                     <label for="form-control col-4" class="form-label">Fecha de Incorporación:</label>
-                                    <input type="date"  class="form-control" name ="incorDate" id="incorDate">
+                                    <input type="date"  class="form-control" name ="incorporatedDate" id="incorporatedDate">
                                 </div>
                             </div> 
                             <div class="row">
@@ -71,7 +71,7 @@
 
                             <div class="form-group ">
                                 <label for="form-control col-6" class="form-label"> Tipo de acuerdo: </label>                               
-                                <select   class="form-control" id="comboStates" name="comboTypes" onchange="changeComboType(this.value)" >
+                                <select   class="form-control" id="comboStates" name="comboStates" >
                                     <option value="A" >Admistración Municipal</option >
                                     <option value="B" >Auditoría Interna</option >
                                     <option value="C" >LIC</option >
@@ -87,13 +87,13 @@
                         </div> 
                         <div class="col">
                             <div class="form-group ">
-                                <label for="form-control col-9" class="form-label" style="visibility: hidden" id="labelName"> Nombre del Responsable </label>
-                                <input type="hidden" class="form-control" name="tempName" id="tempName"> 
+                                <label for="form-control col-9" class="form-label" style="visibility: hidden"> Nombre del Responsable </label>
+                                <input type="hidden" class="form-control" name="username"> 
                             </div>
                             <div class="form-group ">
-                                <label for="form-control col-9" class="form-label"  id="labelEmail" style="visibility: hidden"> Correo Electronico del Responsable </label>
-                                <input type="hidden" class="form-control" name="tempEmail" id="tempEmail"> 
-                            </div>
+                                <label for="form-control col-9" class="form-label" style="visibility: hidden"> Correo Electronico del Responsable </label>
+                                <input type="hidden" class="form-control" name="email"> 
+                            </div>Loading ...
 
 
                         </div>  
@@ -103,34 +103,33 @@
                         <div class="col">
                             <div class="form-group ">
                                 <label for="" class="form-label" > Observaciones</label>
-                                <input type="text" placeholder="Digite en este espacio sus observaciones" class="form-control"  name ="observations">
-                            </div>
+                                <textarea  placeholder="Digite en este espacio sus observaciones" class="form-control" rows="5" cols="40" name ="observations" rows="3" style ="resize: none"></textarea>
+                                </div>
                         </div>
 
                         <div class="col">
                             <div class="form-group ">
                                 <label for="form-control" class="form-label">Adjuntar archivo:</label>
-                                <input type="file" class="form-control"name="sampleFile" id="sampleFile" placeholder="Inserte aquí el PDF" required multiple>
+                                <input type="file" class="form-control"name="accord" id="accord" placeholder="Inserte aquí el PDF" required>
                             </div>
                         </div>
                     </div>
                     <div class="row">
 
                         <div class="col-6">
+                            <div class="col-7"></div>
                             
-                            
-                            <div class="form-group" >
-                                <input type="submit" class="btn btn-outline-success pull-right" onclick="javascript:agregarAcuerdo()" value="Agregar" >
+                            <div class="form-group col-5" >
+                                <button type="submit" class="btn btn-outline-success pull-right" >Agregar</button>
                             </div>
                             
                         </div>
                         <div class="col-6">
                             <div class="form-group"> 
-                                <button type="button" class="btn btn-outline-danger " >Cancelar</button>
+                                <button type="submit" class="btn btn-outline-danger " >Cancelar</button>
                             </div>
                         </div>
                     </div>
-                     </form>  
              </div>
 
                     <!--                    <div class="row">
@@ -200,7 +199,7 @@
                                                 </div>
                                             </div>-->
 
-               
+                </form>  
             </div>         
 
         <script src="js/bootstrap.js" type="text/javascript"></script>
