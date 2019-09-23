@@ -24,9 +24,8 @@
             <%@include file="principalMenu.jsp" %>
         </div> 
         <div id="wrapper">  
-
             <h4 align="center">Agregar Acuerdo</h4>
-            <div class="container" >
+            <div class="container" id="container" >
                 <form action="">
 
                     <div class="row">
@@ -103,8 +102,8 @@
                         <div class="col">
                             <div class="form-group ">
                                 <label for="" class="form-label" > Observaciones</label>
-                                <input type="text" placeholder="Digite en este espacio sus observaciones" class="form-control"  name ="observations">
-                            </div>
+                                <textarea  placeholder="Digite en este espacio sus observaciones" class="form-control" rows="5" cols="40" name ="observations" rows="3" style ="resize: none"></textarea>
+                                </div>
                         </div>
 
                         <div class="col">
@@ -117,9 +116,9 @@
                     <div class="row">
 
                         <div class="col-6">
+                            <div class="col-7"></div>
                             
-                            
-                            <div class="form-group" >
+                            <div class="form-group col-5" >
                                 <button type="submit" class="btn btn-outline-success pull-right" >Agregar</button>
                             </div>
                             
