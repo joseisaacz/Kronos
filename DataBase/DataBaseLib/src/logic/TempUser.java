@@ -14,6 +14,7 @@ public class TempUser {
     private String email;
 
     public TempUser() {
+        this.email="null";
     }
 
     public TempUser(String name, String email) {

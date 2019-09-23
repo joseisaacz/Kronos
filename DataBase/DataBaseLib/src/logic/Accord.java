@@ -27,6 +27,7 @@ public class Accord {
 
      public Accord() {
          this.URL=new ArrayList();
+         this.type='Z';
     }
 
     public Accord(String accNumber, Date incorporatedDate, Date deadline, char type, String observations, boolean published, boolean notified, int state, Date sessionDate) {

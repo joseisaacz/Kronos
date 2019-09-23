@@ -36,7 +36,7 @@ document.addEventListener("DOMContentLoaded", function () {
                         document.getElementsByName("incorporatedDate")[0].value = accord.incorporatedDate;
                         document.getElementsByName("deadline")[0].value = accord.deadline;
                         document.getElementsByName("observations")[0].value = accord.observations;
-                        
+
                     })
                     .catch(error => {
                         console.log(error);
@@ -52,6 +52,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
 //This function validates if a given date is weekend or holyday
 function isValidDate(date) {
+    console.log(deadline);
+    console.log(date);
     date_aux = date.replace(/-/g, '\/');
     let fecha = new Date(date_aux);
     //if day is saturday or sunday
@@ -69,54 +71,57 @@ function isValidDate(date) {
             return false;
     }
 
+    if (fecha.getMonth() === 2 || fecha.getMonth() === 3) {
+        let URL = "https://www.googleapis.com/calendar/v3/calendars/" +
+                "es.cr%23holiday%40group.v.calendar.google.com/events?key=AIzaSyAJuTl"
+                + "-gxVHcY80RvGL8T9fzY8sgfwU8Xw";
+        var result = true;
+        $.getJSON(URL).then(data => {
+            data.items.forEach(item => {
+                //if the day is eastern   
+                if (item.summary === 'Jueves Santo' || item.summary === 'Viernes Santo') {
+                    if (date === item.start.date) {
+                        result = false;
+                        return false;
+                    }
 
-    let URL = "https://www.googleapis.com/calendar/v3/calendars/es.cr%23holiday%40group.v.calendar.google.com/events?key=AIzaSyAJuTl-gxVHcY80RvGL8T9fzY8sgfwU8Xw";
-    var result = true;
-    $.getJSON(URL).then(data => {
-        data.items.forEach(item => {
-            //if the day is eastern   
-            if (item.summary === 'Jueves Santo' || item.summary === 'Viernes Santo') {
-                if (date === item.start.date) {
-                    result = false;
-                    return false;
                 }
+            })
 
-            }
-        })
+            return result;
+        });
 
-        return result;
-    });
-
-
+    }
+    return true;
 }
 
 /*
  * -------------------------------------------------------------------------------------
  * 
  **/
-var states =null;
-var types= null;
+var states = null;
+var types = null;
 
 
 //this function initialize all functions of formulary
-function init(){
+function init() {
     fullComboStay();
-    
-    
+
+
 }
-function initData1(newData){
+function initData1(newData) {
     stays = newData;
-    
+
 }
 
 //this funtion upload the stay of accord on comboBox
- function fullComboState() 
-    {
-      var comboState = document.getElementsByName("comboState");
-      if(comboState){
-          comboState.options.length =0;
-          
-     
+function fullComboState()
+{
+    var comboState = document.getElementsByName("comboState");
+    if (comboState) {
+        comboState.options.length = 0;
+
+
         {
             var opc = document.createElement("OPTION");
             opc.setAttribute("value", "null");
@@ -130,13 +135,72 @@ function initData1(newData){
 
             var opc = document.createElement("OPTION");
             opc.setAttribute("value", sta.id + " " + sta.description);
-            opc.appendChild(document.createTextNode(local.ciudad+ " " + local.direccion));
+            opc.appendChild(document.createTextNode(local.ciudad + " " + local.direccion));
             refMenu.appendChild(opc);
 
         }
-          
-      }
+
+    }
+}
+
+function changeComboType(combo) {
+    console.log('CAMBIANDO EL COMBO');
+    let labelName = document.getElementById('labelName');
+    let labelEmail = document.getElementById('labelEmail');
+    let textName = document.getElementById('tempName');
+    let textEmail = document.getElementById('tempEmail');
+    if (combo !== 'A') {
+
+        textName.value = '';
+        textEmail.value = '';
+        textName.type = 'text';
+        textEmail.type = 'text';
+        labelName.style.visibility = 'visible';
+        labelEmail.style.visibility = 'visible';
+    } else {
+        textName.value = '';
+        textEmail.value = '';
+        textName.type = 'hidden';
+        textEmail.type = 'hidden';
+        labelName.style.visibility = 'hidden';
+        labelEmail.style.visibility = 'hidden';
     }
 
+}
 
-//this funtion upload the type on comboBox 
+function addAccord() {
+    let deadline = document.getElementById('deadline');
+    if (!isValidDate(deadline.value)) {
+        return;
+    }
+
+    let _url = '/Kronos/accord/addAccord';
+
+    var form = document.getElementById('uploadForm');
+    var data = new FormData(form);
+    /* var data = {};
+     data['key1'] = 'value1';
+     data['key2'] = 'value2'; */
+    $.ajax({
+        type: "POST",
+        encType: "multipart/form-data",
+        url: _url,
+        cache: false,
+        processData: false,
+        contentType: false,
+        data: data,
+        success: function (msg) {
+            var response = JSON.parse(msg);
+            var status = response.status;
+            if (status == 1) {
+                alert("ACUERDO AGREGADO CORRECTAMENTE");
+            } else {
+                alert("OCURRIO UN ERROR");
+            }
+        },
+        error: function (msg) {
+            alert("OCURRIO UN ERROR");
+        }
+    });
+
+}
