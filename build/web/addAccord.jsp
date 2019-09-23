@@ -92,7 +92,7 @@
                             <div class="form-group ">
                                 <label for="form-control col-9" class="form-label" style="visibility: hidden"> Correo Electronico del Responsable </label>
                                 <input type="hidden" class="form-control" name="email"> 
-                            </div>
+                            </div>Loading ...
 
 
                         </div>  
