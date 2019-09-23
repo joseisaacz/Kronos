@@ -76,17 +76,6 @@
                                     </tr>
                                 </thead>
                                 <tbody id="accordList">
-
-                                    <!--                                        <td>OFICIO MSPH-CM-ACUERDO-01-19</td>
-                                                                            <td>01-19</td>
-                                                                            <td>09/19/2019</td>
-                                                                            <td><button type="button" style='text-align: center' class="btn btn-primary" onclick="location.href = 'addAccord.jsp?accnumber=CMSPH-45'">
-                                                                                    <i class="fas fa-edit"></i></button></td>-->
-
-
-                                    <%-- 
-                                        every time the function calls the list we need to add new btn to modify the accord.
-                                    --%>
                                 </tbody>
                             </table>
                         </div>
