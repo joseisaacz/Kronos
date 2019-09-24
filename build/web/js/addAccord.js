@@ -4,6 +4,8 @@
  * and open the template in the editor.
  */
 
+
+
 //This function validates if a given date is weekend or holyday
 function isValidDate(date){
     date_aux=date.replace(/-/g, '\/'); 
@@ -44,3 +46,53 @@ $.getJSON(URL).then(data=>{
 
 }
 
+/*
+ * -------------------------------------------------------------------------------------
+ * 
+ **/
+var states =null;
+var types= null;
+
+
+//this function initialize all functions of formulary
+function init(){
+    fullComboStay();
+    
+    
+}
+function initData1(newData){
+    stays = newData;
+    
+}
+
+//this funtion upload the stay of accord on comboBox
+ function fullComboState() 
+    {
+      var comboState = document.getElementsByName("comboState");
+      if(comboState){
+          comboState.options.length =0;
+          
+     
+        {
+            var opc = document.createElement("OPTION");
+            opc.setAttribute("value", "null");
+            opc.setAttribute("selected", "selected");
+            opc.appendChild(document.createTextNode("(Estado)"));
+            refMenu.appendChild(opc);
+        }
+
+        for (var i = 0; i < states.length; i++) {
+            var sta = comercios[i];
+
+            var opc = document.createElement("OPTION");
+            opc.setAttribute("value", sta.id + " " + sta.description);
+            opc.appendChild(document.createTextNode(local.ciudad+ " " + local.direccion));
+            refMenu.appendChild(opc);
+
+        }
+          
+      }
+    }
+
+
+//this funtion upload the type on comboBox 
