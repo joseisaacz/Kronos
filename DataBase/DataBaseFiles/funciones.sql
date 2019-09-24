@@ -97,3 +97,56 @@ select ACCNUMBER, INCORDATE,
 DEADLINE, SESSIONDATE, TYPE_ID, OBSERVATIONS, PUBLIC, NOTIFIED,  STATE, T_ACCPDF.URL  from T_ACCORD, T_ACCPDF where ACCNUMBER= T_ACCPDF.ACCORD and SESSIONDATE = sessionDate;
 end$$
 DELIMITER ; 
+
+USE `KRONOS`;
+DROP procedure IF EXISTS deleteAccord;
+DELIMITER $$
+USE `KRONOS`$$
+create procedure deleteAccord(in accord varchar(45)  
+)
+begin
+delete from T_USERACC where ACCORD = accord;
+delete from T_ACCPDF where ACCORD = accord;
+delete from T_ACCORD where ACCNUMBER = accord; 
+end$$
+DELIMITER ; 
+
+DROP TABLE IF EXISTS `KRONOS`.`T_DELETEDACCORDS` ;
+
+CREATE TABLE IF NOT EXISTS `KRONOS`.`T_DELETEDACCORDS` (
+  `ACCORD` VARCHAR(45) NOT NULL,
+  action VARCHAR(50) DEFAULT NULL
+  )
+ENGINE = InnoDB;
+
+
+USE `KRONOS`;
+DROP procedure IF EXISTS deleteAccord;
+DELIMITER $$
+USE `KRONOS`$$
+CREATE DEFINER = CURRENT_USER TRIGGER `KRONOS`.`T_ACCORD_BEFORE_DELETE` BEFORE DELETE ON `T_ACCORD` FOR EACH ROW
+BEGIN
+insert into T_DELETEDACCORDS SET action = 'delete', T_ACCORD.ACCNUMBER= OLD.ACCNUMBER;
+END$$
+DELIMITER ; 
+
+USE `KRONOS`;
+DROP procedure IF EXISTS searchAllAccords;
+DELIMITER $$
+USE `KRONOS`$$
+create procedure searchAllAccords()
+begin
+select ACCNUMBER, INCORDATE, 
+DEADLINE, SESSIONDATE, TYPE_ID, OBSERVATIONS, PUBLIC, NOTIFIED,  STATE, T_ACCPDF.URL  from T_ACCORD, T_ACCPDF where ACCNUMBER= T_ACCPDF.ACCORD;
+end$$
+DELIMITER ; 
+
+USE `KRONOS`;
+DROP procedure IF EXISTS searchTempUser;
+DELIMITER $$
+USE `KRONOS`$$
+create procedure searchTempUser( in email varchar(45))
+begin
+select NAME, EMAIL  from T_TEMPUSER where EMAIL= email; 
+end$$
+DELIMITER ; 
