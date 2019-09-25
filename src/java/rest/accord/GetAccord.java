@@ -59,7 +59,10 @@ public class GetAccord {
            try{ 
               
 		Accord a= Dao.getDao().getAccordByAccNumber("CMSPH-45");
-               ToRestAccord b= ToRestAccord.toRestAcc(a);
+               ToRestAccord b= null;
+               if (a != null)
+                   b= ToRestAccord.toRestAcc(a);
+               
                return b;
            }
            catch(Exception e){
