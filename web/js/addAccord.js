@@ -201,3 +201,20 @@ function addAccord() {
     });
 
 }
+
+
+/*
+ * 
+ * get the pdf and display it in a new browser tab
+ * 
+ *             function prueba(){
+               let path='/home/jonathan/uploads/docu.pdf';
+                let _url='api/accord/getfile?filepath='+path;
+                console.log(_url);
+               fetch(_url)
+    .then(response => response.blob())
+   .then(data => window.open(URL.createObjectURL(data)));
+       }
+ * 
+ * 
+ */

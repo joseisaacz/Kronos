@@ -19,6 +19,8 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.util.List;
+import javax.ws.rs.QueryParam;
+import javax.ws.rs.core.Response.ResponseBuilder;
 import logic.Accord;
 
 /**
@@ -29,18 +31,17 @@ import logic.Accord;
 public class GetAccord {
     
     	@GET
-	@Path("/getfile/{path}")
-	@Produces({MediaType.APPLICATION_OCTET_STREAM})
-	public Response getFile(@PathParam("path") String path) {
+	@Path("/getfile")
+        @Produces("application/pdf")  
+	public Response getFile(@QueryParam("filepath") String filepath) {
                 
            try{ 
-		File file = new File(path);
+           
+		File file = new File(filepath);
                 if(file.exists()){
-		Response.ResponseBuilder response = Response.ok((Object) file);
-		response.header("Content-Disposition",
-				"attachment; filename="+file.getName());
-                response.header("Content-Type", "application/octet-stream");
-                response.header("Content-Length", file.length());
+		
+		        ResponseBuilder response = Response.ok((Object) file);  
+        response.header("Content-Disposition","attachment; filename=\""+file.getName()+"\"");  
 		return response.build();
                 }
                 throw new Exception();
@@ -58,7 +59,7 @@ public class GetAccord {
                
            try{ 
               
-		Accord a= Dao.getDao().getAccordByAccNumber("CMSPH-45");
+		Accord a= Dao.getDao().getAccordByAccNumber(accnumber);
                ToRestAccord b= null;
                if (a != null)
                    b= ToRestAccord.toRestAcc(a);
