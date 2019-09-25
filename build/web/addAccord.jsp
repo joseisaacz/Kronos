@@ -2,6 +2,7 @@
     Document   : addAccord
 --%>
 
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <!DOCTYPE html>
@@ -33,7 +34,7 @@
                         <div class="col">
                             <div  class="form-group">
                                 <label for="form-control col-9" class="form-label"> Oficio: </label>
-                                <input type="text" class="form-control" name="office"> 
+                                <input type="text" class="form-control" name="office" value="OFICIO MSPH-CM-ACUER-" disabled="true"> 
                             </div> 
                         </div>
 

@@ -26,7 +26,6 @@ import javax.ws.rs.NotFoundException;
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
-import org.jose4j.json.internal.json_simple.JSONArray;
 
 /**
  *
