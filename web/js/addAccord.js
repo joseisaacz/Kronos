@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-
+//this fuction adds into an array the parameters of the url 
 function getUrlVars() {
     var vars = {};
     var flag = false;
@@ -144,7 +144,6 @@ function fullComboState()
 }
 
 function changeComboType(combo) {
-    console.log('CAMBIANDO EL COMBO');
     let labelName = document.getElementById('labelName');
     let labelEmail = document.getElementById('labelEmail');
     let textName = document.getElementById('tempName');
@@ -171,6 +170,7 @@ function changeComboType(combo) {
 function addAccord() {
     let deadline = document.getElementById('deadline');
     if (!isValidDate(deadline.value)) {
+        alert ("La Fecha de Vencimiento no es válida");
         return;
     }
 
@@ -178,9 +178,6 @@ function addAccord() {
 
     var form = document.getElementById('uploadForm');
     var data = new FormData(form);
-    /* var data = {};
-     data['key1'] = 'value1';
-     data['key2'] = 'value2'; */
     $.ajax({
         type: "POST",
         encType: "multipart/form-data",
@@ -192,7 +189,7 @@ function addAccord() {
         success: function (msg) {
             var response = JSON.parse(msg);
             var status = response.status;
-            if (status == 1) {
+            if (status === 1) {
                 alert("ACUERDO AGREGADO CORRECTAMENTE");
             } else {
                 alert("OCURRIO UN ERROR");

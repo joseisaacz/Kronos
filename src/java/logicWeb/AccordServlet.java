@@ -64,11 +64,7 @@ public class AccordServlet extends HttpServlet {
             throws ServletException, IOException, Exception {
         if (!ServletFileUpload.isMultipartContent(request)) {
             // if not, we stop here
-            PrintWriter writer = response.getWriter();
-            writer.println("Error: Form must has enctype=multipart/form-data.");
-            writer.flush();
-            response.sendError(503);
-            return;
+            throw new Exception();
         }
         try {
 
@@ -114,10 +110,8 @@ public class AccordServlet extends HttpServlet {
                         String filePath = uploadPath + File.separator + fileName;
                         File storeFile = new File(filePath);
                         acc.getURL().add(filePath);
-                        // saves the file on disk
-                        PrintWriter writer = response.getWriter();
-                        writer.println("Datos guardados correctamente");
-                        writer.flush();
+                        item.write(storeFile);
+
                     } else {
                         String name = item.getFieldName();
                         switch (name) {
@@ -162,9 +156,9 @@ public class AccordServlet extends HttpServlet {
                                 String tempName = new String(item.get());
                                 if (tempName != null) {
                                     if (tempName != "") {
-                                        if (acc.getType() != 'Z') {
-                                            tmp.setName(tempName);
-                                        }
+
+                                        tmp.setName(tempName);
+
                                     }
                                 }
                             }
@@ -174,9 +168,9 @@ public class AccordServlet extends HttpServlet {
                                 String tempEmail = new String(item.get());
                                 if (tempEmail != null) {
                                     if (tempEmail != "") {
-                                        if (acc.getType() != 'Z') {
-                                            tmp.setEmail(tempEmail);
-                                        }
+
+                                        tmp.setEmail(tempEmail);
+
                                     }
                                 }
                             }
@@ -200,9 +194,9 @@ public class AccordServlet extends HttpServlet {
                         temp.setEmail(tmp.getEmail());
                         temp.setName(tmp.getName());
 
+                    } else {
+                        temp = tmp;
                     }
-                    else
-                        temp=tmp;
                 }
 
                 Dao.getDao().insertTempUser(temp);
@@ -210,36 +204,11 @@ public class AccordServlet extends HttpServlet {
             acc.setState(2);
             Dao.getDao().insertAccord(acc);
         } catch (Exception ex) {
-            response.sendError(503);
+
             throw new ServletException();
         }
     }
 
-    private Accord getAccord(HttpServletRequest request, HttpServletResponse response) {
-
-        try {
-            Accord acc = new Accord();
-            acc.setAccNumber(request.getParameter("accNumber"));
-            String sessionDate = request.getParameter("sessionDate");
-            DateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-            acc.setSessionDate(format.parse(sessionDate));
-            String deadLine = request.getParameter("deadline");
-            acc.setDeadline(format.parse(deadLine));
-            String incorDate = request.getParameter("incorDate");
-            acc.setIncorporatedDate(format.parse(incorDate));
-            String observations = request.getParameter("observations");
-            acc.setObservations(observations);
-            acc.setType(request.getParameter("comboStates").charAt(0));
-            acc.setNotified(true ? request.getParameter("notify") != null : false);
-            acc.setPublished(true ? request.getParameter("public") != null : false);
-
-            return acc;
-        } catch (Exception ex) {
-
-        }
-
-        return null;
-    }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
