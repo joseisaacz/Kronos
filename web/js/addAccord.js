@@ -31,12 +31,7 @@ document.addEventListener("DOMContentLoaded", function () {
                         res.json()
                     )
                     .then(accord => {
-                        console.log(accord);
-                        document.getElementsByName("office")[0].value = accord.accNumber;
-                        document.getElementsByName("incorporatedDate")[0].value = accord.incorporatedDate;
-                        document.getElementsByName("deadline")[0].value = accord.deadline;
-                        document.getElementsByName("observations")[0].value = accord.observations;
-
+                        editAccord(accord);
                     })
                     .catch(error => {
                         console.log(error);
@@ -202,6 +197,14 @@ function addAccord() {
 
 }
 
+function editAccord(accord){
+       
+                        document.getElementsByName("office")[0].value = accord.accNumber;
+                        document.getElementsByName("incorporatedDate")[0].value = accord.incorporatedDate;
+                        document.getElementsByName("deadline")[0].value = accord.deadline;
+                        document.getElementsByName("observations")[0].value = accord.observations;
+
+}
 
 /*
  * 

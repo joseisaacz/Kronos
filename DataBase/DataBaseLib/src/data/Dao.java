@@ -302,5 +302,18 @@ public class Dao {
         this.db.disconnect();
        return new ArrayList<>(map.values());
     }
+    
+    public void deleteAccord(Accord acc) throws Exception{
+        
+       this.db.connect();
 
+        CallableStatement statement = this.db.getConnection().prepareCall("{call insertAccord(?)}"); 
+        statement.setString(1,acc.getAccNumber());
+        statement.executeUpdate();
+        statement.close();
+        
+        this.db.disconnect();
+        
+        
+    }
 }

@@ -33,10 +33,15 @@
                     <div class="row">
                         <!--                        <div class="row">-->
                         <div class="col">
-                            <div  class="form-group">
-                                <label for="form-control col-9" class="form-label"> Oficio: </label>
-                                <input type="text" class="form-control" name="office"> 
-                            </div> 
+                             <label for="form-control col-9" class="form-label"> Oficio: </label>
+                            <div class="col-sm-10">
+                                 <input type="text" name="desc" value="OFICIO MSPH-CM-ACUER-" disabled> 
+                                 
+                            </div>
+                             <div class="col-sm-9">
+                                 <input type="text" class="form-control" name="office" > 
+                             </div>
+                          
                         </div>
 
                         <div class="col">
@@ -121,7 +126,7 @@
                             <div class="col-7"></div>
                             
                             <div class="form-group col-5" >
-                                <button type="submit" class="btn btn-outline-success pull-right" >Agregar</button>
+                                <button type="submit" class="btn btn-outline-success pull-right" onclick="javascript:hola()">Agregar</button>
                             </div>
                             
                         </div>
