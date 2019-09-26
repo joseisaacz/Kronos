@@ -121,7 +121,7 @@ ENGINE = InnoDB;
 
 
 USE `KRONOS`;
-DROP procedure IF EXISTS deleteAccord;
+DROP trigger IF EXISTS T_ACCORD_BEFORE_DELETE;
 DELIMITER $$
 USE `KRONOS`$$
 CREATE DEFINER = CURRENT_USER TRIGGER `KRONOS`.`T_ACCORD_BEFORE_DELETE` BEFORE DELETE ON `T_ACCORD` FOR EACH ROW
@@ -148,5 +148,65 @@ USE `KRONOS`$$
 create procedure searchTempUser( in email varchar(45))
 begin
 select NAME, EMAIL  from T_TEMPUSER where EMAIL= email; 
+end$$
+DELIMITER ; 
+
+USE `KRONOS`;
+DROP procedure IF EXISTS updateAccordSessionDate;
+DELIMITER $$
+USE `KRONOS`$$
+create procedure updateAccordSessionDate( in accord varchar(45), in newdate date)
+begin
+update T_ACCORD set SESSIONDATE = newdate where ACCNUMBER = accord;   
+end$$
+DELIMITER ; 
+
+USE `KRONOS`;
+DROP procedure IF EXISTS updateAccordDeadline;
+DELIMITER $$
+USE `KRONOS`$$
+create procedure updateAccordDeadline( in accord varchar(45), in newdeadline date)
+begin
+update T_ACCORD set DEADLINE = newdeadline where ACCNUMBER = accord;
+end$$
+DELIMITER ; 
+
+USE `KRONOS`;
+DROP procedure IF EXISTS updateAccordType;
+DELIMITER $$
+USE `KRONOS`$$
+create procedure updateAccordType( in accord varchar(45), in newtype char(1))
+begin
+update T_ACCORD set TYPE_ID = newtype where ACCNUMBER = accord;
+end$$
+DELIMITER ; 
+
+USE `KRONOS`;
+DROP procedure IF EXISTS updateAccordState;
+DELIMITER $$
+USE `KRONOS`$$
+create procedure updateAccordState( in accord varchar(45), in newstate int)
+begin
+update T_ACCORD set STATE = newstate where ACCNUMBER = accord;
+end$$
+DELIMITER ;  
+
+USE `KRONOS`;
+DROP procedure IF EXISTS updateAccordUser;
+DELIMITER $$
+USE `KRONOS`$$
+create procedure updateAccordUser( in accord varchar(45), in newuser varchar(45), in antuser varchar(45))
+begin
+update T_USERACC set TEMPUSER = newuser where ACCORD = accord and TEMPUSER= antuser;
+end$$
+DELIMITER ; 
+
+USE `KRONOS`;
+DROP procedure IF EXISTS updateAccordUrls;
+DELIMITER $$
+USE `KRONOS`$$
+create procedure updateAccordUrls( in accord varchar(45), in newurl varchar(100), in anturl varchar(100))
+begin
+update T_ACCPDF set URL=newurl where ACCORD=accord and URL=anturl; 
 end$$
 DELIMITER ; 
