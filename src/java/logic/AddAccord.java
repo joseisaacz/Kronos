@@ -21,11 +21,10 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.ws.rs.NotFoundException;
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
-import org.jose4j.json.internal.json_simple.JSONArray;
-
 /**
  *
  * @author jonathan
@@ -62,6 +61,12 @@ public class AddAccord extends HttpServlet {
         try{
             
         Accord acc= this.getAccord(request, response);
+        
+        
+        
+        
+        
+        
         // configures upload settings
         DiskFileItemFactory factory = new DiskFileItemFactory();
         // sets memory threshold - beyond which files are stored in disk
@@ -109,7 +114,16 @@ public class AddAccord extends HttpServlet {
                 }
             }
             
+            if(acc.getType()!= 'A'){
+            String username= request.getParameter("username");
+            String email= request.getParameter("email");
+            if(username==null || email==null)
+                throw new Exception();
+            
             Dao.getDao().insertAccord(acc);
+            
+        }
+            
         }
          catch (Exception ex) {
            PrintWriter writer = response.getWriter();

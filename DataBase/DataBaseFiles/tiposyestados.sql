@@ -15,3 +15,14 @@ insert into T_STATE (ID, DESCRIPTION)values (1, 'incumplido');
 insert into T_STATE (ID, DESCRIPTION)values (2, 'pendiente');
 insert into T_STATE (ID, DESCRIPTION)values (3, 'recibido');
 insert into T_STATE (ID, DESCRIPTION)values (4, 'desestimado');
+
+call insertAccord('MSPH-CM-272-19','2019-05-20','2019-06-04','2019-05-21','G','Remitir el recurso',false,false,2);
+
+(1 accNumber, 
+2 incordDate, 3 deadline
+, 4 sessionDate
+, 5 type(char)
+, 6 observations
+, 7 public bool,   
+8 notified bool, 
+9 state int)

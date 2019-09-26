@@ -2,6 +2,7 @@
     Document   : addAccord
 --%>
 
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <!DOCTYPE html>
@@ -9,6 +10,7 @@
     <head>  
         <title>Agregar acuerdo</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link href="css/bootstrap.css" rel="stylesheet" type="text/css"/>
         <link href="css/default.css" rel="stylesheet" type="text/css"/>
         <link href="css/menu.css" rel="stylesheet" type="text/css"/>
@@ -24,67 +26,183 @@
             <%@include file="principalMenu.jsp" %>
         </div> 
         <div id="wrapper">  
-
             <h4 align="center">Agregar Acuerdo</h4>
-            <section class="container" id="container">
+            <div class="container" id="container" >
                 <form action="">
+
                     <div class="row">
-                        <div class="col-6">
-                            <div  class="form-group row">
-                                <label for="" class="col-2 col-form-label"> Oficio: </label>
-                                <input type="text" class="form-control col-9" name="office"> 
+                        <!--                        <div class="row">-->
+                        <div class="col">
+                            <div  class="form-group">
+                                <label for="form-control col-9" class="form-label"> Oficio: </label>
+                                <input type="text" class="form-control" name="office"> 
                             </div> 
-                            <div class="form-group row">
-                                <label for="" class="col-5 col-form-label"> Tipo de acuerdo: </label>                               
-                                <select class="form-control col-6" name ="comboType">
-                                </select>
-                            </div>
+                        </div>
+
+                        <div class="col">
                             <div class="form-group">
-                                <label for="" class="col-7 col-form-label">Fecha de sesión:</label>
-                                <input type="date"  class="form-control col-4" name ="incorporatedDate">
+                                <label for="form-control col-4" class="form-label">Fecha de sesión:</label>
+                                <input type="date"  class="form-control" name ="sessionDate" id="sessionDate">
+                            </div>
+                        </div>
+
+                        <div class="col">
+                            <div class="row">
+                                <div class="form-group">
+                                    <label for="form-control col-4" class="form-label">Fecha de Incorporación:</label>
+                                    <input type="date"  class="form-control" name ="incorporatedDate" id="incorporatedDate">
+                                </div>
+                            </div> 
+                            <div class="row">
+
+                                <div class="form-group">
+                                    <label for="form-control" class="form-label" >Vencimiento:</label>
+                                    <input type="date" class="form-control" name="deadline" id="deadline">
+                                </div>
+                            </div>    
+                        </div>    
+                        <!--                        </div>-->
 
 
-                            <div class="cform-group row">
-                                <label for="" class="col-5 col-form-label"> Estado del acuerdo: </label>
-                                <select class="form-control col-6 " name ="comboState">
+                    </div>
+
+                    <div class="row">
+
+                        <div class="col">
+
+                            <div class="form-group ">
+                                <label for="form-control col-6" class="form-label"> Tipo de acuerdo: </label>                               
+                                <select   class="form-control" id="comboStates" name="comboStates" >
+                                    <option value="A" >Admistración Municipal</option >
+                                    <option value="B" >Auditoría Interna</option >
+                                    <option value="C" >LIC</option >
+                                    <option value="D" >Obras</option >
+                                    <option value="E" >Plan Regulador</option >
+                                    <option value="F" >Hacienda</option >
+                                    <option value="G" >Jurídicos</option >
+                                    <option value="H" >Sociales</option >
+                                    <option value="I" >Ambiente</option >
+                                    <option value="J" >Varios</option >
                                 </select>
                             </div>
-                            <div class="form-group row">
-                                <label for="" class="col-3 col-form-label" > Observaciones</label>
-                                <input type="text" placeholder="Digite en este espacio sus observaciones" class="form-control col-10 input-lg" name ="observations">
+                        </div> 
+                        <div class="col">
+                            <div class="form-group ">
+                                <label for="form-control col-9" class="form-label" style="visibility: hidden"> Nombre del Responsable </label>
+                                <input type="hidden" class="form-control" name="username"> 
                             </div>
+                            <div class="form-group ">
+                                <label for="form-control col-9" class="form-label" style="visibility: hidden"> Correo Electronico del Responsable </label>
+                                <input type="hidden" class="form-control" name="email"> 
+                            </div>Loading ...
+
+
+                        </div>  
+                    </div> 
+
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group ">
+                                <label for="" class="form-label" > Observaciones</label>
+                                <textarea  placeholder="Digite en este espacio sus observaciones" class="form-control" rows="5" cols="40" name ="observations" rows="3" style ="resize: none"></textarea>
+                                </div>
+                        </div>
+
+                        <div class="col">
+                            <div class="form-group ">
+                                <label for="form-control" class="form-label">Adjuntar archivo:</label>
+                                <input type="file" class="form-control"name="accord" id="accord" placeholder="Inserte aquí el PDF" required>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+
+                        <div class="col-6">
+                            <div class="col-7"></div>
+                            
+                            <div class="form-group col-5" >
+                                <button type="submit" class="btn btn-outline-success pull-right" >Agregar</button>
+                            </div>
+                            
                         </div>
                         <div class="col-6">
-                            <div class="form-group row">
-                                <label for="" class="col-4 col-form-label">Fecha de sesión:</label>
-                                <input type="date" class="form-control col-8" name ="incorporatedDate">
+                            <div class="form-group"> 
+                                <button type="submit" class="btn btn-outline-danger " >Cancelar</button>
                             </div>
-                            <div class="form-group row">
-                                <label for="" class="col-4 col-form-label">Vencimiento:</label>
-                                <input type="date" class="form-control col-8" name="deadline">
-                            </div>
-                            <div>
-                                <label for="" class="col-4 col-form-label">Adjuntar archivo:</label>
-                                <input type="file" name="accord" id="accord" placeholder="Inserte aquí el PDF" required>
-                            </div>
+                        </div>
+                    </div>
+             </div>
 
-                        </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-6">
-                                <div class="form-group row" >
-                                    <button type="submit" class="btn btn-outline-success btn-lg col-6">Agregar</button>
-                                </div>
-                            </div>
-                            <div class="col-6">
-                                <div class="form-group row "> 
-                                    <button type="submit" class="btn btn-outline-danger btn-lg col-6" >Cancelar</button>
-                                </div>
-                            </div>
-                        </div>
+                    <!--                    <div class="row">
+                                            <div class="col-6">
+                                                <div  class="form-group">
+                                                    <label for="form-control col-9" class="form-label"> Oficio: </label>
+                                                    <input type="text" class="form-control" name="office"> 
+                                                </div> 
+                                                <div class="form-group ">
+                                                    <label for="form-control col-6" class="form-label"> Tipo de acuerdo: </label>                               
+                                                    <select   class="form-control" id="comboStates" name="comboStates" >
+                                                        <option value="A" >Admistración Municipal</option >
+                                                        <option value="B" >Auditoría Interna</option >
+                                                        <option value="C" >LIC</option >
+                                                        <option value="D" >Obras</option >
+                                                        <option value="E" >Plan Regulador</option >
+                                                        <option value="F" >Hacienda</option >
+                                                        <option value="G" >Jurídicos</option >
+                                                        <option value="H" >Sociales</option >
+                                                        <option value="I" >Ambiente</option >
+                                                        <option value="J" >Varios</option >
+                                                    </select>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="form-control col-4" class="form-label">Fecha de sesión:</label>
+                                                    <input type="date"  class="form-control" name ="incorporatedDate">
+                                                    </div>
+                    
+                                                    <div class="form-group ">
+                                                        <label for="" class="form-label" > Observaciones</label>
+                                                        <input type="text" placeholder="Digite en este espacio sus observaciones" class="form-control col-10 input-lg" name ="observations">
+                                                    </div>
+                                                </div>
+                                                <div class="col-6">
+                                                    <div class="form-group">
+                                                        <label for="form-control" class="form-label">Fecha de sesión:</label>
+                                                        <input type="date" class="form-control" name ="incorporatedDate">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="form-control" class="form-label">Vencimiento:</label>
+                                                        <input type="date" class="form-control" name="deadline">
+                                                    </div>
+                                                    <div>
+                                                        <label for="" class="form-label">Adjuntar archivo:</label>
+                                                        <input type="file" name="accord" id="accord" placeholder="Inserte aquí el PDF" required>
+                                                    </div>
+                    
+                    
+                                                </div>
+                    
+                                                <div class="container">
+                    
+                                                    <div class="col-6">
+                    
+                                                        <div class="col-6">
+                                                            <div class="form-group" >
+                                                                <button type="submit" class="btn btn-outline-success" >Agregar</button>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-6">
+                                                            <div class="form-group"> 
+                                                                <button type="submit" class="btn btn-outline-danger " >Cancelar</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                    
+                                                </div>
+                                            </div>-->
+
                 </form>  
-            </section>         
-        </div>
+            </div>         
+
         <script src="js/bootstrap.js" type="text/javascript"></script>
         <script src="js/jquery-3.3.1.min.js" type="text/javascript"></script>
         <script src="js/addAccord.js" type="text/javascript"></script>

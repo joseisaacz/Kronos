@@ -7,9 +7,11 @@ package data;
 
 import java.sql.CallableStatement;
 import java.sql.SQLException;
+import java.text.DateFormat;
 import logic.Accord;
 import java.util.Date;
 import java.sql.ResultSet;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -43,17 +45,28 @@ public class Dao {
 
         this.db.connect();
 
-        CallableStatement statement = this.db.getConnection().prepareCall("{call insertAccord(?, ?, ?, ?, ?, ?, ?, ?)}");
+        CallableStatement statement = this.db.getConnection().prepareCall("{call insertAccord(?, ?, ?, ?, ?, ?, ?, ?, ?)}");
+
+      java.text.DateFormat  format= new SimpleDateFormat("yyyy-dd-MM");
+      String incordate=format.format(acc.getDeadline());
+      String deadline=format.format(acc.getDeadline());
+        
         statement.setString(1, acc.getAccNumber());
         statement.setDate(2, new java.sql.Date(acc.getIncorporatedDate().getTime()));
         statement.setDate(3, new java.sql.Date(acc.getDeadline().getTime()));
-        statement.setString(4, String.valueOf(acc.getType()));
-        statement.setString(5, acc.getObservations());
-        statement.setBoolean(6, acc.isPublished());
-        statement.setBoolean(7, acc.isNotified());
-        statement.setInt(8, acc.getState());
+         statement.setDate(4, new java.sql.Date(acc.getSessionDate().getTime()));
+        statement.setString(5, String.valueOf(acc.getType()));
+        statement.setString(6, acc.getObservations());
+        statement.setBoolean(7, acc.isPublished());
+        statement.setBoolean(8, acc.isNotified());
+        statement.setInt(9, acc.getState());
+       // String command="call insertAccord('%s','%s','%s','%s','%c','%s',%b,%b,%d);";
+      // String.format(command,acc.getAccNumber(),incordate,deadline,sessDate,acc.getType(),acc.getObservations(),false,false,acc.getState() );
         statement.executeUpdate();
         statement.close();
+
+       // statement.executeUpdate();
+       // statement.close();
         for (String item : acc.getURL()) {
             CallableStatement statement2 = this.db.getConnection().prepareCall("{call insertAccPdf(?, ?)}");
             statement2.setString(1, acc.getAccNumber());
@@ -63,6 +76,12 @@ public class Dao {
             statement2.close();
         }
 
+        
+                 
+//        java.sql.Date date=new java.sql.Date(acc.getIncorporatedDate().getTime());
+//       java.sql.Date date2=new java.sql.Date(acc.getDeadline().getTime());
+//       java.sql.Date date3= new java.sql.Date(acc.getDeadline().getTime());
+//        String aux=String.valueOf(acc.getType());
         this.db.disconnect();
     }
 
@@ -87,7 +106,23 @@ public class Dao {
         this.db.disconnect();
 
     }
-
+    public TempUser getTempUserByEmail(String email) throws Exception{
+        this.db.connect();
+        
+        CallableStatement statement = this.db.getConnection().prepareCall("{call searchTempUser(?)}");
+        statement.setString(1,email);
+        TempUser temp=null;
+         ResultSet rs = statement.executeQuery();
+          while (rs.next()) {
+              temp= new TempUser();
+              temp.setName(rs.getString("NAME"));
+              temp.setEmail(rs.getString("EMAIL"));
+              
+          }
+         rs.close();
+        this.db.disconnect();
+        return temp;
+    }
     public List<Accord> searchAccordByType(char type) throws Exception {
         this.db.connect();
         CallableStatement statement = this.db.getConnection().prepareCall("{call searchAccordsessionDate(? )}");
