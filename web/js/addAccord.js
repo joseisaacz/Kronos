@@ -206,6 +206,62 @@ function editAccord(accord){
 
 }
 
+
+//-----------DRAG AND DROP---------
++ function($) {
+    'use strict';
+
+    // UPLOAD CLASS DEFINITION
+    // ======================
+
+    var dropZone = document.getElementById('drop-zone');
+    var uploadForm = document.getElementById('js-upload-form');
+
+    var startUpload = function(files) {
+        console.log(files)
+    }
+
+    uploadForm.addEventListener('submit', function(e) {
+        var uploadFiles = document.getElementById('js-upload-files').files;
+        e.preventDefault()
+
+        startUpload(uploadFiles)
+    })
+
+    dropZone.ondrop = function(e) {
+        e.preventDefault();
+        this.className = 'upload-drop-zone';
+
+        startUpload(e.dataTransfer.files)
+    }
+
+    dropZone.ondragover = function() {
+        this.className = 'upload-drop-zone drop';
+        return false;
+    }
+
+    dropZone.ondragleave = function() {
+        this.className = 'upload-drop-zone';
+        return false;
+    }
+
+}(jQuery);
+
+function editAccord(accord){
+       
+                        document.getElementsByName("office")[0].value = accord.accNumber;
+                        document.getElementsByName("incorporatedDate")[0].value = accord.incorporatedDate;
+                        document.getElementsByName("deadline")[0].value = accord.deadline;
+                        document.getElementsByName("observations")[0].value = accord.observations;
+
+}
+
+
+
+
+
+
+
 /*
  * 
  * get the pdf and display it in a new browser tab
