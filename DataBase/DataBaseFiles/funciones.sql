@@ -5,11 +5,11 @@ USE `KRONOS`$$
 CREATE PROCEDURE insertAccord (IN accNumber VARCHAR(45), IN incorDate DATE, 
 IN deadLine DATE, IN sessionDate DATE, IN type_id
 CHAR(1), IN observations longtext, IN publics TINYINT(4),
-IN notified TINYINT(4), IN states INT)
+IN notified TINYINT(4), IN states INT, IN notifDate date)
 BEGIN
 INSERT INTO T_ACCORD (ACCNUMBER, INCORDATE, 
-DEADLINE, SESSIONDATE, OBSERVATIONS, PUBLIC, NOTIFIED,  STATE, TYPE_ID) 
-VALUES (accNumber, incorDate, deadLine, sessionDate, observations, publics, notified, states, type_id);
+DEADLINE, SESSIONDATE, OBSERVATIONS, PUBLIC, NOTIFIED,  STATE, TYPE_ID, NOTIFDATE) 
+VALUES (accNumber, incorDate, deadLine, sessionDate, observations, publics, notified, states, type_id, notifDate);
 commit; 
 END$$
 DELIMITER ;
@@ -58,7 +58,7 @@ create procedure searchAccordType(in type_id char(1)
 )
 begin
 select ACCNUMBER, INCORDATE, 
-DEADLINE, SESSIONDATE, TYPE_ID, OBSERVATIONS, PUBLIC, NOTIFIED,  STATE, T_ACCPDF.URL  from T_ACCORD, T_ACCPDF where ACCNUMBER= T_ACCPDF.ACCORD and TYPE_ID = type_id;
+DEADLINE, SESSIONDATE, TYPE_ID, OBSERVATIONS, PUBLIC, NOTIFIED,  STATE, NOTIFDATE, T_ACCPDF.URL  from T_ACCORD, T_ACCPDF where ACCNUMBER= T_ACCPDF.ACCORD and TYPE_ID = type_id;
 end$$
 DELIMITER ;
 
@@ -70,7 +70,7 @@ create procedure searchAccordNumber(in accNumber varchar(45)
 )
 begin
 select ACCNUMBER, INCORDATE, 
-DEADLINE, SESSIONDATE, TYPE_ID, OBSERVATIONS, PUBLIC, NOTIFIED,  STATE, T_ACCPDF.URL  from T_ACCORD, T_ACCPDF where ACCNUMBER= T_ACCPDF.ACCORD and ACCNUMBER = accNumber;
+DEADLINE, SESSIONDATE, TYPE_ID, OBSERVATIONS, PUBLIC, NOTIFIED,  STATE, NOTIFDATE, T_ACCPDF.URL  from T_ACCORD, T_ACCPDF where ACCNUMBER= T_ACCPDF.ACCORD and ACCNUMBER = accNumber;
 end$$
 DELIMITER ; 
 
@@ -82,7 +82,7 @@ create procedure searchAccordIncorDate(in incorDate  date
 )
 begin
 select ACCNUMBER, INCORDATE, 
-DEADLINE, SESSIONDATE, TYPE_ID, OBSERVATIONS, PUBLIC, NOTIFIED,  STATE, T_ACCPDF.URL  from T_ACCORD, T_ACCPDF where ACCNUMBER= T_ACCPDF.ACCORD and INCORDATE = incorDate;
+DEADLINE, SESSIONDATE, TYPE_ID, OBSERVATIONS, PUBLIC, NOTIFIED,  STATE, NOTIFDATE, T_ACCPDF.URL  from T_ACCORD, T_ACCPDF where ACCNUMBER= T_ACCPDF.ACCORD and INCORDATE = incorDate;
 end$$
 DELIMITER ; 
 
@@ -94,7 +94,7 @@ create procedure searchAccordsessionDate(in sessionDate date
 )
 begin
 select ACCNUMBER, INCORDATE, 
-DEADLINE, SESSIONDATE, TYPE_ID, OBSERVATIONS, PUBLIC, NOTIFIED,  STATE, T_ACCPDF.URL  from T_ACCORD, T_ACCPDF where ACCNUMBER= T_ACCPDF.ACCORD and SESSIONDATE = sessionDate;
+DEADLINE, SESSIONDATE, TYPE_ID, OBSERVATIONS, PUBLIC, NOTIFIED,  STATE, NOTIFDATE, T_ACCPDF.URL  from T_ACCORD, T_ACCPDF where ACCNUMBER= T_ACCPDF.ACCORD and SESSIONDATE = sessionDate;
 end$$
 DELIMITER ; 
 
@@ -137,7 +137,7 @@ USE `KRONOS`$$
 create procedure searchAllAccords()
 begin
 select ACCNUMBER, INCORDATE, 
-DEADLINE, SESSIONDATE, TYPE_ID, OBSERVATIONS, PUBLIC, NOTIFIED,  STATE, T_ACCPDF.URL  from T_ACCORD, T_ACCPDF where ACCNUMBER= T_ACCPDF.ACCORD;
+DEADLINE, SESSIONDATE, TYPE_ID, OBSERVATIONS, PUBLIC, NOTIFIED,  STATE, NOTIFDATE,  T_ACCPDF.URL  from T_ACCORD, T_ACCPDF where ACCNUMBER= T_ACCPDF.ACCORD;
 end$$
 DELIMITER ; 
 
@@ -208,5 +208,35 @@ USE `KRONOS`$$
 create procedure updateAccordUrls( in accord varchar(45), in newurl varchar(100), in anturl varchar(100))
 begin
 update T_ACCPDF set URL=newurl where ACCORD=accord and URL=anturl; 
+end$$
+DELIMITER ; 
+
+USE `KRONOS`;
+DROP procedure IF EXISTS updateAccordUrlResponse;
+DELIMITER $$
+USE `KRONOS`$$
+create procedure updateAccordUrlResponse( in accord varchar(45), in url varchar(100), in finalResponse bool)
+begin
+update T_ACCPDF set FINALRESPONSE=finalResponse where ACCORD=accord and URL=anturl; 
+end$$
+DELIMITER ;
+
+USE `KRONOS`;
+DROP procedure IF EXISTS searchAllStates;
+DELIMITER $$
+USE `KRONOS`$$
+create procedure searchAllStates()
+begin
+select  ID , DESCRIPTION from T_STATE;
+end$$
+DELIMITER ; 
+
+USE `KRONOS`;
+DROP procedure IF EXISTS searchAllTypes;
+DELIMITER $$
+USE `KRONOS`$$
+create procedure searchAllTypes()
+begin
+select  ID , DESCRIPTION from T_TYPE;
 end$$
 DELIMITER ; 
