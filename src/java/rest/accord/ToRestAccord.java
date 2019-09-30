@@ -17,6 +17,13 @@ import logic.Accord;
  * @author jonathan
  */
 public class ToRestAccord {
+    /*
+    
+        All the parameters that logic.Accords has in type Date, has to de setted in
+        String because the java serializer cannot parse the class java.util.Date
+    
+    */
+    
     private String accNumber;
     private String incorporatedDate;
     private String deadline;
@@ -114,6 +121,9 @@ public class ToRestAccord {
     }
     
     
+    
+    //static method to convert a normal accord to a "Rest" accord that
+    // not has java.util.Date as atributte
     public static ToRestAccord toRestAcc(Accord a) {
        ToRestAccord rest= new ToRestAccord();
        rest.setAccNumber(a.getAccNumber());
