@@ -77,18 +77,7 @@
 
                             <div class="form-group ">
                                 <label for="form-control col-6" class="form-label"> Tipo de acuerdo: </label>                               
-                                <select   class="form-control" id="comboStates" name="comboStates" >
-                                    <option value="A" >Admistración Municipal</option >
-                                    <option value="B" >Auditoría Interna</option >
-                                    <option value="C" >LIC</option >
-                                    <option value="D" >Obras</option >
-                                    <option value="E" >Plan Regulador</option >
-                                    <option value="F" >Hacienda</option >
-                                    <option value="G" >Jurídicos</option >
-                                    <option value="H" >Sociales</option >
-                                    <option value="I" >Ambiente</option >
-                                    <option value="J" >Varios</option >
-                                </select>
+                                <select   class="form-control" id="comboStates" name="comboStates"> </select>
                             </div>
                         </div> 
                         <div class="col">

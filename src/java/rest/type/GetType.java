@@ -29,11 +29,7 @@ public class GetType {
         public List<Type> getAllTypes(){
             
             try{
-                List<Type> list= new ArrayList();
-                
-                // list = Dao.getDao().getAllTypes();
-                
-                return list;
+                return Dao.getDao().getAllType();
                 
             }
             

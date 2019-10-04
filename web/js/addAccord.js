@@ -19,7 +19,6 @@ function getUrlVars() {
 }
 
 document.addEventListener("DOMContentLoaded", function () {
-    console.log("HOLA");
     var number = getUrlVars();
     if (number !== null) {
         var accnumber = number.accnumber;
@@ -38,9 +37,8 @@ document.addEventListener("DOMContentLoaded", function () {
                     });
 
         }
-    } else {
-        console.log("ES NULL");
-    }
+    } 
+    setTypeOptions();
 });
 
 
@@ -368,6 +366,22 @@ function fixWeekend(date) {
         return addDays(1,date);
 
 
+}
+
+function setTypeOptions(){
+    let select= document.getElementById('comboStates');
+    let url="api/type/getall";
+     fetch(url)
+     .then(response => response.json())
+ .then(data=>{
+     data.forEach(item=>{
+       var opt = document.createElement('option'); 
+         opt.value = item.id;
+         opt.innerHTML = item.description;
+         select.appendChild(opt);
+     });
+ }).catch(error => console.log(error));
+    
 }
 
 

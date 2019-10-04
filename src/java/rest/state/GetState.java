@@ -5,6 +5,7 @@
  */
 package rest.state;
 
+import data.Dao;
 import java.util.ArrayList;
 import java.util.List;
 import javax.ws.rs.GET;
@@ -28,11 +29,7 @@ public class GetState {
         public List<State> getAllTypes(){
             
             try{
-                List<State> list= new ArrayList();
-                
-                // list = Dao.getDao().getAllTypes();
-                
-                return list;
+               return Dao.getDao().getAllState();
                 
             }
             

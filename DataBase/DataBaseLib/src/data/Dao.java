@@ -16,7 +16,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import logic.State;
 import logic.TempUser;
+import logic.Type;
 
 /**
  *
@@ -316,4 +318,41 @@ public class Dao {
         
         
     }
+    
+    
+    public List<Type> getAllType() throws Exception{
+        this.db.connect();
+         CallableStatement statement = this.db.getConnection().prepareCall("{call searchAllTypes()}"); 
+         ResultSet rs=statement.executeQuery();
+         List<Type> result= new ArrayList();
+         while(rs.next()){
+             Type t=new Type();
+             t.setDescription(rs.getString("DESCRIPTION"));
+             t.setId(rs.getString("ID").charAt(0));
+             result.add(t);
+         }
+        
+         statement.close();
+        this.db.disconnect();
+        return result;
+        
+    }
+    
+    public List<State> getAllState() throws Exception{
+        this.db.connect();
+         CallableStatement statement = this.db.getConnection().prepareCall("{call ssearchAllStates()}"); 
+         ResultSet rs=statement.executeQuery();
+         List<State> result= new ArrayList();
+         while(rs.next()){
+             State s= new State();
+             s.setDescription(rs.getString("DESCRIPTION"));
+             s.setId(rs.getInt("ID"));
+             result.add(s);
+         }
+        
+         statement.close();
+        this.db.disconnect();
+        return result;
+    }
+    
 }
