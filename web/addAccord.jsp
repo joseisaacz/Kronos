@@ -10,7 +10,7 @@
     <head>  
         <title>Agregar acuerdo</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
         <link href="css/bootstrap.css" rel="stylesheet" type="text/css"/>
         <link href="css/default.css" rel="stylesheet" type="text/css"/>
         <link href="css/menu.css" rel="stylesheet" type="text/css"/>
@@ -33,15 +33,15 @@
                     <div class="row">
                         <!--                        <div class="row">-->
                         <div class="col">
-                             <label for="form-control col-9" class="form-label"> Oficio: </label>
+                            <label for="form-control col-9" class="form-label"> Oficio: </label>
                             <div class="col-sm-10">
-                                 <input type="text" name="desc" value="OFICIO MSPH-CM-ACUER-" disabled> 
-                                 
+                                <input type="text" name="desc" value="OFICIO MSPH-CM-ACUER-" disabled> 
+
                             </div>
-                             <div class="col-sm-9">
-                                 <input type="text" class="form-control" name="office" > 
-                             </div>
-                          
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" name="office" > 
+                            </div>
+
                         </div>
 
                         <div class="col">
@@ -50,22 +50,20 @@
                                 <input type="date"  class="form-control" name ="sessionDate" id="sessionDate">
                             </div>
                         </div>
-                        
+
                         <div class="col">
                             <div class="row">
                                 <div class="form-group">
-                                    <label for="form-control col-4" class="form-label">Fecha de Incorporación:</label>
-                                    <input type="date"  class="form-control" name ="incorporatedDate" id="incorporatedDate">
-                                </div>
-                            </div> 
-                            <div class="row">
-
-                                <div class="form-group">
-                                    <label for="form-control" class="form-label" >Vencimiento:</label>
-                                    <input type="date" class="form-control" name="deadline" id="deadline">
+                                    <label for="form-control" class="form-label" >Plazo(Dias):</label>
+                                    <input type="number" class="form-control" name="deadline" id="deadline">
+                                    <select class="form-control" id="comboDays" name="comboDays"> 
+                                        <option> Naturales </option>
+                                        <option> Laborales </option>
+                                    </select>
                                 </div>
                             </div>    
-                        </div>    
+                        </div>
+
                         <!--                        </div>-->
 
 
@@ -77,7 +75,7 @@
 
                             <div class="form-group ">
                                 <label for="form-control col-6" class="form-label"> Tipo de acuerdo: </label>                               
-                                <select   class="form-control" id="comboStates" name="comboStates"> </select>
+                                <select  class="form-control" id="comboStates" name="comboStates"> </select>
                             </div>
                         </div> 
                         <div class="col">
@@ -90,8 +88,8 @@
                                 <input type="hidden" class="form-control" name="email"> 
                             </div>
                         </div>  
-                        
-                    
+
+
                     </div> 
 
                     <div class="row">
@@ -99,10 +97,10 @@
                             <div class="form-group ">
                                 <label for="" class="form-label" > Observaciones</label>
                                 <textarea  placeholder="Digite en este espacio sus observaciones" class="form-control" rows="5" cols="40" name ="observations" rows="3" style ="resize: none"></textarea>
-                                </div>
+                            </div>
                         </div>
-                        
-                        
+
+
                         <%-- DRAG and DROP zone --%>
 
                         <div class="col">
@@ -112,17 +110,17 @@
                             </div>
 
                         </div>
-                        
+
                     </div>
                     <div class="row">
 
                         <div class="col-6">
                             <div class="col-7"></div>
-                            
+
                             <div class="form-group col-5" >
                                 <button type="submit" class="btn btn-outline-success pull-right" onclick="javascript:hola()">Agregar</button>
                             </div>
-                            
+
                         </div>
                         <div class="col-6">
                             <div class="form-group"> 
@@ -130,7 +128,7 @@
                             </div>
                         </div>
                     </div>
-             
+
                 </form>  
             </div>         
         </div>
