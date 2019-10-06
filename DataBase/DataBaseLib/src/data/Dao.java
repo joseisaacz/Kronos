@@ -127,7 +127,7 @@ public class Dao {
     }
     public List<Accord> searchAccordByType(char type) throws Exception {
         this.db.connect();
-        CallableStatement statement = this.db.getConnection().prepareCall("{call searchAccordsessionDate(? )}");
+        CallableStatement statement = this.db.getConnection().prepareCall("{call searchAccordType(? )}");
         statement.setString(1,String.valueOf(type));
         ResultSet rs = statement.executeQuery();
         Map<String, Accord> map = new HashMap();

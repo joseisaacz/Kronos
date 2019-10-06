@@ -52,6 +52,31 @@ function changeSelect(value) {
 
 }
 
+document.addEventListener("DOMContentLoaded", function () {
+    setTypeOptions();
+});
+
+
+function setTypeOptions(){
+    let select= document.getElementById('selectType');
+    let url="api/type/getall";
+     fetch(url)
+     .then(response =>response.json())
+     .then(data=>{
+     data.forEach(item=>{
+       var opt = document.createElement('option'); 
+         opt.value = item.id;
+         opt.innerHTML = item.description;
+         select.appendChild(opt);
+     });
+     select.value='A';
+     console.log(select.value);
+     console.log(select);
+ }).catch(error => console.log(error));
+    
+}
+
+
 //document.addEventListener("DOMContentLoaded", function () {
 //    document.getElementById('seacrhButton').style.visibility = 'hidden';
 //});
@@ -223,8 +248,9 @@ function searchByAccNumber() {
 function searchAllAccords() {
     let _url = "api/accord/getaccord/all";
     fetch(_url)
-            .then(res =>
-                res.json())
+            .then(res =>{
+                console.log(res);
+                return res.json(); })
             .then(accords => {
                 var parent = $("#accordList");
                 parent.html("");
