@@ -372,8 +372,8 @@ function setTypeOptions(){
     let select= document.getElementById('comboStates');
     let url="api/type/getall";
      fetch(url)
-     .then(response => response.json())
- .then(data=>{
+     .then(response =>response.json())
+     .then(data=>{
      data.forEach(item=>{
        var opt = document.createElement('option'); 
          opt.value = item.id;

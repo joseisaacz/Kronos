@@ -106,7 +106,7 @@
                         <div class="col">
                             <div class="form-group files">
                                 <label for="form-control" class="form-label"> Inserte aquí el pdf </label>
-                                <input type="file" class="form-control" id="accord" placeholder="Inserte aquí el PDF" required multiple="">
+                                <input type="file" class="form-control" id="accord" placeholder="Inserte aquí el PDF" required multiple  accept="application/pdf">
                             </div>
 
                         </div>
