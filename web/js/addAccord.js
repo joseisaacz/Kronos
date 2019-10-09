@@ -141,8 +141,8 @@ function fullComboState()
 function changeComboType(combo) {
     let labelName = document.getElementById('labelName');
     let labelEmail = document.getElementById('labelEmail');
-    let textName = document.getElementById('tempName');
-    let textEmail = document.getElementById('tempEmail');
+    let textName = document.getElementById('username');
+    let textEmail = document.getElementById('email');
     if (combo !== 'A') {
 
         textName.value = '';
@@ -369,10 +369,10 @@ function fixWeekend(date) {
 }
 
 function setTypeOptions(){
-    let select= document.getElementById('comboStates');
+    let select= document.getElementById('comboTypes');
     let url="api/type/getall";
      fetch(url)
-     .then(response =>response.json())
+     .then(response => response.json() )
      .then(data=>{
      data.forEach(item=>{
        var opt = document.createElement('option'); 
