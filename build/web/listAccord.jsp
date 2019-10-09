@@ -29,25 +29,14 @@
                             <option value="notSelected">Elija una opción</option>
                             <option value="sessionDate">Fecha de Sesión</option>
                             <option value="incorDate">Fecha de Incorporación</option>
-                            <option value="sessionType">Tipo de Sesión</option>
+                            <option value="sessionType">Tipo de Acuerdo</option>
                             <option value="accNumber">Número de Oficio</option>
                             <option value="allAccords">Todos los Acuerdos</option>
                         </select> 
                     </div>
                     <div class="col" id="searchDiv">
                         <input type="hidden"  class="form-control" id ="searchText">
-                        <select   class="form-control" id="selectType" style="visibility: hidden" >
-                            <option value="A" >Admistración Municipal</option >
-                            <option value="B" >Auditoría Interna</option >
-                            <option value="C" >LIC</option >
-                            <option value="D" >Obras</option >
-                            <option value="E" >Plan Regulador</option >
-                            <option value="F" >Hacienda</option >
-                            <option value="G" >Jurídicos</option >
-                            <option value="H" >Sociales</option >
-                            <option value="I" >Ambiente</option >
-                            <option value="J" >Varios</option >
-                        </select>
+                        <select   class="form-control" id="selectType" style="visibility: hidden" >  </select>
                     </div>
                     <div class="col">
                         <button type="button" style="visibility: hidden" class="btn btn-success" id="seacrhButton" onclick="searchAccord()">Buscar</button>

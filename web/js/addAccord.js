@@ -399,4 +399,23 @@ function setTypeOptions(){
  }
  * 
  * 
- */
+ 
+*/
+
+
+/* this function call the pop up and print date */
+
+function alertDay(){
+    var txt = 0;
+    var deadline = document.getElementsByName("deadline").value;
+    if (deadline > 60){
+        if (confirm("Usted ha seleccionado un plazo de: " + deadline)) {
+            txt = "El plazo es de " + deadline + " días";
+        }        
+    }
+    else {
+        txt= "Dias previos: " + deadline;
+        
+    }
+    document.getElementById("days").innerHTML = txt;
+}
