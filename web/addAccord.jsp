@@ -58,7 +58,14 @@
                                 <label for="form-control" class="form-label" >Vencimiento:</label>
                                 <input type="date" class="form-control" name="deadline" id="deadline" disabled="true">
                                 <button class="btn btn-outline-primary" type="button" name="daysButton" onclick="alertDay()">Confirmar Plazo</button>
-            
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="form-control" class="form-label" >Vencimiento:</label>
+                                <input type="date" class="form-control" name="deadline" id="deadline" disabled="true">
+                                <button class="btn btn-outline-primary" type="button" name="daysButton">Confirmar Plazo</button>
+                                
                             </div>
                         </div>                      
                     </div>
@@ -67,16 +74,25 @@
                             <div class="form-group ">
                                 <label for="form-control col-6" class="form-label"> Tipo de acuerdo: </label>                               
                                 <select  class="form-control" id="comboTypes" name="comboTypes"> </select>
+                                <select  class="form-control" id="comboTypes" name="comboTypes" onchange="changeComboType(this.value)"> </select>
                             </div>
                         </div> 
                         <div class="col">
                             <div class="form-group ">
-                                <label for="form-control col-9" class="form-label" style="visibility: hidden"> Nombre del Responsable </label>
-                                <input type="hidden" class="form-control" name="username"> 
+                                <label id="labelName" for="form-control col-9" class="form-label" style="visibility: hidden"> Nombre del Responsable </label>
+                                <input type="hidden" class="form-control" name="username" id="username"> 
                             </div>
                             <div class="form-group ">
-                                <label for="form-control col-9" class="form-label" style="visibility: hidden"> Correo Electronico del Responsable </label>
-                                <input type="hidden" class="form-control" name="email"> 
+                                <label id="labelEmail" for="form-control col-9" class="form-label" style="visibility: hidden"> Correo Electronico del Responsable </label>
+                                <input type="hidden" class="form-control" name="email" id="email"> 
+                            </div>
+                        </div>  
+                    </div> 
+                    <div class="row">
+                        <div class="col-2">
+                           <div class="form-group ">
+                                <label for="form-control col-6" class="form-label" style="visibility: hidden">Estado:</label>                               
+                                <select  class="form-control" id="comboStates" name="comboStates" style="visibility: hidden"> </select>
                             </div>
                         </div>  
                     </div> 

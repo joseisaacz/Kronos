@@ -253,6 +253,8 @@ function editAccord(accord) {
     document.getElementsByName("incorporatedDate")[0].value = accord.incorporatedDate;
     document.getElementsByName("deadline")[0].value = accord.deadline;
     document.getElementsByName("observations")[0].value = accord.observations;
+<<<<<<< HEAD
+=======
 
 }
 
@@ -268,6 +270,116 @@ function addDays (days, date) {
 }
 
 
+//this function gets the deadline date counting the weekends and the holidays
+function getDeadline_NaturalDays() {
+
+    let incorporatedDate = document.getElementById('incorporatedDate').value;
+    let date_aux = incorporatedDate.replace(/-/g, '\/');
+    let days = parseInt(document.getElementById('days').value,10);
+    let toDate= new Date(date_aux);
+    
+    //adding the days to the date
+    let date = addDays(days, toDate);
+
+    //if the resulting date is a weekend
+    if (date.getDay() === 6 || date.getDay() === 0) {
+        date = fixWeekend(date);
+    }
+    
+    // if the resulting date is not a holiday
+    //then return it
+    //else just add one day to the resulting date 
+    //until isnt a holiday or a weekend
+    if (isValidDate(date)) {
+        return date;
+    } else {
+
+        for (; ; ) {
+            date = addDays(1, date);
+            if (date.getDay() === 6 || date.getDay() === 0) {
+                date = fixWeekend(date);
+            }
+            if (isValidDate(date))
+                return date;
+        }
+
+    }
+
+}
+>>>>>>> c7ef48dca7c68678261312c937e661cd236103bc
+
+//this function gets the deadline without counting the weekends
+// or the holidays
+function getDeadline_BussinessDays(){
+     let incorporatedDate = document.getElementById('incorporatedDate').value;
+    let date_aux = incorporatedDate.replace(/-/g, '\/');
+    let days = parseInt(document.getElementById('days').value,10);
+    let date= new Date(date_aux);
+    //counting the current day
+    let aux=1;
+    
+    for(; ;){
+        // if the counting is equal to the amount of days selected
+        if(aux===days){
+            //if isnt a holiday or a weekend return the current date
+            if(date.getDay() !== 0 && date.getDay() !== 6 && isValidaDate(date)){
+                return date;
+            }
+            else{
+                
+                //if the resulting date is a weekend, fix it
+                if(date.getDay()===0 || date.getDay()===6){
+                    date=fixWeekend(date); 
+                }
+                   
+                else{
+                    //add one day to the resulting date to avoid the holiday
+                    date=addDays(1,date);
+                }
+                for(;;){
+                    //return the resulting date if isnt a weekend or a holiday
+                    if(date.getDay() !== 0 && date.getDay() !== 6 && isValidaDate(date))
+                        return date;
+                    else
+                        date=addDays(1,date);
+                    //else just keep adding one day to the resulting date until isnt a 
+                    //holiday or a weekend
+                }
+            }
+        }
+            
+        // it only counts when isnt weekend or holiday
+        if(date.getDay() !== 0 && date.getDay() !== 6 && isValidaDate(date))
+             aux++;
+        
+        //adds one day to the date
+        date=addDays(1,date);
+    }
+    
+    
+}
+
+
+//this function adds 1 day to the date if the day is sunday 
+//and 2 days if the day is saturday 
+function fixWeekend(date) {
+    if (date.getDay() === 6)
+        return addDays(2,date);
+    else
+        return addDays(1,date);
+
+//it adds an amount of days the the date
+//even if it has to change the month or the year
+function addDays (days, date) {
+
+  var result = new Date(date);
+  result.setDate(result.getDate() + days);
+  return result;
+}
+
+}
+
+<<<<<<< HEAD
 //this function gets the deadline date counting the weekends and the holidays
 function getDeadline_NaturalDays() {
 
@@ -368,6 +480,8 @@ function fixWeekend(date) {
 
 }
 
+=======
+>>>>>>> c7ef48dca7c68678261312c937e661cd236103bc
 function setTypeOptions(){
     let select= document.getElementById('comboStates');
     let url="api/type/getall";
