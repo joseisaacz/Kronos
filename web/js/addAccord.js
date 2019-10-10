@@ -408,13 +408,14 @@ function setTypeOptions(){
 function alertDay(){
     var txt = 0;
     var deadline = document.getElementsByName("deadline").value;
+    
     if (deadline > 60){
-        if (confirm("Usted ha seleccionado un plazo de: " + deadline)) {
+        if (confirm("Usted ha seleccionado un plazo de: " + deadline.values())) {
             txt = "El plazo es de " + deadline + " días";
         }        
     }
     else {
-        txt= "Dias previos: " + deadline;
+        txt= "La fecha es " + deadline;
         
     }
     document.getElementById("days").innerHTML = txt;
@@ -423,10 +424,3 @@ function alertDay(){
 
 /*this function confirm the funtion add Accord*/
 
-function confirmAddAccord(){
-    var office= document.getElementsByName("office").value;
-    //agregar la función de para agregar
-       
-    alert("se ha agregado el acuerdo " + office );
-        
-}
