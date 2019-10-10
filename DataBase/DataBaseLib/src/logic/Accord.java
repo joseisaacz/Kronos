@@ -18,6 +18,7 @@ public class Accord {
     private Date incorporatedDate;
     private Date deadline;
     private  Date sessionDate; 
+    private  Date notificationDate; 
     private char type;
     private String observations;
     private boolean published;
@@ -28,6 +29,7 @@ public class Accord {
      public Accord() {
          this.URL=new ArrayList();
          this.type='Z';
+         this.notificationDate=null;
          this.accNumber=null;
          this.deadline=null;
          this.incorporatedDate=null;
@@ -35,7 +37,7 @@ public class Accord {
          this.state=-1;
     }
 
-    public Accord(String accNumber, Date incorporatedDate, Date deadline, char type, String observations, boolean published, boolean notified, int state, Date sessionDate) {
+    public Accord(String accNumber, Date incorporatedDate, Date deadline, char type, String observations, boolean published, boolean notified, int state, Date sessionDate, Date notDate) {
         this.accNumber = accNumber;
         this.incorporatedDate = incorporatedDate;
         this.deadline = deadline;
@@ -45,6 +47,7 @@ public class Accord {
         this.notified = notified;
         this.state = state;
         this.sessionDate=sessionDate;
+        this.notificationDate=notDate;
         this.URL= new ArrayList();
     }
     
@@ -128,13 +131,21 @@ public class Accord {
     public void setURL(List<String> URL) {
         this.URL = URL;
     }
+
+    public Date getNotificationDate() {
+        return notificationDate;
+    }
+
+    public void setNotificationDate(Date notificationDate) {
+        this.notificationDate = notificationDate;
+    }
    
     
     //This method validates if the important fields of the accord are seted
     public static boolean isValidAccord(Accord a){
         
         if(a.getAccNumber()==null || a.getDeadline()==null || a.getSessionDate()==null 
-         || a.getIncorporatedDate()==null || a.getObservations()==null )
+         || a.getIncorporatedDate()==null || a.getObservations()==null || a.getNotificationDate()==null)
             return false;
         
         return true;
