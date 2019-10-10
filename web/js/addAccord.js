@@ -391,6 +391,7 @@ function setDeadline(){
     date = new Date();
     let output=document.getElementById('deadline');
     let select=document.getElementById('comboDays').value; 
+    alertDay();   
     if(document.getElementById('days').value !== ''){
     let newDate = select ==='1'? getDeadline_BussinessDays(date) : getDeadline_NaturalDays(date);
     let format=formatDate(newDate);
@@ -399,6 +400,16 @@ function setDeadline(){
     else{
         alert("Por favor inserte el plazo");
     }
+}
+
+function alertDay(){
+    if(document.getElementById('days').value !== ''){
+    var days = parseInt(document.getElementById("days").value,10);
+    if (days > 60)
+     if(!confirm("Usted ha seleccionado un plazo de: " + days + " días.\n ¿Desea Continuar?"))
+        document.getElementById('days').value='';
+    }      
+  
 }
 
 /*
