@@ -419,3 +419,14 @@ function alertDay(){
     }
     document.getElementById("days").innerHTML = txt;
 }
+
+
+/*this function confirm the funtion add Accord*/
+
+function confirmAddAccord(){
+    var office= document.getElementsByName("office").value;
+    //agregar la función de para agregar
+       
+    alert("se ha agregado el acuerdo " + office );
+        
+}
