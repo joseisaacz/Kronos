@@ -115,7 +115,6 @@
                             <div class="col-7"></div>
                             <div class="form-group col-5" >
                                 <button type="submit" class="btn btn-outline-success pull-right" onclick="javascript:hola()">Agregar</button>
-                                <button type="submit" class="btn btn-outline-success pull-right" onclick="confirmAddAccord()">Prueba</button>
                                 
                             </div>
                         </div>

@@ -8,7 +8,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
         <link href="css/bootstrap.css" rel="stylesheet" type="text/css"/>
-        
+
         <script src="js/bootstrap.js" type="text/javascript"></script>
     </head>
     <body>
@@ -17,7 +17,7 @@
         </div> 
         <div id="wrapper">
             <h4 align="center">Acuerdos próximos a vencer</h4>
-                   <div class="container">
+            <div class="container">
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="table-responsive">        
@@ -39,8 +39,7 @@
                 </div>
             </div>
             <section>
-                <a href="login.jsp"> to login</a>
-                
+                <a href="login.jsp"> to login</a>                
             </section>      
         </div>
     </body>

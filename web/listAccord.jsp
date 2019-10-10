@@ -64,7 +64,7 @@
                                         <th style="text-align: center">Editar</th>
                                     </tr>
                                 </thead>
-                                <tbody id="accordList">
+                                <tbody id="accordListNotify">
                                 </tbody>
                             </table>
                         </div>

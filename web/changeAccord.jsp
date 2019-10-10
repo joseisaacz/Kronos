@@ -40,6 +40,18 @@
                                 <input type="text" placeholder="Digite en este espacio sus observaciones" class="form-control col-10" name ="observations">
                             </div>
                             <div>
+                                <div class ="table-responsive">
+                                    <table id="tableAcc" class="table table-striped table-bordered border-info" style="width:100%">
+                                        <thead>
+                                            <tr>
+                                                <th style="text-align: center">Principal</th>
+                                                <th style="text-align: center">Documento</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="accordDocumet">
+                                        </tbody>
+                                    </table>
+                                </div>
                                 <label for="">Adjuntar archivo:</label>
                                 <input type='file' name='archivo1' id='archivo1' placeholder="Inserte aquí el PDF" required>
                             </div>
@@ -51,7 +63,5 @@
                     </div>
             </section>            
         </div>
-
-
     </body>
 </html>
