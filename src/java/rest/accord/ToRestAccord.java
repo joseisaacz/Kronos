@@ -26,6 +26,7 @@ public class ToRestAccord {
     
     private String accNumber;
     private String incorporatedDate;
+     private String notificationDate;
     private String deadline;
     private  String sessionDate; 
     private char type;
@@ -119,6 +120,14 @@ public class ToRestAccord {
     public void setURL(List<String> URL) {
         this.URL = URL;
     }
+
+    public String getNotificationDate() {
+        return notificationDate;
+    }
+
+    public void setNotificationDate(String notificationDate) {
+        this.notificationDate = notificationDate;
+    }
     
     
     
@@ -136,6 +145,7 @@ public class ToRestAccord {
        rest.setDeadline(format.format(a.getDeadline()));
        rest.setIncorporatedDate(format.format(a.getIncorporatedDate()));
        rest.setSessionDate(format.format(a.getSessionDate()));
+       rest.setNotificationDate(format.format(a.getNotificationDate()));
        rest.setObservations(a.getObservations());
        return rest;
     }

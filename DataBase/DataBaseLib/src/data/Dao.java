@@ -47,7 +47,7 @@ public class Dao {
 
         this.db.connect();
 
-        CallableStatement statement = this.db.getConnection().prepareCall("{call insertAccord(?, ?, ?, ?, ?, ?, ?, ?, ?)}");
+        CallableStatement statement = this.db.getConnection().prepareCall("{call insertAccord(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)}");
 
       java.text.DateFormat  format= new SimpleDateFormat("yyyy-dd-MM");
       String incordate=format.format(acc.getDeadline());
@@ -62,6 +62,7 @@ public class Dao {
         statement.setBoolean(7, acc.isPublished());
         statement.setBoolean(8, acc.isNotified());
         statement.setInt(9, acc.getState());
+        statement.setDate(10, new java.sql.Date(acc.getNotificationDate().getTime()));
        // String command="call insertAccord('%s','%s','%s','%s','%c','%s',%b,%b,%d);";
       // String.format(command,acc.getAccNumber(),incordate,deadline,sessDate,acc.getType(),acc.getObservations(),false,false,acc.getState() );
         statement.executeUpdate();
@@ -143,6 +144,7 @@ public class Dao {
                 a.setSessionDate(rs.getDate("SESSIONDATE"));
                 a.setType(rs.getString("TYPE_ID").charAt(0));
                 a.setObservations(rs.getString("OBSERVATIONS"));
+                a.setNotificationDate(rs.getDate("NOTIFDATE")); 
                 a.setNotified(rs.getBoolean("NOTIFIED"));
                 a.setPublished(rs.getBoolean("PUBLIC"));
                 a.setState(rs.getInt("STATE"));
@@ -178,6 +180,7 @@ public class Dao {
                 a.setSessionDate(rs.getDate("SESSIONDATE"));
                 a.setType(rs.getString("TYPE_ID").charAt(0));
                 a.setObservations(rs.getString("OBSERVATIONS"));
+                a.setNotificationDate(rs.getDate("NOTIFDATE"));
                 a.setNotified(rs.getBoolean("NOTIFIED"));
                 a.setPublished(rs.getBoolean("PUBLIC"));
                 a.setState(rs.getInt("STATE"));
@@ -216,6 +219,7 @@ public class Dao {
                 a.setSessionDate(rs.getDate("SESSIONDATE"));
                 a.setType(rs.getString("TYPE_ID").charAt(0));
                 a.setObservations(rs.getString("OBSERVATIONS"));
+                a.setNotificationDate(rs.getDate("NOTIFDATE"));
                 a.setNotified(rs.getBoolean("NOTIFIED"));
                 a.setPublished(rs.getBoolean("PUBLIC"));
                 a.setState(rs.getInt("STATE"));
@@ -250,6 +254,7 @@ public class Dao {
                 a.setIncorporatedDate(rs.getDate("INCORDATE"));
                 a.setDeadline(rs.getDate("DEADLINE"));
                 a.setSessionDate(rs.getDate("SESSIONDATE"));
+                a.setNotificationDate(rs.getDate("NOTIFDATE"));
                 a.setType(rs.getString("TYPE_ID").charAt(0));
                 a.setObservations(rs.getString("OBSERVATIONS"));
                 a.setNotified(rs.getBoolean("NOTIFIED"));
@@ -284,7 +289,9 @@ public class Dao {
                 a.setAccNumber(accNumber);
                 a.setIncorporatedDate(rs.getDate("INCORDATE"));
                 a.setDeadline(rs.getDate("DEADLINE"));
+                a.setNotificationDate(rs.getDate("NOTIFDATE"));
                 a.setSessionDate(rs.getDate("SESSIONDATE"));
+                a.setNotificationDate(rs.getDate("NOTIFDATE"));  
                 a.setType(rs.getString("TYPE_ID").charAt(0));
                 a.setObservations(rs.getString("OBSERVATIONS"));
                 a.setNotified(rs.getBoolean("NOTIFIED"));
