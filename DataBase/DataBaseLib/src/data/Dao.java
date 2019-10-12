@@ -333,14 +333,14 @@ public class Dao {
     public User getUser(User us) throws Exception{
           this.db.connect();
           
-          String sql="select DEPARTMENT,password,t_tempuser from t_user where t_tempuser='"+us.getUsername()+"' and password='"+us.getPassword()+"'";
+          String sql="select DEPARTMENT,password,t_tempuser from t_user where t_tempuser='"+us.getTempUser()+"' and password='"+us.getPassword()+"'";
          CallableStatement statement = this.db.getConnection().prepareCall(sql);
          ResultSet rs=statement.executeQuery(sql);
          
          User result=null;
          while(rs.next()){
              result=new User();
-             result.setUsername(rs.getString("t_tempuser"));
+             result.setTempUser(rs.getString("t_tempuser"));
              result.setPassword(rs.getString("password"));
          }
          statement.close();
