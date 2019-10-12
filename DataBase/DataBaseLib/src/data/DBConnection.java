@@ -19,7 +19,7 @@ public class DBConnection {
      private  Connection cnx;
      private final String driver = "com.mysql.jdbc.Driver";
      private final String server ="localhost";
-     private final String port = "3306";
+     private final String port = "3306"; 
      private final String user = "root";
      private final String password = "root";
      private final String database = "KRONOS";

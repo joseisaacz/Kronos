@@ -24,9 +24,7 @@
                     <li>
                         <a href="listAccord.jsp">Lista</a>
                     </li>
-                    <li>
-                        <a href="changeAcord.jsp">Modificar</a>
-                    </li>
+                    
                 </ul>
             </li>
             <li>

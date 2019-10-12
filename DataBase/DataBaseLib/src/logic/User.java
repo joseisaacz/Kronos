@@ -1,37 +1,39 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package logic;
 
-/**
- *
- * @author jonathan
- */
 public class User {
-     private String username;
+
+    private String tempUser;
     private String password;
-   
-    public User(){
-        
+    private int deparment;
+
+    public User() {
+        this.tempUser = null;
+        this.password = null;
+        this.deparment = -1;
     }
 
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
+    public User(String tempUser, String password, int deparment) {
+        this.tempUser = tempUser;
         this.password = password;
+        this.deparment = deparment;
     }
-    
-    
+
+    public String getTempUser() {
+        return tempUser;
+    }
+
+    public void setTempUser(String tempUser) {
+        this.tempUser = tempUser;
+
+
+    public int getDeparment() {
+        return deparment;
+    }
+
+    public void setDeparment(int deparment) {
+        this.deparment = deparment;
+    }
+
 }
+
