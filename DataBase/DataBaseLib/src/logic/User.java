@@ -1,3 +1,4 @@
+
 package logic;
 
 public class User {
@@ -24,15 +25,7 @@ public class User {
 
     public void setTempUser(String tempUser) {
         this.tempUser = tempUser;
-    }
 
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
 
     public int getDeparment() {
         return deparment;
@@ -43,3 +36,4 @@ public class User {
     }
 
 }
+
