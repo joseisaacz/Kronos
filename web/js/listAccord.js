@@ -15,34 +15,34 @@ function changeSelect(value) {
     console.log(field);
     if (value === 'sessionDate' || value === 'incorDate') {
         field.type = 'date';
-        field.value="";
+        field.value = "";
         button.style.visibility = 'visible';
-        combo.value='A';
+        combo.value = 'A';
         combo.style.visibility = 'hidden';
-        combo.value='A';
-        
+        combo.value = 'A';
+
     } else
     if (value === 'accNumber') {
-        field.value="";
+        field.value = "";
         field.type = 'text';
         button.style.visibility = 'visible';
-          combo.value='A';
+        combo.value = 'A';
         combo.style.visibility = 'hidden';
     } else if (value === 'sessionType') {
-        field.value="";
+        field.value = "";
         field.type = 'hidden';
         button.style.visibility = 'visible';
-        combo.value='A';
+        combo.value = 'A';
         combo.style.visibility = 'visible';
     } else if (value === 'allAccords') {
-        field.value="";
+        field.value = "";
         field.type = 'hidden';
         button.style.visibility = 'visible';
-        combo.value='A';
+        combo.value = 'A';
         combo.style.visibility = 'hidden';
     } else {
-        field.value="";
-        combo.value='A';
+        field.value = "";
+        combo.value = 'A';
         field.type = 'hidden';
         button.style.visibility = 'hidden';
         combo.style.visibility = 'hidden';
@@ -51,6 +51,32 @@ function changeSelect(value) {
 
 
 }
+
+document.addEventListener("DOMContentLoaded", function () {
+    setTypeOptions();
+    initTable();
+});
+
+
+function setTypeOptions() {
+    let select = document.getElementById('selectType');
+    let url = "api/type/getall";
+    fetch(url)
+            .then(response => response.json())
+            .then(data => {
+                data.forEach(item => {
+                    var opt = document.createElement('option');
+                    opt.value = item.id;
+                    opt.innerHTML = item.description;
+                    select.appendChild(opt);
+                });
+                select.value = 'A';
+                console.log(select.value);
+                console.log(select);
+            }).catch(error => console.log(error));
+
+}
+
 
 //document.addEventListener("DOMContentLoaded", function () {
 //    document.getElementById('seacrhButton').style.visibility = 'hidden';
@@ -149,12 +175,16 @@ function SearchBySessionDate() {
                 });
 
             })
+            .then(()=>{
+                    $("#tableAcc").destroy();
+                    initTable();
+            })
             .catch(error => {
                 console.log(error);
             });
 }
 
- // api call to ge accords by session type
+// api call to ge accords by session type
 function searchBySessionType() {
     let type = document.getElementById('selectType').value;
     let _url = "api/accord/getaccord/type/" + type;
@@ -170,6 +200,10 @@ function searchBySessionType() {
                     list(parent, item);
                 });
 
+            })
+            .then(()=>{
+                    $("#tableAcc").destroy();
+                    initTable();
             })
             .catch(error => {
                 console.log(error);
@@ -192,6 +226,9 @@ function searchByIncorDate() {
                     list(parent, item);
                 });
 
+            }).then(()=>{
+                    $("#tableAcc").destroy();
+                    initTable();
             })
             .catch(error => {
                 console.log(error);
@@ -214,6 +251,9 @@ function searchByAccNumber() {
                     list(parent, item);
                 });
 
+            }).then(()=>{
+                    $("#tableAcc").destroy();
+                    initTable();
             })
             .catch(error => {
                 console.log(error);
@@ -223,16 +263,21 @@ function searchByAccNumber() {
 function searchAllAccords() {
     let _url = "api/accord/getaccord/all";
     fetch(_url)
-            .then(res =>
-                res.json())
+            .then(res => {
+                console.log(res);
+                return res.json();
+            })
             .then(accords => {
                 var parent = $("#accordList");
                 parent.html("");
                 accords.forEach(item => {
                     list(parent, item);
                 });
-
+            }).then(()=>{
+                    $("#tableAcc").destroy();
+                    initTable();
             })
+        
             .catch(error => {
                 console.log(error);
             });
@@ -267,3 +312,59 @@ function searchAccord() {
     }
 }
 
+
+
+function initTable() {
+    $('#tableAcc').DataTable({
+        "language": {
+            "lengthMenu": "Mostrar _MENU_ Acuerdos",
+            "zeroRecords": "No se encontraron resultados",
+            "info": "Mostrando Acuerdos del _START_ al _END_ de un total de _TOTAL_ registros",
+            "infoEmpty": "Mostrando Acuerdos del 0 al 0 de un total de 0 registros",
+            "infoFiltered": "(filtrado de un total de _MAX_ Acuerdos)",
+            "sSearch": "Buscar:",
+            "oPaginate": {
+                "sFirst": "Primero",
+                "sLast": "Último",
+                "sNext": "Siguiente",
+                "sPrevious": "Anterior"
+            },
+            "sProcessing": "Procesando..."
+        },
+        "lengthChange": false
+    });
+}
+
+
+
+function searchAccordsByNotifyToday(){
+        let _url = "api/accord/getaccord/notify/";
+
+    fetch(_url)
+            .then(res =>
+                res.json()
+            )
+            .then(accords => {
+                var parent = $("#accordList");
+                parent.html("");
+                accords.forEach(item => {
+                    list(parent, item);
+                });
+
+            }).then(()=>{
+                    $("#tableAccNotify").destroy();
+                    initTable();
+            })
+            .catch(error => {
+                console.log(error);
+            });
+    
+    
+}
+
+function initTableNotifyToday(){
+    
+    
+    
+    
+}

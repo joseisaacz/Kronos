@@ -67,7 +67,10 @@ public class AccordServlet extends HttpServlet {
             throw new Exception();
         }
         try {
-
+            int ai=1;
+            if(ai==1)
+                throw new Exception();
+            
             Accord acc = new Accord();
 
             // configures upload settings
@@ -100,6 +103,9 @@ public class AccordServlet extends HttpServlet {
             @SuppressWarnings("unchecked")
             List<FileItem> formItems = upload.parseRequest(request);
             DateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+            Date incorDate = new Date();
+            acc.setIncorporatedDate(incorDate);
+            
             if (formItems != null && formItems.size() > 0) {
                 // iterates over form's fields
                 for (FileItem item : formItems) {
@@ -115,9 +121,10 @@ public class AccordServlet extends HttpServlet {
                     } else {
                         String name = item.getFieldName();
                         switch (name) {
-                            case "accNumber":
+                            case "office":
                                 String accNumber = new String(item.get());
-                                acc.setAccNumber(accNumber);
+                                String newAccNumber = "MSPH-CM-ACUER-" + accNumber;
+                                acc.setAccNumber(newAccNumber);
                                 break;
                             case "sessionDate": {
                                 String date = new String(item.get());
@@ -133,13 +140,13 @@ public class AccordServlet extends HttpServlet {
                                 acc.setDeadline(deadline);
                             }
                             break;
-
-                            case "incorDate": {
-                                String date = new String(item.get());
-                                Date incorDate = format.parse(date);
-                                acc.setIncorporatedDate(incorDate);
-                            }
-                            break;
+//
+//                            case "incorDate": {
+//                                String date = new String(item.get());
+//                                Date incorDate = format.parse(date);
+//                                acc.setIncorporatedDate(incorDate);
+//                            }
+//                            break;
 
                             case "observations": {
                                 String observations = new String(item.get());
@@ -152,7 +159,7 @@ public class AccordServlet extends HttpServlet {
                                 acc.setType(type.charAt(0));
                             }
                             break;
-                            case "tempName": {
+                            case "username": {
                                 String tempName = new String(item.get());
                                 if (tempName != null) {
                                     if (tempName != "") {
@@ -164,7 +171,7 @@ public class AccordServlet extends HttpServlet {
                             }
                             break;
 
-                            case "tempEmail": {
+                            case "email": {
                                 String tempEmail = new String(item.get());
                                 if (tempEmail != null) {
                                     if (tempEmail != "") {
@@ -175,6 +182,13 @@ public class AccordServlet extends HttpServlet {
                                 }
                             }
                             break;
+                            case "notDate": {
+                                String date = new String(item.get());
+                                Date notDate = format.parse(date);
+                                acc.setNotificationDate(notDate);
+                            }
+                            break;
+
                             default:
                                 break;
                         }
@@ -182,79 +196,81 @@ public class AccordServlet extends HttpServlet {
                 }
             }
 
+            acc.setIncorporatedDate(new Date());
             acc.setPublished(false);
             acc.setNotified(false);
+            boolean flag=false;
             if (acc.getType() != 'A' && acc.getType() != 'Z') {
-                TempUser temp = null;
-
+                flag=true;
                 if (!tmp.getEmail().equals("null")) {
-                    temp = Dao.getDao().getTempUserByEmail(tmp.getEmail());
-                    if (temp == null) {
-                        temp = new TempUser();
-                        temp.setEmail(tmp.getEmail());
-                        temp.setName(tmp.getName());
-
-                    } else {
-                        temp = tmp;
-                    }
+                    TempUser temp = Dao.getDao().getTempUserByEmail(tmp.getEmail());
+                    if (temp == null) 
+                        Dao.getDao().insertTempUser(tmp);
                 }
-
-                Dao.getDao().insertTempUser(temp);
             }
-            acc.setState(2);
-            Dao.getDao().insertAccord(acc);
-        } catch (Exception ex) {
+                acc.setState(2);
+                Dao.getDao().insertAccord(acc);
+                
+                 if (flag) 
+                    Dao.getDao().insertUserAccord(tmp, acc);
 
-            throw new ServletException();
+            }
+            catch (Exception ex) {
+
+            throw new ServletException("No hay acuerdos");
         }
-    }
+        }
 
-
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-    /**
-     * Handles the HTTP <code>GET</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+        // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
+        /**
+         * Handles the HTTP <code>GET</code> method.
+         *
+         * @param request servlet request
+         * @param response servlet response
+         * @throws ServletException if a servlet-specific error occurs
+         * @throws IOException if an I/O error occurs
+         */
+        @Override
+        protected void doGet
+        (HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        try {
-            processRequest(request, response);
-        } catch (Exception ex) {
-            Logger.getLogger(AccordServlet.class.getName()).log(Level.SEVERE, null, ex);
+            try {
+                processRequest(request, response);
+            } catch (Exception ex) {
+                Logger.getLogger(AccordServlet.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
-    }
 
-    /**
-     * Handles the HTTP <code>POST</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+        /**
+         * Handles the HTTP <code>POST</code> method.
+         *
+         * @param request servlet request
+         * @param response servlet response
+         * @throws ServletException if a servlet-specific error occurs
+         * @throws IOException if an I/O error occurs
+         */
+        @Override
+        protected void doPost
+        (HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        try {
-            processRequest(request, response);
-        } catch (Exception ex) {
-            Logger.getLogger(AccordServlet.class.getName()).log(Level.SEVERE, null, ex);
+            try {
+                processRequest(request, response);
+            } catch (Exception ex) {
+                    response.setStatus(503);
+                   //throw new ServletException(ex.getMessage());
+            }
         }
-    }
 
-    /**
-     * Returns a short description of the servlet.
-     *
-     * @return a String containing servlet description
-     */
-    @Override
-    public String getServletInfo() {
+        /**
+         * Returns a short description of the servlet.
+         *
+         * @return a String containing servlet description
+         */
+        @Override
+        public String getServletInfo
+        
+            () {
         return "Short description";
-    }// </editor-fold>
+        }// </editor-fold>
 
-}
+    }
