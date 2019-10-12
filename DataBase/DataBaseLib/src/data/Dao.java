@@ -19,6 +19,7 @@ import java.util.Map;
 import logic.State;
 import logic.TempUser;
 import logic.Type;
+import logic.User;
 
 /**
  *
@@ -326,7 +327,24 @@ public class Dao {
         
     }
     
-    
+    public User getUser(User us) throws Exception{
+          this.db.connect();
+          
+          String sql="select DEPARTMENT,password,t_tempuser from t_user where t_tempuser='"+us.getUsername()+"' and password='"+us.getPassword()+"'";
+         CallableStatement statement = this.db.getConnection().prepareCall(sql);
+         ResultSet rs=statement.executeQuery(sql);
+         
+         User result=null;
+         while(rs.next()){
+             result=new User();
+             result.setUsername(rs.getString("t_tempuser"));
+             result.setPassword(rs.getString("password"));
+         }
+         statement.close();
+        this.db.disconnect();
+        return result;
+         
+    }
     public List<Type> getAllType() throws Exception{
         this.db.connect();
          CallableStatement statement = this.db.getConnection().prepareCall("{call searchAllTypes()}"); 

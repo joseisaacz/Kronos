@@ -67,7 +67,10 @@ public class AccordServlet extends HttpServlet {
             throw new Exception();
         }
         try {
-
+            int ai=1;
+            if(ai==1)
+                throw new Exception();
+            
             Accord acc = new Accord();
 
             // configures upload settings
@@ -211,7 +214,7 @@ public class AccordServlet extends HttpServlet {
             }
             catch (Exception ex) {
 
-            throw new ServletException();
+            throw new ServletException("No hay acuerdos");
         }
         }
 
@@ -250,7 +253,8 @@ public class AccordServlet extends HttpServlet {
             try {
                 processRequest(request, response);
             } catch (Exception ex) {
-                Logger.getLogger(AccordServlet.class.getName()).log(Level.SEVERE, null, ex);
+                    response.setStatus(503);
+                   //throw new ServletException(ex.getMessage());
             }
         }
 

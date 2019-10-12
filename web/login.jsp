@@ -29,18 +29,19 @@
                         </div>
                     </div>
                     <div class="d-flex justify-content-center form_container">
-                        <form>
+<!--                        action="/Kronos/LoginServlet"-->
+                        <form method="POST" id="loginForm" >
                             <div class="input-group mb-3">
                                 <div class="input-group-append">
                                     <span class="input-group-text"><i class="fas fa-user"></i></span>
                                 </div>
-                                <input type="text" name="user" class="form-control input_user" value="" placeholder="Usuario">
+                                <input type="text" id="j_username" name="j_username" class="form-control input_user" value="" placeholder="Usuario">
                             </div>
                             <div class="input-group mb-2">
                                 <div class="input-group-append">
                                     <span class="input-group-text"><i class="fas fa-key"></i></span>
                                 </div>
-                                <input type="password" name="password" class="form-control input_pass" value="" placeholder="Contraseña">
+                                <input type="password" id="j_password" name="j_password" class="form-control input_pass" value="" placeholder="Contraseña">
                             </div>
                             <div class="form-group">
                                 <div class="custom-control custom-checkbox">
@@ -48,15 +49,18 @@
                                     <label class="custom-control-label" for="customControlInline">Recordar</label>
                                 </div>
                             </div>
+                             <div class="d-flex justify-content-center mt-3 login_container">
+                                 <button type="button" name="button" class="btn login_btn" onclick="javascript:login()" >Login</button>
+                    </div>
                         </form>
                     </div>
-                    <div class="d-flex justify-content-center mt-3 login_container">
-                        <button type="button" name="button" class="btn login_btn">Login</button>
-                    </div>
+                   
                     <div class="mt-4">
                     </div>
                 </div>
             </div>
         </div>
+         <script src="js/jquery-3.3.1.min.js" type="text/javascript"></script>
+        <script src="js/login.js" type="text/javascript"></script>
     </body>
 </html>
