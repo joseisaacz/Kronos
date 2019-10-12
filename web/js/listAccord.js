@@ -312,8 +312,6 @@ function searchAccord() {
     }
 }
 
-
-
 function initTable() {
     $('#tableAcc').DataTable({
         "language": {
@@ -333,38 +331,4 @@ function initTable() {
         },
         "lengthChange": false
     });
-}
-
-
-
-function searchAccordsByNotifyToday(){
-        let _url = "api/accord/getaccord/notify/";
-
-    fetch(_url)
-            .then(res =>
-                res.json()
-            )
-            .then(accords => {
-                var parent = $("#accordList");
-                parent.html("");
-                accords.forEach(item => {
-                    list(parent, item);
-                });
-
-            }).then(()=>{
-                    $("#tableAccNotify").destroy();
-                    initTable();
-            })
-            .catch(error => {
-                console.log(error);
-            });
-    
-    
-}
-
-function initTableNotifyToday(){
-    
-    
-    
-    
 }

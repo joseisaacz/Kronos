@@ -9,7 +9,11 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link href="css/bootstrap.css" rel="stylesheet" type="text/css"/>
         <link href="css/default.css" rel="stylesheet" type="text/css"/>
+        <script src="js/bootstrap.js" type="text/javascript"></script>
+        <link rel="stylesheet" type="text/css" href="css/datatables.min.css"/>
         <link rel="stylesheet"  type="text/css" href="css/dataTables.bootstrap4.min.css">
+        <link rel="stylesheet" href="css/bootstrap.css">
+        <script src="https://kit.fontawesome.com/67596e9ec2.js" crossorigin="anonymous"></script>
         <title>Lista de Acuerdos</title>
     </head>
     <body>
@@ -30,14 +34,13 @@
                             <option value="allAccords">Todos los Acuerdos</option>
                         </select> 
                     </div>
-                    <div class="col-sm-4" id="searchDiv">
+                    <div class="col" id="searchDiv">
                         <input type="hidden"  class="form-control" id ="searchText">
-                         <select   class="form-control" id="selectType" style="visibility: hidden" >  </select>
+                        <select   class="form-control" id="selectType" style="visibility: hidden" >  </select>
                     </div>
-                        <div class="col-sm-4" id="searchDiv">
-                              <button type="button" style="visibility: hidden" class="btn btn-success" id="seacrhButton" onclick="searchAccord()">Buscar</button>
-                        </div>    
-                    
+                    <div class="col">
+                        <button type="button" style="visibility: hidden" class="btn btn-success" id="seacrhButton" onclick="searchAccord()">Buscar</button>
+                    </div>
 
                 </div>
             </div>
@@ -69,14 +72,11 @@
                 </div>
             </div>
         </div>
-                <script src="https://kit.fontawesome.com/67596e9ec2.js" crossorigin="anonymous"></script>
-                  <script src="js/jquery-3.3.1.min.js" type="text/javascript"></script>
-           <script src="js/bootstrap.js" type="text/javascript"></script>
+        <script src="js/jquery-3.3.1.min.js" type="text/javascript"></script>
         <script src="js/popper.min.js" type="text/javascript"></script>
         <script src="js/bootstrap.js" type="text/javascript"></script>
-        <script src="js/jquery.dataTables.min.js" type="text/javascript"></script>
-        <script src="js/dataTables.bootstrap4.min.js" type="text/javascript"></script>
-<!--        <script src="js/englishToSpanish.js" type="text/javascript"></script>-->
+        <script src="js/datatables.min.js" type="text/javascript"></script>
+        <script src="js/englishToSpanish.js" type="text/javascript"></script>
         <script src="js/listAccord.js" type="text/javascript"></script>
     </body>
 </html>
