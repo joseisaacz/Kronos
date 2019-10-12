@@ -141,8 +141,8 @@ function fullComboState()
 function changeComboType(combo) {
     let labelName = document.getElementById('labelName');
     let labelEmail = document.getElementById('labelEmail');
-    let textName = document.getElementById('tempName');
-    let textEmail = document.getElementById('tempEmail');
+    let textName = document.getElementById('username');
+    let textEmail = document.getElementById('email');
     if (combo !== 'A') {
 
         textName.value = '';
@@ -163,16 +163,19 @@ function changeComboType(combo) {
 }
 
 function addAccord() {
+   
+//    if (!isValidDate(deadline.value)) {
+//        alert("La Fecha de Vencimiento no es válida");
+//        return;
+//    }
     let deadline = document.getElementById('deadline');
-    if (!isValidDate(deadline.value)) {
-        alert("La Fecha de Vencimiento no es válida");
-        return;
-    }
-
+    deadline.disabled=false;
     let _url = '/Kronos/accord/addAccord';
 
     var form = document.getElementById('uploadForm');
-    var data = new FormData(form);
+    console.log(form);
+    var _data = new FormData(form);
+    console.log(_data);
     $.ajax({
         type: "POST",
         encType: "multipart/form-data",
@@ -180,20 +183,15 @@ function addAccord() {
         cache: false,
         processData: false,
         contentType: false,
-        data: data,
+        data: _data,
         success: function (msg) {
-            var response = JSON.parse(msg);
-            var status = response.status;
-            if (status === 1) {
-                alert("ACUERDO AGREGADO CORRECTAMENTE");
-            } else {
-                alert("OCURRIO UN ERROR");
-            }
-        },
+          alert("ACUERDO AGREGADO EXITOSAMENTE");
+      },
         error: function (msg) {
             alert("OCURRIO UN ERROR");
         }
     });
+    
 
 }
 
@@ -208,44 +206,44 @@ function editAccord(accord) {
 
 
 //-----------DRAG AND DROP---------
-+function ($) {
-    'use strict';
-
-    // UPLOAD CLASS DEFINITION
-    // ======================
-
-    var dropZone = document.getElementById('drop-zone');
-    var uploadForm = document.getElementById('js-upload-form');
-
-    var startUpload = function (files) {
-        console.log(files)
-    }
-
-    uploadForm.addEventListener('submit', function (e) {
-        var uploadFiles = document.getElementById('js-upload-files').files;
-        e.preventDefault()
-
-        startUpload(uploadFiles)
-    })
-
-    dropZone.ondrop = function (e) {
-        e.preventDefault();
-        this.className = 'upload-drop-zone';
-
-        startUpload(e.dataTransfer.files)
-    }
-
-    dropZone.ondragover = function () {
-        this.className = 'upload-drop-zone drop';
-        return false;
-    }
-
-    dropZone.ondragleave = function () {
-        this.className = 'upload-drop-zone';
-        return false;
-    }
-
-}(jQuery);
+//function ($) {
+//    'use strict';
+//
+//    // UPLOAD CLASS DEFINITION
+//    // ======================
+//
+//    var dropZone = document.getElementById('drop-zone');
+//    var uploadForm = document.getElementById('js-upload-form');
+//
+//    var startUpload = function (files) {
+//        console.log(files)
+//    }
+//
+//    uploadForm.addEventListener('submit', function (e) {
+//        var uploadFiles = document.getElementById('js-upload-files').files;
+//        e.preventDefault()
+//
+//        startUpload(uploadFiles)
+//    })
+//
+//    dropZone.ondrop = function (e) {
+//        e.preventDefault();
+//        this.className = 'upload-drop-zone';
+//
+//        startUpload(e.dataTransfer.files)
+//    }
+//
+//    dropZone.ondragover = function () {
+//        this.className = 'upload-drop-zone drop';
+//        return false;
+//    }
+//
+//    dropZone.ondragleave = function () {
+//        this.className = 'upload-drop-zone';
+//        return false;
+//    }
+//
+//}(jQuery);
 
 function editAccord(accord) {
 
@@ -269,15 +267,10 @@ function addDays (days, date) {
 
 
 //this function gets the deadline date counting the weekends and the holidays
-function getDeadline_NaturalDays() {
-
-    let incorporatedDate = document.getElementById('incorporatedDate').value;
-    let date_aux = incorporatedDate.replace(/-/g, '\/');
-    let days = parseInt(document.getElementById('days').value,10);
-    let toDate= new Date(date_aux);
-    
+function getDeadline_NaturalDays(_date) {
+   let days = parseInt(document.getElementById('days').value,10);
     //adding the days to the date
-    let date = addDays(days, toDate);
+    let date = addDays(days, _date);
 
     //if the resulting date is a weekend
     if (date.getDay() === 6 || date.getDay() === 0) {
@@ -307,11 +300,8 @@ function getDeadline_NaturalDays() {
 
 //this function gets the deadline without counting the weekends
 // or the holidays
-function getDeadline_BussinessDays(){
-     let incorporatedDate = document.getElementById('incorporatedDate').value;
-    let date_aux = incorporatedDate.replace(/-/g, '\/');
+function getDeadline_BussinessDays(date){
     let days = parseInt(document.getElementById('days').value,10);
-    let date= new Date(date_aux);
     //counting the current day
     let aux=1;
     
@@ -319,7 +309,7 @@ function getDeadline_BussinessDays(){
         // if the counting is equal to the amount of days selected
         if(aux===days){
             //if isnt a holiday or a weekend return the current date
-            if(date.getDay() !== 0 && date.getDay() !== 6 && isValidaDate(date)){
+            if(date.getDay() !== 0 && date.getDay() !== 6 && isValidDate(date)){
                 return date;
             }
             else{
@@ -335,7 +325,7 @@ function getDeadline_BussinessDays(){
                 }
                 for(;;){
                     //return the resulting date if isnt a weekend or a holiday
-                    if(date.getDay() !== 0 && date.getDay() !== 6 && isValidaDate(date))
+                    if(date.getDay() !== 0 && date.getDay() !== 6 && isValidDate(date))
                         return date;
                     else
                         date=addDays(1,date);
@@ -346,7 +336,7 @@ function getDeadline_BussinessDays(){
         }
             
         // it only counts when isnt weekend or holiday
-        if(date.getDay() !== 0 && date.getDay() !== 6 && isValidaDate(date))
+        if(date.getDay() !== 0 && date.getDay() !== 6 && isValidDate(date))
              aux++;
         
         //adds one day to the date
@@ -369,10 +359,10 @@ function fixWeekend(date) {
 }
 
 function setTypeOptions(){
-    let select= document.getElementById('comboStates');
+    let select= document.getElementById('comboTypes');
     let url="api/type/getall";
      fetch(url)
-     .then(response =>response.json())
+     .then(response => response.json() )
      .then(data=>{
      data.forEach(item=>{
        var opt = document.createElement('option'); 
@@ -384,6 +374,43 @@ function setTypeOptions(){
     
 }
 
+
+function formatDate(d) {
+    var month = '' + (d.getMonth() + 1),
+        day = '' + d.getDate(),
+        year = d.getFullYear();
+
+    if (month.length < 2) 
+        month = '0' + month;
+    if (day.length < 2) 
+        day = '0' + day;
+
+    return [year, month, day].join('-');
+}
+function setDeadline(){
+    date = new Date();
+    let output=document.getElementById('deadline');
+    let select=document.getElementById('comboDays').value; 
+    alertDay();   
+    if(document.getElementById('days').value !== ''){
+    let newDate = select ==='1'? getDeadline_BussinessDays(date) : getDeadline_NaturalDays(date);
+    let format=formatDate(newDate);
+    output.value=format;
+    }
+    else{
+        alert("Por favor inserte el plazo");
+    }
+}
+
+function alertDay(){
+    if(document.getElementById('days').value !== ''){
+    var days = parseInt(document.getElementById("days").value,10);
+    if (days > 60)
+     if(!confirm("Usted ha seleccionado un plazo de: " + days + " días.\n ¿Desea Continuar?"))
+        document.getElementById('days').value='';
+    }      
+  
+}
 
 /*
  * 
@@ -399,4 +426,28 @@ function setTypeOptions(){
  }
  * 
  * 
- */
+ 
+*/
+
+
+/* this function call the pop up and print date */
+
+function alertDay(){
+    var txt = 0;
+    var deadline = document.getElementsByName("deadline").value;
+    
+    if (deadline > 60){
+        if (confirm("Usted ha seleccionado un plazo de: " + deadline.values())) {
+            txt = "El plazo es de " + deadline + " días";
+        }        
+    }
+    else {
+        txt= "La fecha es " + deadline;
+        
+    }
+    document.getElementById("days").innerHTML = txt;
+}
+
+
+/*this function confirm the funtion add Accord*/
+

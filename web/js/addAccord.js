@@ -431,4 +431,28 @@ function alertDay(){
  }
  * 
  * 
- */
+ 
+*/
+
+
+/* this function call the pop up and print date */
+
+function alertDay(){
+    var txt = 0;
+    var deadline = document.getElementsByName("deadline").value;
+    
+    if (deadline > 60){
+        if (confirm("Usted ha seleccionado un plazo de: " + deadline.values())) {
+            txt = "El plazo es de " + deadline + " días";
+        }        
+    }
+    else {
+        txt= "La fecha es " + deadline;
+        
+    }
+    document.getElementById("days").innerHTML = txt;
+}
+
+
+/*this function confirm the funtion add Accord*/
+
