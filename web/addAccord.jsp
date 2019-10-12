@@ -22,49 +22,75 @@
             <h4 align="center">Agregar Acuerdo</h4>
             <div class="container" id="container" >
                 <form id="uploadForm"  enctype="multipart/form-data" method="POST">
+                    <div class="border-bottom">
+                        <div class="row">
+                            <div class="col-3">
+                                <div class="form-group">
+                                    <div class="col-sm-8">
+                                        <label for="form-control col-4" class="form-label">Fecha de Sesion:</label>                               
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="form-group">
+                                    <div class="col-sm-8">                               
+                                        <input id="generalSession" class="form-control" type="date">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     <div class="row">
                         <div class="col">
-                            <div class="form-group">
-                                <label for="form-control col-4" class="form-label">Oficio:</label>
-                                <div class="col-sm-12">
-                                    <input type="text" class="form-control" name="desc" value="MSPH-CM-ACUER-" disabled> 
+                            <span class="border-warning">
+                                <div class="form-group">
+                                    <div class="col-sm-10">
+                                        <label for="form-control col-4" class="form-label">Oficio:</label>
+                                        <input type="text" class="form-control" name="desc" value="MSPH-CM-ACUER-" disabled> 
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <input type="text" class="form-control" name="office" required> 
+                                    </div>
                                 </div>
-                                <div class="col-sm-6">
-                                    <input type="text" class="form-control" name="office" required> 
+                            </span>
+                        </div>
+                        <div class="col">
+                            <div class="form-group">
+                                <div class="col-sm-11">
+                                    <label for="form-control" class="form-label" >Fecha de Notificacion:</label>
+                                    <input type="date" class="form-control" name="notDate" id="notDate" required>
                                 </div>
                             </div>
                         </div>
                         <div class="col">
                             <div class="form-group">
-                                <label for="form-control col-4" class="form-label">Fecha de sesión:</label>
-                                <input type="date"  class="form-control" name ="sessionDate" id="sessionDate" required>
-                                <label for="form-control" class="form-label" >Fecha de Notificacion:</label>
-                                <input type="date" class="form-control" name="notDate" id="notDate" required>
+                                <div class="col-sm-11">
+                                    <label for="form-control" class="form-label" >Plazo(Dias):</label>
+                                    <input type="number" class="form-control" name="days" id="days" onkeypress="return event.charCode >= 48" min="0" required>
+                                    <select class="form-control" id="comboDays" name="comboDays"> 
+                                        <option value="1">Laborales</option>
+                                        <option value="2">Naturales</option>
+                                    </select>
+                                </div>
                             </div>
                         </div>
                         <div class="col">
                             <div class="form-group">
-                                <label for="form-control" class="form-label" >Plazo(Dias):</label>
-                                <input type="number" class="form-control" name="days" id="days" onkeypress="return event.charCode >= 48" min="0" required>
-                                <select class="form-control" id="comboDays" name="comboDays"> 
-                                    <option value="1">Laborales</option>
-                                    <option value="2">Naturales</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="form-group">
-                                <label for="form-control" class="form-label" >Vencimiento:</label>
-                                <input type="date" class="form-control" name="deadline" id="deadline" disabled="true">
-                                <button class="btn btn-outline-primary" type="button" onclick="javascript:setDeadline()" name="daysButton">Confirmar Plazo</button>
+                                <div class="col-sm-11">
+                                    <label for="form-control" class="form-label" >Vencimiento:</label>
+                                    <input type="date" class="form-control" name="deadline" id="deadline" disabled="true">
+                                    <button class="btn btn-outline-primary" type="button" onclick="javascript:setDeadline()" name="daysButton">Confirmar Plazo</button>
+                                </div>
                             </div>
                         </div>                      
                     </div>
                     <div class="row">
                         <div class="col">
                             <div class="form-group ">
-                                <label for="form-control col-6" class="form-label"> Tipo de acuerdo: </label>                               
-                                <select  class="form-control" id="comboTypes" name="comboTypes" onchange="changeComboType(this.value)"> </select>
+                                <div class="col-8">
+                                    <label for="form-control col-6" class="form-label"> Tipo de acuerdo: </label>                               
+                                    <select  class="form-control" id="comboTypes" name="comboTypes" onchange="changeComboType(this.value)"></select>
+                                </div>
                             </div>
                         </div> 
                         <div class="col">
@@ -80,7 +106,7 @@
                     </div> 
                     <div class="row">
                         <div class="col-2">
-                           <div class="form-group ">
+                            <div class="form-group ">
                                 <label for="form-control col-6" class="form-label" style="visibility: hidden">Estado:</label>                               
                                 <select  class="form-control" id="comboStates" name="comboStates" style="visibility: hidden"> </select>
                             </div>
@@ -114,7 +140,7 @@
                             </div>
                         </div>
                     </div>
-                </form>  
+                </form>
             </div>         
         </div>
         <script src="js/bootstrap.js" type="text/javascript"></script>
