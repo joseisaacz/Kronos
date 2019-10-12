@@ -118,17 +118,6 @@ CREATE TABLE IF NOT EXISTS `KRONOS`.`T_DELETEDACCORDS` (
   )
 ENGINE = InnoDB;
 
-
-USE `KRONOS`;
-DROP trigger IF EXISTS T_ACCORD_BEFORE_DELETE;
-DELIMITER $$
-USE `KRONOS`$$
-CREATE DEFINER = CURRENT_USER TRIGGER `KRONOS`.`T_ACCORD_BEFORE_DELETE` BEFORE DELETE ON `T_ACCORD` FOR EACH ROW
-BEGIN
-insert into T_DELETEDACCORDS SET action = 'delete', T_ACCORD.ACCNUMBER= OLD.ACCNUMBER;
-END$$
-DELIMITER ; 
-
 USE `KRONOS`;
 DROP procedure IF EXISTS searchAllAccords;
 DELIMITER $$
@@ -239,3 +228,15 @@ begin
 select  ID , DESCRIPTION from T_TYPE;
 end$$
 DELIMITER ; 
+                                                                                                    
+USE `KRONOS`;
+DROP procedure IF EXISTS searchExpiredAccords;
+DELIMITER $$
+USE `KRONOS`$$
+create procedure searchExpiredAccords(in actual date, in limt date)
+begin
+select ACCNUMBER, INCORDATE, 
+DEADLINE, SESSIONDATE, TYPE_ID, OBSERVATIONS, PUBLIC, NOTIFIED,  STATE, NOTIFDATE, T_ACCPDF.URL  from T_ACCORD, T_ACCPDF where ACCNUMBER= T_ACCPDF.ACCORD and limt < DEADLINE < actual;
+end$$
+DELIMITER ; 
+
