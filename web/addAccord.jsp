@@ -50,14 +50,12 @@
                                     <option value="1">Laborales</option>
                                     <option value="2">Naturales</option>
                                 </select>
-                                 <p id="days"></p>
                             </div>
                         </div>
                         <div class="col">
-                            <div class="form-group">                   
+                            <div class="form-group">
                                 <label for="form-control" class="form-label" >Vencimiento:</label>
                                 <input type="date" class="form-control" name="deadline" id="deadline" disabled="true">
-                                <button class="btn btn-outline-primary" type="button" name="daysButton" onclick="alertDay()">Confirmar Plazo</button>
                                 <button class="btn btn-outline-primary" type="button" onclick="javascript:setDeadline()" name="daysButton">Confirmar Plazo</button>
                             </div>
                         </div>                      
@@ -65,7 +63,7 @@
                     <div class="row">
                         <div class="col">
                             <div class="form-group ">
-                                <label for="form-control col-6" class="form-label"> Tipo de acuerdo: </label>     
+                                <label for="form-control col-6" class="form-label"> Tipo de acuerdo: </label>                               
                                 <select  class="form-control" id="comboTypes" name="comboTypes" onchange="changeComboType(this.value)"> </select>
                             </div>
                         </div> 
@@ -89,14 +87,6 @@
                         </div>  
                     </div> 
                     <div class="row">
-                        <div class="col-2">
-                           <div class="form-group ">
-                                <label for="form-control col-6" class="form-label">Estado:</label>                               
-                                <select  class="form-control" id="comboStates" name="comboStates"> </select>
-                            </div>
-                        </div>  
-                    </div> 
-                    <div class="row">
                         <div class="col">
                             <div class="form-group ">
                                 <label for="" class="form-label" > Observaciones</label>
@@ -115,9 +105,7 @@
                         <div class="col-6">
                             <div class="col-7"></div>
                             <div class="form-group col-5" >
-                                <button type="submit" class="btn btn-outline-success pull-right" onclick="javascript:hola()">Agregar</button>
-                                
-                                <button type="button" class="btn btn-outline-success pull-right" onclick="javascript:addAccord()">Agregar</butto>
+                                <button type="button" class="btn btn-outline-success pull-right" onclick="javascript:addAccord()">Agregar</button>
                             </div>
                         </div>
                         <div class="col-6">
