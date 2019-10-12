@@ -103,6 +103,9 @@ public class AccordServlet extends HttpServlet {
             @SuppressWarnings("unchecked")
             List<FileItem> formItems = upload.parseRequest(request);
             DateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+            Date incorDate = new Date();
+            acc.setIncorporatedDate(incorDate);
+            
             if (formItems != null && formItems.size() > 0) {
                 // iterates over form's fields
                 for (FileItem item : formItems) {
@@ -137,13 +140,13 @@ public class AccordServlet extends HttpServlet {
                                 acc.setDeadline(deadline);
                             }
                             break;
-
-                            case "incorDate": {
-                                String date = new String(item.get());
-                                Date incorDate = format.parse(date);
-                                acc.setIncorporatedDate(incorDate);
-                            }
-                            break;
+//
+//                            case "incorDate": {
+//                                String date = new String(item.get());
+//                                Date incorDate = format.parse(date);
+//                                acc.setIncorporatedDate(incorDate);
+//                            }
+//                            break;
 
                             case "observations": {
                                 String observations = new String(item.get());
