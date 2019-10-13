@@ -7,6 +7,10 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="css/bootstrap.css" rel="stylesheet" type="text/css"/>
+        <link href="css/default.css" rel="stylesheet" type="text/css"/>
+        <link href="css/menu.css" rel="stylesheet" type="text/css"/>
         <title>Modificado Acuerdo</title>
     </head>
     <body>
@@ -18,11 +22,11 @@
 
             <section class="container" id="container">
                 <div class="row">
-                    <div class="col-6">
+                    <div class="col">
                         <form action="">
-                            <div  class="form-group row">
-                                <label for="" class="col-2 col-form-label"> Oficio: </label>
-                                <input type="text" class="form-control col-10" name="office"> 
+                            <div  class="form-group">
+                              <label for="" class="col-7 col-form-label">Oficio</label>
+                               <input type="text" class="form-control col-4" name ="office">
                             </div>
 
                             <div class="form-group">
@@ -61,7 +65,12 @@
                             </div>
                         </form>
                     </div>
+                </div>
             </section>            
         </div>
+
+        <script src="js/bootstrap.js" type="text/javascript"></script>
+        <script src="js/jquery-3.3.1.min.js" type="text/javascript"></script>
+        <script src="js/changeAccord.js" type="text/javascript"></script>
     </body>
 </html>

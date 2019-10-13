@@ -11,8 +11,6 @@
         <link href="css/bootstrap.css" rel="stylesheet" type="text/css"/>
         <link href="css/default.css" rel="stylesheet" type="text/css"/>
         <link href="css/menu.css" rel="stylesheet" type="text/css"/>
-        <script src="js/addAccord.js" type="text/javascript"></script>
-        <script src="js/bootstrap.js" type="text/javascript"></script>
     </head>
     <body>
         <div>
@@ -42,7 +40,7 @@
                             <div class="col-4">
                                 <div class="form-group">
                                     <div class="col-sm-8">
-                                        <input id="generalSession" class="form-control" type="date">
+                                        <input id="generalSession" name="generalSession"class="form-control" type="date">
                                     </div>
                                 </div>
                             </div>
@@ -57,7 +55,7 @@
                                         <input type="text" class="form-control" name="desc" value="MSPH-CM-ACUER-" disabled>
                                     </div>
                                     <div class="col-sm-6">
-                                        <input type="text" class="form-control" name="office" required>
+                                        <input type="text" class="form-control" id="office" name="office" required>
                                     </div>
                                 </div>
                             </span>
@@ -87,7 +85,7 @@
                                 <div class="col-sm-11">
                                     <label for="form-control" class="form-label" >Vencimiento:</label>
                                     <input type="date" class="form-control" name="deadline" id="deadline" disabled="true">
-                                    <button class="btn btn-outline-primary" type="button" onclick="javascript:setDeadline()" name="daysButton">Confirmar Plazo</button>
+                                    <button class="btn btn-outline-primary" type="button" onclick="javascript:setDeadline()" id="daysButton" name="daysButton">Confirmar Plazo</button>
                                 </div>
                             </div>
                         </div>
@@ -99,7 +97,11 @@
                                     <label for="form-control col-6" class="form-label"> Tipo de acuerdo: </label>
                                     <select  class="form-control" id="comboTypes" name="comboTypes" onchange="changeComboType(this.value)"></select>
                                 </div>
-                            </div>
+                                  <div class="col-8">   
+                                <label for="form-control col-6" class="form-label" id="labelState" style="visibility: hidden">Estado:</label>
+                                <select  class="form-control" id="comboStates" name="comboStates" style="visibility: hidden"> </select>
+                                  </div>
+                                  </div>
                         </div>
                         <div class="col">
                             <div class="form-group ">
@@ -113,18 +115,15 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-2">
-                            <div class="form-group ">
-                                <label for="form-control col-6" class="form-label" style="visibility: hidden">Estado:</label>
-                                <select  class="form-control" id="comboStates" name="comboStates" style="visibility: hidden"> </select>
-                            </div>
+                        <div class="col-md-5">
+                        
                         </div>
                     </div>
                     <div class="row">
                         <div class="col">
                             <div class="form-group ">
                                 <label for="" class="form-label" > Observaciones</label>
-                                <textarea  placeholder="Digite en este espacio sus observaciones" class="form-control" rows="5" cols="40" name ="observations" rows="3" style ="resize: none"></textarea>
+                                <textarea  placeholder="Digite en este espacio sus observaciones" class="form-control" rows="5" cols="40" name ="observations" id="observations" rows="3" style ="resize: none"></textarea>
                             </div>
                         </div>
                         <%-- DRAG and DROP zone --%>
