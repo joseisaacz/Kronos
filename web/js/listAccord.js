@@ -54,7 +54,7 @@ function changeSelect(value) {
 
 document.addEventListener("DOMContentLoaded", function () {
     setTypeOptions();
-    initTable();
+   // initTable();
 });
 
 
@@ -274,7 +274,8 @@ function searchAllAccords() {
                     list(parent, item);
                 });
             }).then(()=>{
-                    $("#tableAcc").destroy();
+              //      $("#tableAccNotify").destroy();
+               //     $("#tableAccNotify").empty();
                     initTable();
             })
         
@@ -352,6 +353,7 @@ function searchAccordsByExpiredToday(){
 
             }).then(()=>{
                     $("#tableAcc").destroy();
+                    $("#tableAccNotify").DataTable().destroy();
                     initTable();
             })
             .catch(error => {

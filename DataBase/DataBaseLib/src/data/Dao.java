@@ -368,7 +368,7 @@ public class Dao {
     
     public List<State> getAllState() throws Exception{
         this.db.connect();
-         CallableStatement statement = this.db.getConnection().prepareCall("{call ssearchAllStates()}"); 
+         CallableStatement statement = this.db.getConnection().prepareCall("{call searchAllStates()}"); 
          ResultSet rs=statement.executeQuery();
          List<State> result= new ArrayList();
          while(rs.next()){

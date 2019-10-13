@@ -3,6 +3,75 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+function example(input){
+    console.log(input.files);
+    var parent = $("#pdfList");
+    for(let i=0; i<input.files.length; i++){
+        listNewFile(parent,input.files[i]);
+    }
+    //input.files.forEach(file=>{
+   //    listNewFile(parent,file);
+   // });
+}
+function openfile(file){
+    window.open(URL.createObjectURL(file));
+}
+function deletefile(parent,filename){
+
+ let  files=document.getElementById('accord2').files;
+  let count=0;
+  let newFileList=[];
+  console.log(newFileList);
+  for(let i=0; i<files.length;i++){
+      if(files[i].name!==filename){
+          newFileList[count++]=files[i];
+      }
+  }
+  document.getElementById('accord2').files=newFileList;
+ //  var row = parent.parentNode.parentNode;
+ // row.parentNode.removeChild(row);
+ console.log(document.getElementById('accord2'));
+  
+}
+function listNewFile(parent,file){
+    var tr = $("<tr/>");
+    tr.html(
+            "<td>" + file.name + "</td>"
+            +"<td>" +"<button type=\"button\" class=\"btn btn-success\" id=\""+file.name+"\" >Ver</button>" + "</td>"+
+            "<td>" +"<button type=\"button\" class=\"btn btn-danger\" disabled>Borrar</button>" + "</td>"
+            
+            );
+      parent.append(tr);
+  //  console.log("filename: "+file.name);
+    //console.log(document.getElementById(file.name));
+    document.getElementById(file.name).onclick=()=>{
+      openfile(file);  
+    };
+  
+}
+function deletePdf(parent,pdf) {
+  var row = parent.parentNode.parentNode;
+  row.parentNode.removeChild(row);
+}
+function openPdf(pdf){
+    console.log(pdf);
+ let _url='api/accord/getfile?filepath='+pdf;
+ console.log(_url);
+ fetch(_url)
+ .then(response => response.blob())
+ .then(data => window.open(URL.createObjectURL(data)));
+}
+function list(parent, pdf) {
+    var tr = $("<tr/>");
+    tr.html(
+            "<td>" + pdf.substring(23,pdf.length) + "</td>"
+            +"<td>" +"<button type=\"button\" class=\"btn btn-success\" onclick=\"javascript:openPdf('"+pdf+"')\">Ver</button>" + "</td>"+
+            "<td>" +"<button type=\"button\" class=\"btn btn-danger\" onclick=\"javascript:deletePdf(this,'"+pdf+"')\">Borrar</button>" + "</td>"
+            
+            );
+    parent.append(tr);
+}
+
 
 //this fuction adds into an array the parameters of the url 
 function getUrlVars() {
@@ -19,6 +88,8 @@ function getUrlVars() {
 }
 
 document.addEventListener("DOMContentLoaded", function () {
+    setTypeOptions();
+    setStateOptions();
     var number = getUrlVars();
     if (number !== null) {
         var accnumber = number.accnumber;
@@ -38,7 +109,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         }
     } 
-    setTypeOptions();
+  
 });
 
 
@@ -90,53 +161,6 @@ function isValidDate(date) {
     return true;
 }
 
-/*
- * -------------------------------------------------------------------------------------
- * 
- **/
-var states = null;
-var types = null;
-
-
-//this function initialize all functions of formulary
-function init() {
-    fullComboStay();
-
-
-}
-function initData1(newData) {
-    stays = newData;
-
-}
-
-//this funtion upload the stay of accord on comboBox
-function fullComboState()
-{
-    var comboState = document.getElementsByName("comboState");
-    if (comboState) {
-        comboState.options.length = 0;
-
-
-        {
-            var opc = document.createElement("OPTION");
-            opc.setAttribute("value", "null");
-            opc.setAttribute("selected", "selected");
-            opc.appendChild(document.createTextNode("(Estado)"));
-            refMenu.appendChild(opc);
-        }
-
-        for (var i = 0; i < states.length; i++) {
-            var sta = comercios[i];
-
-            var opc = document.createElement("OPTION");
-            opc.setAttribute("value", sta.id + " " + sta.description);
-            opc.appendChild(document.createTextNode(local.ciudad + " " + local.direccion));
-            refMenu.appendChild(opc);
-
-        }
-
-    }
-}
 
 function changeComboType(combo) {
     let labelName = document.getElementById('labelName');
@@ -202,10 +226,39 @@ function addAccord() {
 
 function editAccord(accord) {
 
-    document.getElementsByName("office")[0].value = accord.accNumber;
-    document.getElementsByName("incorporatedDate")[0].value = accord.incorporatedDate;
-    document.getElementsByName("deadline")[0].value = accord.deadline;
-    document.getElementsByName("observations")[0].value = accord.observations;
+    console.log(accord);
+    let sessionDate=document.getElementById('generalSession');
+    let office=document.getElementById('office');
+    let notDate=document.getElementById('notDate');
+    let days=document.getElementById('days');
+    let comboDays=document.getElementById('comboDays');
+    let deadline=document.getElementById('deadline');
+    let daysButtons=document.getElementById('daysButtons');
+    let comboTypes=document.getElementById('comboTypes');
+    let username=document.getElementById('username');
+    let email=document.getElementById('email');
+    let comboStates=document.getElementById('comboStates');
+    let observations=document.getElementById('observations');
+    let labelStates=document.getElementById('labelState');
+    let pdf=document.getElementById('accord');
+    let divFile=document.getElementById('files');
+    let table=document.getElementById('table');
+    sessionDate.value=accord.sessionDate;
+    office.value=accord.accNumber.substring(9, accord.accNumber.length);
+    notDate.value=accord.notificationDate;
+    observations.value=accord.observations;
+    deadline.value=accord.deadline;
+    comboStates.value=accord.state;
+    comboTypes.value=accord.type;
+    comboStates.style.visibility='visible';
+    labelStates.style.visibility='visible';
+    divFile.style.display = 'none';  
+    table.style.display='block';
+    var parent = $("#pdfList");
+                parent.html("");
+                accord.URL.forEach(item => {
+                    list(parent, item);
+                });
 
 }
 
@@ -250,14 +303,14 @@ function editAccord(accord) {
 //
 //}(jQuery);
 
-function editAccord(accord) {
-
-    document.getElementsByName("office")[0].value = accord.accNumber;
-    document.getElementsByName("incorporatedDate")[0].value = accord.incorporatedDate;
-    document.getElementsByName("deadline")[0].value = accord.deadline;
-    document.getElementsByName("observations")[0].value = accord.observations;
-
-}
+//function editAccord(accord) {
+//
+//    document.getElementsByName("office")[0].value = accord.accNumber;
+//    document.getElementsByName("incorporatedDate")[0].value = accord.incorporatedDate;
+//    document.getElementsByName("deadline")[0].value = accord.deadline;
+//    document.getElementsByName("observations")[0].value = accord.observations;
+//
+//}
 
 
 
@@ -379,6 +432,21 @@ function setTypeOptions(){
     
 }
 
+function setStateOptions(){
+    let select= document.getElementById('comboStates');
+    let url="api/state/getall";
+     fetch(url)
+     .then(response =>response.json())
+     .then(data=>{
+     data.forEach(item=>{
+       var opt = document.createElement('option'); 
+         opt.value = item.id;
+         opt.innerHTML = item.description;
+         select.appendChild(opt);
+     });
+ }).catch(error => console.log(error));
+}
+
 
 function formatDate(d) {
     var month = '' + (d.getMonth() + 1),
@@ -417,6 +485,7 @@ function alertDay(){
   
 }
 
+
 /*
  * 
  * get the pdf and display it in a new browser tab
@@ -437,21 +506,21 @@ function alertDay(){
 
 /* this function call the pop up and print date */
 
-function alertDay(){
-    var txt = 0;
-    var deadline = document.getElementsByName("deadline").value;
-    
-    if (deadline > 60){
-        if (confirm("Usted ha seleccionado un plazo de: " + deadline.values())) {
-            txt = "El plazo es de " + deadline + " días";
-        }        
-    }
-    else {
-        txt= "La fecha es " + deadline;
-        
-    }
-    document.getElementById("days").innerHTML = txt;
-}
+//function alertDay(){
+//    var txt = 0;
+//    var deadline = document.getElementsByID("deadline").value;
+//    
+//    if (deadline > 60){
+//        if (confirm("Usted ha seleccionado un plazo de: " + deadline.values())) {
+//            txt = "El plazo es de " + deadline + " días";
+//        }        
+//    }
+//    else {
+//        txt= "La fecha es " + deadline;
+//        
+//    }
+//    document.getElementById("days").innerHTML = txt;
+//}
 
 
 /*this function confirm the funtion add Accord*/
