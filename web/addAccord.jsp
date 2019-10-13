@@ -21,14 +21,14 @@
         <div id="wrapper">
             <div class="container" >
                 <div class="border-bottom" style="width: 97%">
-                     <div class="row" style="background-color: white; width: 50%; border-radius: 50px 50px 1px 1px;">
+                    <div class="row" style="background-color: white; width: 50%; border-radius: 50px 50px 1px 1px;">
                         <div class="col-12">
-                            <h3 align="center">Agregar Acuerdo1</h3>
+                            <h3 align="center">Agregar Acuerdo</h3>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="container" id="container" style="border-radius: 1px 50px 50px 50px">
+            <div class="container" id="container" style="border-radius: 1px 50px 50px 50px; border: solid tomato">
                 <form id="uploadForm"  enctype="multipart/form-data" method="POST">
                     <div class="border-bottom">
                         <div class="row">
@@ -123,8 +123,10 @@
                     <div class="row">
                         <div class="col">
                             <div class="form-group ">
-                                <label for="" class="form-label" > Observaciones</label>
-                                <textarea  placeholder="Digite en este espacio sus observaciones" class="form-control" rows="5" cols="40" name ="observations" rows="3" style ="resize: none"></textarea>
+                                <div class="col-12">
+                                    <label for="" class="form-label" > Observaciones</label>
+                                    <textarea  placeholder="Digite en este espacio sus observaciones" class="form-control" rows="5" cols="40" name ="observations" rows="3" style ="resize: none"></textarea>
+                                </div>
                             </div>
                         </div>
                         <%-- DRAG and DROP zone --%>
