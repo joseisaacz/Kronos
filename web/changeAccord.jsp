@@ -20,14 +20,14 @@
         <div id="wrapper">
             <div class="container" >
                 <div class="border-bottom" style="width: 97%">
-                    <div class="row" style="background-color: white; width: 50%; border-radius: 50px 50px 1px 1px;">
+                    <div class="row" style="background-color: white; width: 50%; border-radius: 50px 50px 1px 1px;background-color: #1f3140; border: solid #003366">
                         <div class="col-12">
                             <h3 align="center">Modificar Acuerdo</h3>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="container" id="container" style="border-radius: 1px 50px 50px 50px">
+            <div class="container" id="container" style="border-radius: 1px 50px 50px 50px; border: solid #003366">
                 <form id="uploadForm"  enctype="multipart/form-data" method="POST">
                     <div class="border-bottom">
                         <div class="row">
