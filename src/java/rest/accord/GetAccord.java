@@ -149,13 +149,15 @@ public class GetAccord {
         }
         
         
+          
         @GET 
         @Path("/getaccord/notify")
         @Produces(MediaType.APPLICATION_JSON)
-        public List<ToRestAccord> getNotifyAccordsToday(){
+        public List<ToRestAccord> getExpiredAccordsToday(){
             try{
                 Date notify = new Date();
-                List<Accord> list= Dao.getDao().searchAccordByNotifyDate(notify);
+                Date notify2 = new Date();
+                List<Accord> list= Dao.getDao().searchAccordByExpiredDate(notify, notify2 );
                 List<ToRestAccord> result= new ArrayList();
                 for(Accord item: list){
                     result.add(ToRestAccord.toRestAcc(item));
@@ -171,10 +173,12 @@ public class GetAccord {
            @GET 
         @Path("/getaccord/notify")
         @Produces(MediaType.APPLICATION_JSON)
-        public List<ToRestAccord> getNotifyAccordsLess(){
+        public List<ToRestAccord> getExpiredAccordsMonth(){
             try{
                 Date notify = new Date();
-                List<Accord> list= Dao.getDao().searchAccordByNotifyDate(notify);
+                Date notify2 = new Date();
+                //(notify <=1)? notify2.setMonth(12): notify2.setMonth(notify.getMonth()- 1);
+                List<Accord> list= Dao.getDao().searchAccordByExpiredDate(notify,notify2 );
                 List<ToRestAccord> result= new ArrayList();
                 for(Accord item: list){
                     result.add(ToRestAccord.toRestAcc(item));
@@ -184,8 +188,8 @@ public class GetAccord {
             catch(Exception e){
                 throw new NotFoundException();
             }
-        
         }
+        
         
     
 }
