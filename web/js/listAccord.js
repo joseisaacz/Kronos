@@ -339,7 +339,6 @@ function initTable() {
 
 function searchAccordsByExpiredToday(){
         let _url = "api/accord/getaccord/expired/";
-
     fetch(_url)
             .then(res =>
                 res.json()
@@ -352,7 +351,7 @@ function searchAccordsByExpiredToday(){
                 });
 
             }).then(()=>{
-                    $("#tableAccExpired").destroy();
+                    $("#tableAcc").destroy();
                     initTable();
             })
             .catch(error => {
@@ -362,9 +361,3 @@ function searchAccordsByExpiredToday(){
     
 }
 
-function initTableNotifyToday(){
-    
-    
-    
-    
-}

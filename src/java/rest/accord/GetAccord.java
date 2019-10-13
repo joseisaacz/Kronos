@@ -151,13 +151,12 @@ public class GetAccord {
         
           
         @GET 
-        @Path("/getaccord/notify")
+        @Path("/getaccord/expired")
         @Produces(MediaType.APPLICATION_JSON)
         public List<ToRestAccord> getExpiredAccordsToday(){
             try{
                 Date notify = new Date();
-                Date notify2 = new Date();
-                List<Accord> list= Dao.getDao().searchAccordByExpiredDate(notify, notify2 );
+                List<Accord> list= Dao.getDao().searchAccordByExpiredDate(notify, notify );
                 List<ToRestAccord> result= new ArrayList();
                 for(Accord item: list){
                     result.add(ToRestAccord.toRestAcc(item));

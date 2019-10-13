@@ -19,7 +19,7 @@ public class pruebas {
     System.out.print(db.getConnection());
     System.out.println("\n");
     
-    System.out.print(d.getAllType().toString());
+    System.out.print(d.searchAllAccords().toString());
     
     
    

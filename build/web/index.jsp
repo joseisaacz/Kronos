@@ -14,13 +14,13 @@
         <div>
             <%@include file="principalMenu.jsp" %>            
         </div> 
-        <div id="wrapper">
+        <div id="wrapper" onload="searchAccordsByExpiredToday()">
             <h4 align="center">Acuerdos Vencidos</h4>
             <div class="container">
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="table-responsive">        
-                            <table id="tableAccExpired" class="table table-striped table-bordered border-info" style="width:100%">
+                            <table id="tableAcc" class="table table-striped table-bordered border-info" style="width:100%">
                                 <thead>
                                     <tr>
                                         <th style="text-align: center">Número de Oficio</th>
