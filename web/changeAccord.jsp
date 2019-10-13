@@ -1,5 +1,6 @@
 <%-- 
     Document   : changeAccord
+    
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -17,55 +18,150 @@
         <div>
             <%@include file="principalMenu.jsp" %>
         </div> 
-        <div id ="wrapper">
-
-
-            <section class="container" id="container">
-                <div class="row">
-                    <div class="col">
-                        <form action="">
-                            <div  class="form-group">
-                              <label for="" class="col-7 col-form-label">Oficio</label>
-                               <input type="text" class="form-control col-4" name ="office">
-                            </div>
-
-                            <div class="form-group">
-                                <label for="" class="col-7 col-form-label">Fecha de sesión:</label>
-                                <input type="date" class="form-control col-4" name ="incorporatedDate">
-                            </div>
-
-                            <div class="form-group">
-                                <label for="" class="col-7 col-form-label">Vencimiento:</label>
-                                <input type="date" class="form-control col-4" name="deadline">
-                            </div>
-
-                            <div class="form-group">
-                                <label for="" class="col-2 col-form-label"> Observaciones</label>
-                                <input type="text" placeholder="Digite en este espacio sus observaciones" class="form-control col-10" name ="observations">
-                            </div>
-                            <div>
-                                <div class ="table-responsive">
-                                    <table id="tableAcc" class="table table-striped table-bordered border-info" style="width:100%">
-                                        <thead>
-                                            <tr>
-                                                <th style="text-align: center">Principal</th>
-                                                <th style="text-align: center">Documento</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody id="accordDocumet">
-                                        </tbody>
-                                    </table>
-                                </div>
-                                <label for="">Adjuntar archivo:</label>
-                                <input type='file' name='archivo1' id='archivo1' placeholder="Inserte aquí el PDF" required>
-                            </div>
-                            <div class="form-group">
-                                <button type="submit" class="btn btn-light">Cancelar</button>
-                                <button type="submit" class="btn btn-light">Agregar</button>
-                            </div>
-                        </form>
+        <div id="wrapper">
+            <div class="container" >
+                <div class="border-bottom" style="width: 97%">
+                    <div class="row" style="background-color: white; width: 50%; border-radius: 50px 50px 1px 1px;background-color: #1f3140; border: solid #003366">
+                        <div class="col-12">
+                            <h3 align="center">Modificar Acuerdo</h3>
+                        </div>
                     </div>
                 </div>
+            </div>
+            <div class="container" id="container" style="border-radius: 1px 50px 50px 50px; border: solid #003366">
+                <form id="uploadForm"  enctype="multipart/form-data" method="POST">
+                    <div class="border-bottom">
+                        <div class="row">
+                            <div class="col-3">
+                                <div class="form-group">
+                                    <div class="col-sm-8">
+                                        <label for="form-control col-4" class="form-label">Fecha de Sesion:</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-sm-8">
+                                            <input id="generalSession" class="form-control" type="date">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="custom-control custom-switch">
+                                <input type="checkbox" class="custom-control-input" id="customSwitch1" checked>
+                                <label class="custom-control-label" for="customSwitch1">Click para editar Fecha</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <span class="border-warning">
+                                <div class="form-group">
+                                    <div class="col-sm-10">
+                                        <label for="form-control col-4" class="form-label">Oficio:</label>
+                                        <input type="text" class="form-control" name="desc" value="MSPH-CM-ACUER-" disabled>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <input type="text" class="form-control" name="office" required>
+                                    </div>
+                                </div>
+                            </span>
+                        </div>
+                        <div class="col">
+                            <div class="form-group">
+                                <div class="col-sm-11">
+                                    <label for="form-control" class="form-label" >Fecha de Notificacion:</label>
+                                    <input type="date" class="form-control" name="notDate" id="notDate" required>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-group">
+                                <div class="col-sm-11">
+                                    <label for="form-control" class="form-label" >Plazo(Dias):</label>
+                                    <input type="number" class="form-control" name="days" id="days" onkeypress="return event.charCode >= 48" min="0" required>
+                                    <select class="form-control" id="comboDays" name="comboDays">
+                                        <option value="1">Laborales</option>
+                                        <option value="2">Naturales</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-group">
+                                <div class="col-sm-11">
+                                    <label for="form-control" class="form-label" >Vencimiento:</label>
+                                    <input type="date" class="form-control" name="deadline" id="deadline" disabled="true">
+                                    <button class="btn btn-outline-primary" type="button" onclick="javascript:setDeadline()" name="daysButton">Confirmar Plazo</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group ">
+                                <div class="col-8">
+                                    <label for="form-control col-6" class="form-label"> Tipo de acuerdo: </label>
+                                    <select  class="form-control" id="comboTypes" name="comboTypes" onchange="changeComboType(this.value)"></select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-group ">
+                                <label id="labelName" for="form-control col-9" class="form-label" style="visibility: hidden"> Nombre del Responsable </label>
+                                <input type="hidden" class="form-control" name="username" id="username">
+                            </div>
+                            <div class="form-group ">
+                                <label id="labelEmail" for="form-control col-9" class="form-label" style="visibility: hidden"> Correo Electronico del Responsable </label>
+                                <input type="hidden" class="form-control" name="email" id="email">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group ">
+                                <div class="col-2">
+                                    <label for="form-control col-6" class="form-label" style="visibility: visible">Estado:</label>
+                                    <select  class="form-control" id="comboStates" name="comboStates" style="visibility: visible"> </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group ">
+                                <div class="col-12">
+                                    <label for="" class="form-label" > Observaciones</label>
+                                    <textarea  placeholder="Digite en este espacio sus observaciones" class="form-control" rows="5" cols="40" name ="observations" rows="3" style ="resize: none"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <%-- DRAG and DROP zone --%>
+                        <div class="col">
+                            <div class="form-group files">
+                                <label for="form-control" class="form-label">Inserte aquí el pdf</label>
+                                <input style="width: 10%" type="file" class="form-control" name="accord" id="accord" placeholder="Inserte aquí el PDF" required multiple  accept="application/pdf">
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-group files">
+                                <label for="form-control" class="form-label">PDF de Confirmacion</label>
+                                <input type="file" class="form-control" name="PrincipalAccord" id="accord" placeholder="Inserte aquí el PDF" required multiple  accept="application/pdf">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-4">
+                            <div class="form-group">
+                                <div class="col">
+                                    <button type="button" class="btn btn-outline-success" onclick="">Confirmar</button>
+                                    <button type="button" class="btn btn-outline-danger" >Cancelar</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+              </div>
             </section>            
         </div>
 
