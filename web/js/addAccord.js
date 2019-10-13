@@ -3,6 +3,75 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+function example(input){
+    console.log(input.files);
+    var parent = $("#pdfList");
+    for(let i=0; i<input.files.length; i++){
+        listNewFile(parent,input.files[i]);
+    }
+    //input.files.forEach(file=>{
+   //    listNewFile(parent,file);
+   // });
+}
+function openfile(file){
+    window.open(URL.createObjectURL(file));
+}
+function deletefile(parent,filename){
+
+ let  files=document.getElementById('accord2').files;
+  let count=0;
+  let newFileList=[];
+  console.log(newFileList);
+  for(let i=0; i<files.length;i++){
+      if(files[i].name!==filename){
+          newFileList[count++]=files[i];
+      }
+  }
+  document.getElementById('accord2').files=newFileList;
+ //  var row = parent.parentNode.parentNode;
+ // row.parentNode.removeChild(row);
+ console.log(document.getElementById('accord2'));
+  
+}
+function listNewFile(parent,file){
+    var tr = $("<tr/>");
+    tr.html(
+            "<td>" + file.name + "</td>"
+            +"<td>" +"<button type=\"button\" class=\"btn btn-success\" id=\""+file.name+"\" >Ver</button>" + "</td>"+
+            "<td>" +"<button type=\"button\" class=\"btn btn-danger\" disabled>Borrar</button>" + "</td>"
+            
+            );
+      parent.append(tr);
+  //  console.log("filename: "+file.name);
+    //console.log(document.getElementById(file.name));
+    document.getElementById(file.name).onclick=()=>{
+      openfile(file);  
+    };
+  
+}
+function deletePdf(parent,pdf) {
+  var row = parent.parentNode.parentNode;
+  row.parentNode.removeChild(row);
+}
+function openPdf(pdf){
+    console.log(pdf);
+ let _url='api/accord/getfile?filepath='+pdf;
+ console.log(_url);
+ fetch(_url)
+ .then(response => response.blob())
+ .then(data => window.open(URL.createObjectURL(data)));
+}
+function list(parent, pdf) {
+    var tr = $("<tr/>");
+    tr.html(
+            "<td>" + pdf.substring(23,pdf.length) + "</td>"
+            +"<td>" +"<button type=\"button\" class=\"btn btn-success\" onclick=\"javascript:openPdf('"+pdf+"')\">Ver</button>" + "</td>"+
+            "<td>" +"<button type=\"button\" class=\"btn btn-danger\" onclick=\"javascript:deletePdf(this,'"+pdf+"')\">Borrar</button>" + "</td>"
+            
+            );
+    parent.append(tr);
+}
+
 
 //this fuction adds into an array the parameters of the url 
 function getUrlVars() {
@@ -172,6 +241,8 @@ function editAccord(accord) {
     let observations=document.getElementById('observations');
     let labelStates=document.getElementById('labelState');
     let pdf=document.getElementById('accord');
+    let divFile=document.getElementById('files');
+    let table=document.getElementById('table');
     sessionDate.value=accord.sessionDate;
     office.value=accord.accNumber.substring(9, accord.accNumber.length);
     notDate.value=accord.notificationDate;
@@ -181,7 +252,13 @@ function editAccord(accord) {
     comboTypes.value=accord.type;
     comboStates.style.visibility='visible';
     labelStates.style.visibility='visible';
-    pdf.type='hidden';
+    divFile.style.display = 'none';  
+    table.style.display='block';
+    var parent = $("#pdfList");
+                parent.html("");
+                accord.URL.forEach(item => {
+                    list(parent, item);
+                });
 
 }
 
@@ -407,6 +484,7 @@ function alertDay(){
     }      
   
 }
+
 
 /*
  * 

@@ -128,10 +128,26 @@
                         </div>
                         <%-- DRAG and DROP zone --%>
                         <div class="col">
-                            <div class="form-group files">
+                            <div class="form-group files" id="files">
                                 <label for="form-control" class="form-label"> Inserte aquí el pdf </label>
                                 <input type="file" class="form-control" name="accord" id="accord" placeholder="Inserte aquí el PDF" required multiple  accept="application/pdf">
                             </div>
+                            <div class="table-responsive" id="table" style="display: none">   
+                                 <label for="table table-striped table-bordered border-info" class="form-label"> PDF </label>
+                            <table id="tablePdf" class="table table-striped table-bordered border-info">
+                                <thead>
+                                    <tr>
+                                        <th style="text-align: center">Nombre</th> 
+                                        <th style="text-align: center">Ver PDF</th>
+                                        <th style="text-align: center">Borrar PDF</th>
+                                       
+                                    </tr>
+                                </thead>
+                                <tbody id="pdfList">
+                                </tbody>
+                            </table>
+                                 <input type="file" class="form-control" name="accord2" id="accord2" placeholder="Inserte aquí el PDF" required multiple  accept="application/pdf" onchange="example(this)">
+                        </div>
                         </div>
                     </div>
                     <div class="row">
