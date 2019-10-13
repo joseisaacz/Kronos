@@ -187,7 +187,12 @@ function addAccord() {
         success: function (msg) {
           alert("ACUERDO AGREGADO EXITOSAMENTE");
       },
-        error: function (msg) {
+        error: function (response) {
+            console.log(response);
+            if(response.status===503){
+                alert("NO HAY ACUERDOS");
+            }
+            else
             alert("OCURRIO UN ERROR");
         }
     });

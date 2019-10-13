@@ -338,7 +338,7 @@ function initTable() {
 
 
 function searchAccordsByExpiredToday(){
-        let _url = "api/accord/getaccord/expired/";
+        let _url = "api/accord/getaccord/expiredtoday";
     fetch(_url)
             .then(res =>
                 res.json()
@@ -356,8 +356,6 @@ function searchAccordsByExpiredToday(){
             })
             .catch(error => {
                 console.log(error);
-            });
-    
-    
+            });    
 }
 

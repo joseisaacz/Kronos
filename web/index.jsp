@@ -22,12 +22,14 @@
                         <div class="table-responsive">        
                             <table id="tableAcc" class="table table-striped table-bordered border-info" style="width:100%">
                                 <thead>
-                                    <tr>
+                                    <tr>  
                                         <th style="text-align: center">Número de Oficio</th>
-                                        <th style ="text-align: center">Destinatario</th>
+                                        <th style="text-align: center">Fecha de Incorporación</th>
                                         <th style="text-align: center">Fecha de Sesión</th>
                                         <th style="text-align: center">Fecha de Vencimiento</th>
+                                        <th style="text-align: center">Tipo</th>
                                         <th style="text-align: center">Estado</th>
+                                        <th style="text-align: center">Editar</th>
                                     </tr>
                                 </thead>
                                 <tbody id="accordList">

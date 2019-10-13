@@ -5,6 +5,8 @@
  */
 package data;
 
+import java.util.Date;
+
 /**
  *
  * @author djenane
@@ -18,8 +20,12 @@ public class pruebas {
     Dao d= Dao.getDao();
     System.out.print(db.getConnection());
     System.out.println("\n");
+    Date date1 = new Date(2019,8,11);
+    Date today = new Date();
+    System.out.print(d.searchAccordByExpiredDate(date1, today).toString());
+    System.out.println("\n");
+   // System.out.println(d.getAllType().toString());
     
-    System.out.print(d.searchAllAccords().toString());
     
     
    

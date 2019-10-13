@@ -391,11 +391,11 @@ public class Dao {
     
     
     //this function return the accord list that experedby specific date
-      public List<Accord> searchAccordByExpiredDate(Date notifyDate, Date notifyDate2) throws Exception {
+      public List<Accord> searchAccordByExpiredDate(Date date1, Date limit) throws Exception {
         this.db.connect();
-        CallableStatement statement = this.db.getConnection().prepareCall("{call searchExpiredAccords(? , ? )}");
-        statement.setDate(1, new java.sql.Date(notifyDate.getTime()));
-        statement.setDate(2,new java.sql.Date( notifyDate2.getTime()));
+        CallableStatement statement = this.db.getConnection().prepareCall("{call searchExpiredAccords(? , ?)}");
+        statement.setDate(1, new java.sql.Date(date1.getTime()));
+        statement.setDate(2,new java.sql.Date( limit.getTime()));
         ResultSet rs = statement.executeQuery();
         Map<String, Accord> map = new HashMap();
 
