@@ -8,10 +8,11 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
         <link href="css/bootstrap.css" rel="stylesheet" type="text/css"/>
         <link href="css/default.css" rel="stylesheet" type="text/css"/>
         <link href="css/menu.css" rel="stylesheet" type="text/css"/>
-        <title>Modificar Acuerdo</title>
+        <title>Modificado Acuerdo</title>
     </head>
     <body>
         <div>
@@ -160,12 +161,12 @@
                             </div>
                         </div>
                     </div>
-                    <%-- DRAG and DROP zone end --%>
-                </form>
-            </div>
+              </div>
+            </section>            
         </div>
+
         <script src="js/bootstrap.js" type="text/javascript"></script>
         <script src="js/jquery-3.3.1.min.js" type="text/javascript"></script>
-        <script src="js/addAccord.js" type="text/javascript"></script>
+        <script src="js/changeAccord.js" type="text/javascript"></script>
     </body>
 </html>
