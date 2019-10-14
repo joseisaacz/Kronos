@@ -3,6 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
+var oldAccord=null;
+var oldURL=null;
+
 function example(input){
     console.log(input.files);
     var parent = $("#pdfList");
@@ -13,45 +17,48 @@ function example(input){
    //    listNewFile(parent,file);
    // });
 }
-function openfile(file){
-    window.open(URL.createObjectURL(file));
-}
-function deletefile(parent,filename){
 
- let  files=document.getElementById('accord2').files;
-  let count=0;
-  let newFileList=[];
-  console.log(newFileList);
-  for(let i=0; i<files.length;i++){
-      if(files[i].name!==filename){
-          newFileList[count++]=files[i];
-      }
-  }
-  document.getElementById('accord2').files=newFileList;
- //  var row = parent.parentNode.parentNode;
- // row.parentNode.removeChild(row);
- console.log(document.getElementById('accord2'));
-  
+
+function changeSwitch(input){
+    if(input.checked)
+        document.getElementById('generalSession').disabled=false;
+    else
+        document.getElementById('generalSession').disabled=true;
 }
-function listNewFile(parent,file){
-    var tr = $("<tr/>");
-    tr.html(
-            "<td>" + file.name + "</td>"
-            +"<td>" +"<button type=\"button\" class=\"btn btn-success\" id=\""+file.name+"\" >Ver</button>" + "</td>"+
-            "<td>" +"<button type=\"button\" class=\"btn btn-danger\" disabled>Borrar</button>" + "</td>"
-            
-            );
-      parent.append(tr);
-  //  console.log("filename: "+file.name);
-    //console.log(document.getElementById(file.name));
-    document.getElementById(file.name).onclick=()=>{
-      openfile(file);  
-    };
-  
-}
+//function openfile(file){
+//    window.open(URL.createObjectURL(file));
+//}
+
+//function listNewFile(parent,file){
+//    var tr = $("<tr/>");
+//    tr.html(
+//            "<td>" + file.name + "</td>"
+//            +"<td>" +"<button type=\"button\" class=\"btn btn-success\" id=\""+file.name+"\" >Ver</button>" + "</td>"+
+//            "<td>" +"<button type=\"button\" class=\"btn btn-danger\" disabled>Borrar</button>" + "</td>"
+//            
+//            );
+//      parent.append(tr);
+//  //  console.log("filename: "+file.name);
+//    //console.log(document.getElementById(file.name));
+//    document.getElementById(file.name).onclick=()=>{
+//      openfile(file);  
+//    };
+//  
+//}
 function deletePdf(parent,pdf) {
+   
+    let newURL=[];
+  for(let i=0; i<oldAccord.URL.length; i++){
+      if(oldAccord.URL[i]===pdf)
+          oldURL.push(oldAccord.URL[i]);
+      else
+          newURL.push(oldAccord.URL[i]);
+          
+  }
+  oldAccord.URL=newURL;
   var row = parent.parentNode.parentNode;
   row.parentNode.removeChild(row);
+  
 }
 function openPdf(pdf){
     console.log(pdf);
@@ -227,13 +234,15 @@ function addAccord() {
 function editAccord(accord) {
 
     console.log(accord);
+    oldAccord=accord;
+    oldURL=[];
     let sessionDate=document.getElementById('generalSession');
     let office=document.getElementById('office');
     let notDate=document.getElementById('notDate');
     let days=document.getElementById('days');
     let comboDays=document.getElementById('comboDays');
     let deadline=document.getElementById('deadline');
-    let daysButtons=document.getElementById('daysButtons');
+    let daysButton=document.getElementById('daysButton');
     let comboTypes=document.getElementById('comboTypes');
     let username=document.getElementById('username');
     let email=document.getElementById('email');
@@ -243,25 +252,40 @@ function editAccord(accord) {
     let pdf=document.getElementById('accord');
     let divFile=document.getElementById('files');
     let table=document.getElementById('table');
+    let cancelButton=document.getElementById('cancelButton');
+    let title=document.getElementById('pageTitle');
+    let okButton=document.getElementById('okButton');
+    let divDeleteButton=document.getElementById('divDeleteButton');
+    let divDeadline=document.getElementById('divDeadline');
+    let deleteButton=document.getElementById('deleteButton');
+    title.innerHTML="";
+    title.innerHTML='Modificar Acuerdo';
     sessionDate.value=accord.sessionDate;
     office.value=accord.accNumber.substring(9, accord.accNumber.length);
+    office.disabled=true;
     notDate.value=accord.notificationDate;
     observations.value=accord.observations;
     deadline.value=accord.deadline;
+    deadline.disabled=false;
     comboStates.value=accord.state;
     comboTypes.value=accord.type;
     comboStates.style.visibility='visible';
     labelStates.style.visibility='visible';
-    divFile.style.display = 'none';  
+    daysButton.style.visibility='hidden';
+    divFile.style.display = 'none'; 
+    divDeadline.style.display='none';
     table.style.display='block';
+    okButton.onclick=editButton;
+    okButton.innerHTML="";
+    okButton.innerHTML="Modificar Acuerdo";
+    deleteButton.onclick=deleteAccord;
+    divDeleteButton.style.visibility='visible';
+    console.log(okButton);
     var parent = $("#pdfList");
                 parent.html("");
                 accord.URL.forEach(item => {
-                    list(parent, item);
-                });
-
-}
-
+                    list(parent, item); });
+  }
 
 //-----------DRAG AND DROP---------
 //function ($) {
@@ -302,17 +326,6 @@ function editAccord(accord) {
 //    }
 //
 //}(jQuery);
-
-//function editAccord(accord) {
-//
-//    document.getElementsByName("office")[0].value = accord.accNumber;
-//    document.getElementsByName("incorporatedDate")[0].value = accord.incorporatedDate;
-//    document.getElementsByName("deadline")[0].value = accord.deadline;
-//    document.getElementsByName("observations")[0].value = accord.observations;
-//
-//}
-
-
 
 //it adds an amount of days the the date
 //even if it has to change the month or the year
@@ -485,7 +498,196 @@ function alertDay(){
   
 }
 
+function deletedPdf(oldArray,newArray){
+    
+    return_array=[];
+ oldArray.forEach(item=>{
+    let _it=newArray.find(string => string !== item); 
+    if(_it !== undefined)
+        return_array.push(_it);
+        
+ });
+ return return_array;
+}
 
+
+function editButton(){
+    let newAccord=getNewAccord();
+    let noError=compareAccords(oldAccord,newAccord);
+    oldAccord=null;
+    oldURL=null;
+    if(!noError)
+        alert("Ha Ocurrido un error");
+    else
+        alert("Acuerdo Actualizado Correctamente");
+    
+    window.location.replace("/Kronos/listAccord.jsp"); 
+    
+}
+function getNewAccord(){
+    
+    let sessionDate=document.getElementById('generalSession');
+    let office=document.getElementById('office');
+    let notDate=document.getElementById('notDate');
+    let days=document.getElementById('days');
+    let comboDays=document.getElementById('comboDays');
+    let deadline=document.getElementById('deadline');
+    let daysButtons=document.getElementById('daysButtons');
+    let comboTypes=document.getElementById('comboTypes');
+    let username=document.getElementById('username');
+    let email=document.getElementById('email');
+    let comboStates=document.getElementById('comboStates');
+    let observations=document.getElementById('observations');
+    let labelStates=document.getElementById('labelState');
+    let pdf=document.getElementById('accord');
+    let divFile=document.getElementById('files');
+    let table=document.getElementById('table');
+    let cancelButton=document.getElementById('cancelButton');
+    var newAccord={};
+    newAccord.accNumber=oldAccord.accNumber;
+    newAccord.deadline=deadline.value;
+    newAccord.type=comboTypes.value;
+    sessionDate.disabled=false;
+    newAccord.sessionDate=sessionDate.value;
+    newAccord.observations=observations.value;
+    newAccord.notificationDate=notDate.value;
+    newAccord.state=comboStates.value;
+    return newAccord;
+}
+function compareAccords(oldAccord,newAccord){
+    let noError=true;
+    
+    if(oldAccord.sessionDate !== newAccord.sessionDate)
+        updateSessionDate(newAccord,()=>noError=false);
+    
+    if(oldAccord.deadline !== newAccord.deadline)
+        updateDeadline(newAccord,()=>noError=false);
+    
+//    if(oldAccord.notificationDate !== newAccord.notificationDate)
+//        noError=updateNotDate(newAccord);
+//    
+//    if(oldAccord.observation !== newAccord.observations)
+//        noError=updateObservations(newAccord);
+    
+    if(oldAccord.type !== newAccord.type)
+        updateType(newAccord,()=> noError=false);
+    
+    if(oldAccord.state !== parseInt(newAccord.state,10))
+        updateState(newAccord,()=> noError=false);
+    
+    if(oldURL.length > 0)
+        updateDeletedPdf(newAccord, oldURL,()=>noError=false);
+    
+    console.log("ERROR :"+noError);
+    return noError;
+    
+}
+
+function updateSessionDate(newAccord,callback){
+    let url='api/accord/updateSessionDate/'+newAccord.accNumber+'/'+newAccord.sessionDate;
+        $.ajax({
+        type: "POST",
+        async: false,
+         url: url,
+         success:function (msg){
+             console.log("SUCCESS");
+         },
+         error: callback
+        
+    });  
+}
+
+
+function updateDeadline(newAccord,callback){
+    let url='api/accord/updateDeadline/'+newAccord.accNumber+'/'+newAccord.deadline;
+            $.ajax({
+        type: "POST",
+        async: false,
+         url: url,
+         success:function (msg){
+             console.log("SUCCESS");
+         },
+         error: callback
+        
+    });  
+}
+
+function updateType(newAccord,callback){
+    let url='api/accord/updateType/'+newAccord.accNumber+'/'+newAccord.type;
+    
+          $.ajax({
+        type: "POST",
+        async: false,
+         url: url,
+         success:function (msg){
+             console.log("SUCCESS");
+         },
+         error: callback
+        
+    });    
+}
+
+
+function updateState(newAccord,callback){
+    let url='api/accord/updateState/'+newAccord.accNumber+'/'+newAccord.state;
+    
+        $.ajax({
+        type: "POST",
+        async: false,
+         url: url,
+         success:function (msg){
+             console.log("SUCCESS");
+         },
+         error: callback
+        
+    });       
+
+}
+
+function updateDeletedPdf(newAccord,oldURL,callback){
+    let url='api/accord/deletePDF/'+newAccord.accNumber;
+    
+     var noError=true;
+    $.ajax({
+        type: "POST",
+         url: url,
+         async:false,
+        contentType: "application/json",
+        data:JSON.stringify(oldURL),
+       
+        success: function (msg) {
+          console.log(msg);
+      },
+        error: callback
+        
+    });
+  
+}
+
+function deleteAccord(){
+     let url='api/accord/deleteAccord/'+oldAccord.accNumber;
+     
+    $.ajax({
+        type: "POST",
+         url: url,
+         success: function (msg) {
+          console.log(msg);
+            oldAccord=null;
+             oldURL=null;
+             alert("Acuerdo Eliminado Correctamente");
+              window.location.replace("/Kronos/listAccord.jsp"); 
+      },
+        error: function(msg){
+            console.log(msg);
+            alert("Ocurrio Un Error");
+             oldAccord=null;
+             oldURL=null;
+
+        }
+        
+    });
+ 
+}
 /*
  * 
  * get the pdf and display it in a new browser tab

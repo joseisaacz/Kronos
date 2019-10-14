@@ -314,22 +314,6 @@ public class Dao {
        return new ArrayList<>(map.values());
     }
     
-    
-    
-    public void deleteAccord(Accord acc) throws Exception{
-        
-       this.db.connect();
-
-        CallableStatement statement = this.db.getConnection().prepareCall("{call insertAccord(?)}"); 
-        statement.setString(1,acc.getAccNumber());
-        statement.executeUpdate();
-        statement.close();
-        
-        this.db.disconnect();
-        
-        
-    }
-    
     public User getUser(User us) throws Exception{
           this.db.connect();
           
@@ -383,7 +367,46 @@ public class Dao {
         return result;
     }
     
-    
+    public List<Accord> searchExpiredAccords(Date actual, Date limit) throws Exception{
+        this.db.connect();
+        CallableStatement statement = this.db.getConnection().prepareCall("{call searchExpiredAccords(?, ?)}");
+        statement.setDate(1, new java.sql.Date(actual.getTime()));
+        statement.setDate(2, new java.sql.Date(limit.getTime()));
+        
+        ResultSet rs = statement.executeQuery();
+        Map<String, Accord> map = new HashMap();
+
+        while (rs.next()) {
+            
+            String accNumber = rs.getString("ACCNUMBER");
+            if (map.isEmpty() || ! map.containsKey(accNumber)) { //if the map is empty or the result isn't
+                Accord a = new Accord();                                                 //in the map
+                a.setAccNumber(accNumber);
+                a.setIncorporatedDate(rs.getDate("INCORDATE"));
+                a.setDeadline(rs.getDate("DEADLINE"));
+                a.setSessionDate(rs.getDate("SESSIONDATE"));
+                a.setType(rs.getString("TYPE_ID").charAt(0));
+                a.setObservations(rs.getString("OBSERVATIONS"));
+                a.setNotificationDate(rs.getDate("NOTIFDATE"));
+                a.setNotified(rs.getBoolean("NOTIFIED"));
+                a.setPublished(rs.getBoolean("PUBLIC"));
+                a.setState(rs.getInt("STATE"));
+                a.getURL().add(rs.getString("URL"));
+                map.put(accNumber, a);
+            }
+            else {
+                    //if the result isn't  in the map or the map isn't empty, just add the URL into result
+                    map.get(accNumber).getURL().add(rs.getString("URL"));
+                
+            }
+        }
+       
+        statement.close();
+        this.db.disconnect();
+       return new ArrayList<>(map.values());
+        
+        
+    }
     
         //this function returns the accords list less than a notification date 
       public List<Accord> searchAccordByNotifyDateLess(Date NotifyDate) throws Exception {
@@ -460,6 +483,81 @@ public class Dao {
         this.db.disconnect();
        return new ArrayList<>(map.values());
     }
-
-    
+      
+      public void updateAccordSessionDate(String accNumber, Date sessionDate) throws Exception{
+           this.db.connect();
+        CallableStatement statement = this.db.getConnection().prepareCall("{call updateAccordSessionDate(? , ?)}");
+           statement.setString(1, accNumber);
+           statement.setDate(2, new java.sql.Date(sessionDate.getTime()));
+           statement.execute();
+           statement.close();
+           this.db.disconnect();
+          
+      }
+      
+         public void updateAccordDeadline(String accNumber, Date deadLine) throws Exception{
+           this.db.connect();
+        CallableStatement statement = this.db.getConnection().prepareCall("{call updateAccordDeadline(? , ?)}");
+           statement.setString(1, accNumber);
+           statement.setDate(2, new java.sql.Date(deadLine.getTime()));
+           statement.execute();
+           statement.close();
+           this.db.disconnect();
+          
+      }
+      
+              public void updateAccordType(String accNumber, String type) throws Exception{
+           this.db.connect();
+        CallableStatement statement = this.db.getConnection().prepareCall("{call updateAccordType(? , ?)}");
+           statement.setString(1, accNumber);
+           statement.setString(2, type);
+           statement.execute();
+           statement.close();
+           this.db.disconnect();
+          
+      }  
+              
+              
+             public void updateAccordState(String accNumber, int state) throws Exception{
+           this.db.connect();
+           CallableStatement statement = this.db.getConnection().prepareCall("{call updateAccordState(? , ?)}");
+           statement.setString(1, accNumber);
+           statement.setInt(2, state);
+           statement.execute();
+           statement.close();
+           this.db.disconnect();
+          
+      }      
+             
+           public void updateAccordUser(String accNumber, String newUser, String oldUser) throws Exception{
+           this.db.connect();
+           CallableStatement statement = this.db.getConnection().prepareCall("{call updateAccordUser(? , ? ,?)}");
+           statement.setString(1, accNumber);
+           statement.setString(2, newUser);
+           statement.setString(3, oldUser);
+           statement.execute();
+           statement.close();
+           this.db.disconnect();
+          
+      } 
+           public void deletePdf(String accNumber, String pdf) throws Exception{
+               this.db.connect();
+               CallableStatement statement = this.db.getConnection().prepareCall("{call deletePdf(? ,?)}");
+               statement.setString(1, accNumber);
+               statement.setString(2, pdf);
+               statement.execute();
+               statement.close();
+               this.db.disconnect();
+           }
+      
+           public void deleteAccord(String accNumber) throws Exception{
+               this.db.connect();
+               CallableStatement statement = this.db.getConnection().prepareCall("{call deleteAccord(?)}");
+               statement.setString(1, accNumber);
+               statement.execute();
+               statement.close();
+               this.db.disconnect();
+               
+               
+           }
 }
