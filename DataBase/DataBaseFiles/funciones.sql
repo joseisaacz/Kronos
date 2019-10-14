@@ -104,9 +104,9 @@ USE `KRONOS`$$
 create procedure deleteAccord(in accord varchar(45)  
 )
 begin
-delete from T_USERACC where ACCORD = accord;
-delete from T_ACCPDF where ACCORD = accord;
-delete from T_ACCORD where ACCNUMBER = accord; 
+delete from T_USERACC where T_USERACC.ACCORD = accord;
+delete from T_ACCPDF where T_ACCPDF.ACCORD = accord;
+delete from T_ACCORD where T_ACCORD.ACCNUMBER = accord; 
 end$$
 DELIMITER ; 
 
@@ -239,3 +239,15 @@ select ACCNUMBER, INCORDATE,
 DEADLINE, SESSIONDATE, TYPE_ID, OBSERVATIONS, PUBLIC, NOTIFIED,  STATE, NOTIFDATE, T_ACCPDF.URL  from T_ACCORD, T_ACCPDF where ACCNUMBER= T_ACCPDF.ACCORD and limt < DEADLINE < actual;
 end$$
 DELIMITER ; 
+
+USE `KRONOS`;
+DROP procedure IF EXISTS deletePdf;
+DELIMiTER $$
+USE `KRONOS`$$
+create procedure deletePdf(
+in accord varchar(45), in url varchar(100))
+begin
+delete from T_ACCPDF where ACCORD=accord and URL= url; 
+commit;  
+end$$ 
+DELIMITER ;
