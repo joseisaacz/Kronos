@@ -365,6 +365,10 @@ public class Dao {
          statement.close();
         this.db.disconnect();
         return result;
+           
+           
+           
+           
     }
     
     public List<Accord> searchExpiredAccords(Date actual, Date limit) throws Exception{
@@ -408,49 +412,13 @@ public class Dao {
         
     }
     
-        //this function returns the accords list less than a notification date 
-      public List<Accord> searchAccordByNotifyDateLess(Date NotifyDate) throws Exception {
-        this.db.connect();
-        CallableStatement statement = this.db.getConnection().prepareCall("{call searchAccordNotifyLess(? )}");
-        statement.setDate(1, new java.sql.Date(NotifyDate.getTime()));
-        ResultSet rs = statement.executeQuery();
-        Map<String, Accord> map = new HashMap();
-
-        while (rs.next()) {
-            
-            String accNumber = rs.getString("ACCNUMBER");
-            if (map.isEmpty() || ! map.containsKey(accNumber)) { //if the map is empty or the result isn't
-                Accord a = new Accord();                                                 //in the map
-                a.setAccNumber(accNumber);
-                a.setIncorporatedDate(rs.getDate("INCORDATE"));
-                a.setDeadline(rs.getDate("DEADLINE"));
-                a.setSessionDate(rs.getDate("SESSIONDATE"));
-                a.setType(rs.getString("TYPE_ID").charAt(0));
-                a.setObservations(rs.getString("OBSERVATIONS"));
-                a.setNotificationDate(rs.getDate("NOTIFDATE"));
-                a.setNotified(rs.getBoolean("NOTIFIED"));
-                a.setPublished(rs.getBoolean("PUBLIC"));
-                a.setState(rs.getInt("STATE"));
-                a.getURL().add(rs.getString("URL"));
-                map.put(accNumber, a);
-            }
-            else {
-                    //if the result isn't  in the map or the map isn't empty, just add the URL into result
-                    map.get(accNumber).getURL().add(rs.getString("URL"));
-                
-            }
-        }
-       
-        statement.close();
-        this.db.disconnect();
-       return new ArrayList<>(map.values());
-    }
     
-    //this function return the accord list that notify by specific date
-      public List<Accord> searchAccordByNotifyDate(Date NotifyDate) throws Exception {
+    //this function return the accord list that experedby specific date
+      public List<Accord> searchAccordByExpiredDate(Date date1, Date limit) throws Exception {
         this.db.connect();
-        CallableStatement statement = this.db.getConnection().prepareCall("{call searchAccordNotifyDate(? )}");
-        statement.setDate(1, new java.sql.Date(NotifyDate.getTime()));
+        CallableStatement statement = this.db.getConnection().prepareCall("{call searchExpiredAccords(? , ?)}");
+        statement.setDate(1, new java.sql.Date(date1.getTime()));
+        statement.setDate(2,new java.sql.Date( limit.getTime()));
         ResultSet rs = statement.executeQuery();
         Map<String, Accord> map = new HashMap();
 

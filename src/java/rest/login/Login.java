@@ -37,9 +37,6 @@ public class Login {
                request.getSession().setAttribute("User", result);
            }
            
-           
-           
-           
             
         } catch (Exception ex) {
             String es=ex.getMessage();

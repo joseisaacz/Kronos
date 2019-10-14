@@ -339,9 +339,8 @@ function initTable() {
 
 
 
-function searchAccordsByNotifyToday(){
-        let _url = "api/accord/getaccord/notify/";
-
+function searchAccordsByExpiredToday(){
+        let _url = "api/accord/getaccord/expiredtoday";
     fetch(_url)
             .then(res =>
                 res.json()
@@ -354,19 +353,12 @@ function searchAccordsByNotifyToday(){
                 });
 
             }).then(()=>{
+                    $("#tableAcc").destroy();
                     $("#tableAccNotify").DataTable().destroy();
                     initTable();
             })
             .catch(error => {
                 console.log(error);
-            });
-    
-    
+            });    
 }
 
-function initTableNotifyToday(){
-    
-    
-    
-    
-}

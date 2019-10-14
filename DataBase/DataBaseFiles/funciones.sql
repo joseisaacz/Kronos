@@ -251,4 +251,3 @@ delete from T_ACCPDF where ACCORD=accord and URL= url;
 commit;  
 end$$ 
 DELIMITER ;
-
