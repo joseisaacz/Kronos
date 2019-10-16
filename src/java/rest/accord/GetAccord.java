@@ -142,17 +142,7 @@ public class GetAccord {
         } catch (Exception e) {
             throw new NotFoundException();
         }
-<<<<<<< HEAD
-        
-          
-        @GET 
-=======
 
-}
-
-
-        @GET
->>>>>>> 7aa3af2cb58ca80fb8bd5923397f38b76bbdc481
         @Path("/getaccord/expiredtoday")
         @Produces(MediaType.APPLICATION_JSON)
         public List<ToRestAccord> getExpiredAccordsToday(){
@@ -207,12 +197,7 @@ public class GetAccord {
         } catch (Exception e) {
             throw new NotFoundException();
         }
-<<<<<<< HEAD
-        
-         
-        @GET 
-        @Path("/getaccord/expiredDate{dateinit, datefinal}")
-=======
+
 
     }
 
@@ -233,7 +218,6 @@ public class GetAccord {
 
         @GET
         @Path("/getaccord/expiredmonth")
->>>>>>> 7aa3af2cb58ca80fb8bd5923397f38b76bbdc481
         @Produces(MediaType.APPLICATION_JSON)
         public List<ToRestAccord> getExpiredAccordsToday(@PathParam("initdate") String initdate, @PathParam("finaldate") String finaldate){
             try{
@@ -250,13 +234,11 @@ public class GetAccord {
             catch(Exception e){
                 throw new NotFoundException();
             }
-<<<<<<< HEAD
         
         }
   
         
 }
-=======
         }
 
 
@@ -346,4 +328,3 @@ public class GetAccord {
         }
     }
 }
->>>>>>> 7aa3af2cb58ca80fb8bd5923397f38b76bbdc481
