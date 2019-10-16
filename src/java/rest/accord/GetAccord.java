@@ -148,7 +148,6 @@ public class GetAccord {
             }
         }
         
-        
           
         @GET 
         @Path("/getaccord/expiredtoday")
@@ -170,27 +169,27 @@ public class GetAccord {
         
         }
         
+         
         @GET 
-        @Path("/getaccord/expiredmonth")
+        @Path("/getaccord/expiredDate{dateinit, datefinal}")
         @Produces(MediaType.APPLICATION_JSON)
-        public List<ToRestAccord> getExpiredAccordsMonth(){
+        public List<ToRestAccord> getExpiredAccordsToday(@PathParam("initdate") String initdate, @PathParam("finaldate") String finaldate){
             try{
-                Date notify = new Date();
-                Date notify2 = new Date();
-                if(notify.getMonth() <= 1){ notify2.setMonth(12); }
-                else{ notify2.setMonth(notify.getMonth()- 1);}
-                List<Accord> list= Dao.getDao().searchAccordByExpiredDate(notify,notify2 );
+                DateFormat format= new SimpleDateFormat("yyyy-dd-MM");
+                
+                List<Accord> list= Dao.getDao().searchAccordByExpiredDate(format.parse(initdate), format.parse(finaldate));
                 List<ToRestAccord> result= new ArrayList();
                 for(Accord item: list){
                     result.add(ToRestAccord.toRestAcc(item));
                 }
+                System.out.println(result.toString());
                 return result;
             }
             catch(Exception e){
                 throw new NotFoundException();
             }
+        
         }
+  
         
-        
-    
 }

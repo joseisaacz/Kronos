@@ -57,6 +57,24 @@ document.addEventListener("DOMContentLoaded", function () {
    // initTable();
 });
 
+document.addEventListener("DOMContentLoaded", function(){
+    searchAccordsByExpiredMonth();
+});
+
+//
+//document.addEventListener("DOMContentLoaded", function(){
+//    if (document.URL ==='http://localhost:8080/Kronos/index.jsp'){
+//        document.addEventListener("DOMContentLoaded", function () {
+//            setTypeOptions();
+//            searchAccordsByExpiredMonth();
+//            // initTable();
+//        });
+//    } else {
+//        document.addEventListener("DOMContentLoaded", function () {
+//            searchAccordsByExpiredMonth();
+//        });
+//    }
+//});
 
 function setTypeOptions() {
     let select = document.getElementById('selectType');
@@ -338,7 +356,7 @@ function initTable() {
 
 
 
-function searchAccordsByExpiredToday(){
+function searchAccordsByExpiredMonth(){
         let _url = "api/accord/getaccord/expiredtoday";
     fetch(_url)
             .then(res =>
