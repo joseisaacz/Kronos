@@ -54,7 +54,7 @@ function changeSelect(value) {
 
 document.addEventListener("DOMContentLoaded", function () {
     setTypeOptions();
-   // initTable();
+    initTable();
 });
 
 document.addEventListener("DOMContentLoaded", function(){
@@ -186,6 +186,7 @@ function SearchBySessionDate() {
                 res.json()
             )
             .then(accords => {
+                $('#tableAcc').DataTable().clear().destroy();
                 var parent = $("#accordList");
                 parent.html("");
                 accords.forEach(item => {
@@ -194,7 +195,6 @@ function SearchBySessionDate() {
 
             })
             .then(()=>{
-                    $("#tableAcc").destroy();
                     initTable();
             })
             .catch(error => {
@@ -212,6 +212,7 @@ function searchBySessionType() {
                 res.json()
             )
             .then(accords => {
+                 $('#tableAcc').DataTable().clear().destroy();
                 var parent = $("#accordList");
                 parent.html("");
                 accords.forEach(item => {
@@ -220,7 +221,6 @@ function searchBySessionType() {
 
             })
             .then(()=>{
-                    $("#tableAcc").destroy();
                     initTable();
             })
             .catch(error => {
@@ -238,6 +238,7 @@ function searchByIncorDate() {
                 res.json()
             )
             .then(accords => {
+               $('#tableAcc').DataTable().clear().destroy();
                 var parent = $("#accordList");
                 parent.html("");
                 accords.forEach(item => {
@@ -245,8 +246,7 @@ function searchByIncorDate() {
                 });
 
             }).then(()=>{
-                    $("#tableAcc").destroy();
-                    initTable();
+              initTable();
             })
             .catch(error => {
                 console.log(error);
@@ -263,6 +263,7 @@ function searchByAccNumber() {
                 res.json()
             )
             .then(accords => {
+                $('#tableAcc').DataTable().clear().destroy();
                 var parent = $("#accordList");
                 parent.html("");
                 accords.forEach(item => {
@@ -270,7 +271,6 @@ function searchByAccNumber() {
                 });
 
             }).then(()=>{
-                    $("#tableAcc").destroy();
                     initTable();
             })
             .catch(error => {
@@ -286,15 +286,15 @@ function searchAllAccords() {
                 return res.json();
             })
             .then(accords => {
+                $('#tableAcc').DataTable().clear().destroy();
                 var parent = $("#accordList");
                 parent.html("");
                 accords.forEach(item => {
                     list(parent, item);
                 });
             }).then(()=>{
-              //      $("#tableAccNotify").destroy();
-               //     $("#tableAccNotify").empty();
-                    initTable();
+
+                 initTable();
             })
         
             .catch(error => {
@@ -350,7 +350,8 @@ function initTable() {
             },
             "sProcessing": "Procesando..."
         },
-        "lengthChange": false
+        "lengthChange": false,
+         "destroy": true
     });
 }
 

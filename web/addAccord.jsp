@@ -21,7 +21,7 @@
                 <div class="border-bottom" style="width: 97%">
                     <div class="row" style="background-color: white; width: 50%; border-radius: 50px 50px 1px 1px; background-color: #1f3140; border: solid #003366">
                         <div class="col-12">
-                            <h3 align="center" style="color: #BBC9B4">Agregar Acuerdo</h3>
+                            <h3 align="center" style="color: #BBC9B4"id="pageTitle">Agregar Acuerdo</h3>
                         </div>
                     </div>
                 </div>
@@ -43,6 +43,11 @@
                                         <input id="generalSession" name="generalSession"class="form-control" type="date">
                                     </div>
                                 </div>
+                         
+                            </div>
+                                    <div class="custom-control custom-switch">
+                                <input type="checkbox" class="custom-control-input" id="customSwitch1" checked onchange="changeSwitch(this)">
+                                <label class="custom-control-label" for="customSwitch1">Click para editar Fecha</label>
                             </div>
                         </div>
                     </div>
@@ -68,7 +73,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col">
+                        <div id="divDeadline" class="col">
                             <div class="form-group">
                                 <div class="col-sm-11">
                                     <label for="form-control" class="form-label" >Plazo(Dias):</label>
@@ -124,7 +129,7 @@
                             <div class="form-group ">
                                 <div class="col-12">
                                     <label for="" class="form-label" > Observaciones</label>
-                                    <textarea  placeholder="Digite en este espacio sus observaciones" class="form-control" rows="5" cols="40" name ="observations" rows="3" style ="resize: none"></textarea>
+                                    <textarea  placeholder="Digite en este espacio sus observaciones" class="form-control" rows="5" cols="40" name ="observations" id="observations" rows="3" style ="resize: none"></textarea>
                                 </div>
                             </div>
                         </div>
@@ -148,16 +153,20 @@
                                 <tbody id="pdfList">
                                 </tbody>
                             </table>
-                                 <input type="file" class="form-control" name="accord2" id="accord2" placeholder="Inserte aquí el PDF" required multiple  accept="application/pdf" onchange="example(this)">
+                              
                         </div>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-6">
-                            <button type="button" class="btn btn-outline-success" onclick="javascript:addAccord()">Agregar</button>
+                        <div class="col-md-4">
+                            <button type="button" class="btn btn-outline-success" id="okButton" onclick="addAccord()">Agregar</button>
                         </div>
-                        <div class="col-6">
-                            <button type="button" class="btn btn-outline-danger" >Cancelar</button>
+                        <div class="col-md-4">
+                            <button type="button" class="btn btn-outline-danger" id="cancelButton" >Cancelar</button>
+                        </div>
+                        
+                        <div id="divDeleteButton" class="col-md-4" style="visibility: hidden">
+                            <button type="button" class="btn btn-outline-danger" id="deleteButton" >Eliminar Acuerdo</button>
                         </div>
                     </div>
                 </form>
