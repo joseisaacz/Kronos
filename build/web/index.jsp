@@ -14,7 +14,7 @@
         <div>
             <%@include file="principalMenu.jsp" %>            
         </div> 
-        <div id="wrapper" onload="searchAccordsByExpiredToday()">
+        <div id="wrapper">
             <h4 align="center">Acuerdos Vencidos</h4>
             <div class="container">
                 <div class="row">
@@ -39,9 +39,15 @@
                     </div>
                 </div>
             </div>
-            <section>
-                <a href="login.jsp"> to login</a>                
-            </section>      
+           
         </div>
+        <script src="https://kit.fontawesome.com/67596e9ec2.js" crossorigin="anonymous"></script>
+        <script src="js/jquery-3.3.1.min.js" type="text/javascript"></script>
+        <script src="js/bootstrap.js" type="text/javascript"></script>
+        <script src="js/popper.min.js" type="text/javascript"></script>
+        <script src="js/bootstrap.js" type="text/javascript"></script>
+        <script src="js/jquery.dataTables.min.js" type="text/javascript"></script>
+        <script src="js/dataTables.bootstrap4.min.js" type="text/javascript"></script>
+        <script src="js/listAccord.js" type="text/javascript"></script>   
     </body>
 </html>

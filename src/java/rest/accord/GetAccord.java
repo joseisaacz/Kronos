@@ -143,10 +143,6 @@ public class GetAccord {
             throw new NotFoundException();
         }
 
-}
-
-
-        @GET
         @Path("/getaccord/expiredtoday")
         @Produces(MediaType.APPLICATION_JSON)
         public List<ToRestAccord> getExpiredAccordsToday(){
@@ -167,42 +163,44 @@ public class GetAccord {
 
 }
 
-//    @GET
-//    @Path("/getaccord/notify")
-//    @Produces(MediaType.APPLICATION_JSON)
-//    public List<ToRestAccord> getNotifyAccordsToday() {
-//        try {
-//            Date notify = new Date();
-//            List<Accord> list = Dao.getDao().searchAccordByNotifyDate(notify);
-//            List<ToRestAccord> result = new ArrayList();
-//            for (Accord item : list) {
-//                result.add(ToRestAccord.toRestAcc(item));
-//
-//            }
-//            return result;
-//        } catch (Exception e) {
-//            throw new NotFoundException();
-//        }
-//
-//    }
+    @GET
+    @Path("/getaccord/notify")
+    @Produces(MediaType.APPLICATION_JSON)
+    public List<ToRestAccord> getNotifyAccordsToday() {
+        try {
+            Date notify = new Date();
+            List<Accord> list = Dao.getDao().searchAccordByNotifyDate(notify);
+            List<ToRestAccord> result = new ArrayList();
+            for (Accord item : list) {
+                result.add(ToRestAccord.toRestAcc(item));
 
-//    @GET
-//    @Path("/getaccord/notify")
-//    @Produces(MediaType.APPLICATION_JSON)
-//    public List<ToRestAccord> getNotifyAccordsLess() {
-//        try {
-//            Date notify = new Date();
-//            List<Accord> list = Dao.getDao().searchAccordByNotifyDate(notify);
-//            List<ToRestAccord> result = new ArrayList();
-//            for (Accord item : list) {
-//                result.add(ToRestAccord.toRestAcc(item));
-//            }
-//            return result;
-//        } catch (Exception e) {
-//            throw new NotFoundException();
-//        }
-//
-//    }
+            }
+            return result;
+        } catch (Exception e) {
+            throw new NotFoundException();
+        }
+
+    }
+
+    @GET
+    @Path("/getaccord/notify")
+    @Produces(MediaType.APPLICATION_JSON)
+    public List<ToRestAccord> getNotifyAccordsLess() {
+        try {
+            Date notify = new Date();
+            List<Accord> list = Dao.getDao().searchAccordByNotifyDate(notify);
+            List<ToRestAccord> result = new ArrayList();
+            for (Accord item : list) {
+                result.add(ToRestAccord.toRestAcc(item));
+            }
+            return result;
+        } catch (Exception e) {
+            throw new NotFoundException();
+        }
+
+
+    }
+
 
     @POST
     @Path("updateSessionDate/{accNumber}/{newSessionDate}")
@@ -222,22 +220,26 @@ public class GetAccord {
         @GET
         @Path("/getaccord/expiredmonth")
         @Produces(MediaType.APPLICATION_JSON)
-        public List<ToRestAccord> getExpiredAccordsMonth(){
+        public List<ToRestAccord> getExpiredAccordsToday(@PathParam("initdate") String initdate, @PathParam("finaldate") String finaldate){
             try{
-                Date notify = new Date();
-                Date notify2 = new Date();
-                if(notify.getMonth() <= 1){ notify2.setMonth(12); }
-                else{ notify2.setMonth(notify.getMonth()- 1);}
-                List<Accord> list= Dao.getDao().searchAccordByExpiredDate(notify,notify2 );
+                DateFormat format= new SimpleDateFormat("yyyy-dd-MM");
+                
+                List<Accord> list= Dao.getDao().searchAccordByExpiredDate(format.parse(initdate), format.parse(finaldate));
                 List<ToRestAccord> result= new ArrayList();
                 for(Accord item: list){
                     result.add(ToRestAccord.toRestAcc(item));
                 }
+                System.out.println(result.toString());
                 return result;
             }
             catch(Exception e){
                 throw new NotFoundException();
             }
+        
+        }
+  
+        
+}
         }
 
 
