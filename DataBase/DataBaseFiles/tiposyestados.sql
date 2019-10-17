@@ -1,3 +1,4 @@
+ALTER TABLE T_TYPE change DESCRIPTION DESCRIPTION VARCHAR(25);
 insert into T_TYPE (ID, DESCRIPTION) values ('A', 'Administración Municipal');
 insert into T_TYPE (ID, DESCRIPTION) values ('B', 'Auditoria Interna');
 insert into T_TYPE (ID, DESCRIPTION) values ('C', 'Lic');

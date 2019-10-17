@@ -10,7 +10,7 @@ DROP TABLE IF EXISTS `KRONOS`.`T_USERROLE` ;
 CREATE TABLE IF NOT EXISTS `KRONOS`.`T_USERROLE` (
 USER_NAME varchar(45),
 ROLE_NAME varchar(45),
-constraint pk1 primary key(USER_NAME,ROLE_NAME),
+constraint pk1 primary key(USER_NAME,ROLE_NAME)
 );
 
 
