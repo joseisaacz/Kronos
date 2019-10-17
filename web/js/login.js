@@ -38,4 +38,5 @@ function login(){
 function logout(){
    delete sessionStorage.USER;
    delete sessionStorage.ROLE;
+   window.location.replace("/Kronos/index.jsp"); 
 }

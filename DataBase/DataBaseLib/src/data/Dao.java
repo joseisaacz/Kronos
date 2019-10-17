@@ -443,7 +443,7 @@ public class Dao {
     //this function return the accord list that experedby specific date
       public List<Accord> searchAccordByExpiredDate(Date date1, Date limit) throws Exception {
         this.db.connect();
-        CallableStatement statement = this.db.getConnection().prepareCall("{call searchExpiredAccords(? , ?)}");
+        CallableStatement statement = this.db.getConnection().prepareCall("{call searchExpiredAccords(? , ?)}");        
         statement.setDate(1, new java.sql.Date(date1.getTime()));
         statement.setDate(2,new java.sql.Date( limit.getTime()));
         ResultSet rs = statement.executeQuery();

@@ -12,13 +12,13 @@
         <link href="css/popup.css" rel="stylesheet" type="text/css"/>
     </head>
     <body>
-        <p><a href="#popup">Abrir Popup</a></p>
+        <p><a href="#popup"></a></p>
         <div id="popup" class="overlay">
             <div id="popupBody">
                 <h2>Error de autenticación</h2>
-                <a id="cerrar" href="#">&times;</a>
+                <a id="cerrar" href="/Kronos/index.jsp">&times;</a>
                 <div class="popupContent">
-                    <p>Usted no cuenta con los permisos  para accersar</p>
+                    <p>Usted no cuenta con los permisos  para accesar</p>
                 </div>
             </div>
         </div>

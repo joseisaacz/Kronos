@@ -36,13 +36,13 @@
                                 <div class="input-group-append">
                                     <span class="input-group-text"><i class="fas fa-user"></i></span>
                                 </div>
-                                <input type="text" id="j_username" name="j_username" class="form-control input_user" value="" placeholder="Usuario">
+                                <input type="text" id="j_username" name="j_username" class="form-control input_user" value="" placeholder="Usuario" required>
                             </div>
                             <div class="input-group mb-2">
                                 <div class="input-group-append">
                                     <span class="input-group-text"><i class="fas fa-key"></i></span>
                                 </div>
-                                <input type="password" id="j_password" name="j_password" class="form-control input_pass" value="" placeholder="Contraseña">
+                                <input type="password" id="j_password" name="j_password" class="form-control input_pass" value="" placeholder="Contraseña" required>
                             </div>
                             <div class="form-group">
                                 <div class="custom-control custom-checkbox">

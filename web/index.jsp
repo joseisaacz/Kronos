@@ -48,6 +48,6 @@
         <script src="js/bootstrap.js" type="text/javascript"></script>
         <script src="js/jquery.dataTables.min.js" type="text/javascript"></script>
         <script src="js/dataTables.bootstrap4.min.js" type="text/javascript"></script>
-        <script src="js/listAccord.js" type="text/javascript"></script>   
+        <script src="js/index.js" type="text/javascript"></script>   
     </body>
 </html>

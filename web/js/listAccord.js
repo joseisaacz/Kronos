@@ -57,24 +57,6 @@ document.addEventListener("DOMContentLoaded", function () {
     initTable();
 });
 
-document.addEventListener("DOMContentLoaded", function(){
-    searchAccordsByExpiredMonth();
-});
-
-//
-//document.addEventListener("DOMContentLoaded", function(){
-//    if (document.URL ==='http://localhost:8080/Kronos/index.jsp'){
-//        document.addEventListener("DOMContentLoaded", function () {
-//            setTypeOptions();
-//            searchAccordsByExpiredMonth();
-//            // initTable();
-//        });
-//    } else {
-//        document.addEventListener("DOMContentLoaded", function () {
-//            searchAccordsByExpiredMonth();
-//        });
-//    }
-//});
 
 function setTypeOptions() {
     let select = document.getElementById('selectType');
@@ -101,6 +83,7 @@ function setTypeOptions() {
 //});
 
 // list the values of the accord and append it to the table body.
+var accCounter=0;
 function list(parent, accord) {
     var tr = $("<tr/>");
     tr.html(
@@ -109,11 +92,26 @@ function list(parent, accord) {
             + "<td>" + accord.sessionDate + "</td>"
             + "<td>" + accord.deadline + "</td>"
             + "<td>" + typeToString(accord.type) + "</td>"
-            + "<td>" + stateToString(accord.state) + "</td>"
+            + "<td id=\"stateTD"+accCounter+"\">" + stateToString(accord.state) + "</td>"
             + "<td>" + "<button type=\"button\" style='text-align: center' class=\"bnt btn-primary\" onclick=\"location.href='addAccord.jsp?accnumber=" + accord.accNumber + "'\">"
             + "<i class=\"fas fa-edit\">" + "</i>" + "</button>" + "</td>"
             );
     parent.append(tr);
+    let state='stateTD'+accCounter;
+        if(parseInt(accord.state,10) === 0){
+              document.getElementById(state).style.backgroundColor='#00D781';
+        }
+    
+
+    else
+        if (parseInt(accord.state,10)===1)
+            document.getElementById(state).style.color='red';
+    
+    else   if (parseInt(accord.state,10)===2)
+             document.getElementById(state).style.backgroundColor='#FFE57A';
+    
+    accCounter++;
+    
 }
 
 // it converts the int value of the state to the string description 
@@ -354,8 +352,6 @@ function initTable() {
          "destroy": true
     });
 }
-
-
 
 function searchAccordsByExpiredMonth(){
         let _url = "api/accord/getaccord/expiredtoday";

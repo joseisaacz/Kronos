@@ -103,15 +103,14 @@ function getUrlVars() {
     return vars;
 }
 
-$(document).ready(function(){
-
+function ready(){
+    console.log(sessionStorage.ROLE);
     if(sessionStorage.ROLE=== undefined)        
           window.location.replace('/Kronos/login.jsp');
 
 
      setTypeOptions();
-    setStateOptions();
-//   
+    setStateOptions(); 
       
     var number = getUrlVars();
 
@@ -119,8 +118,8 @@ $(document).ready(function(){
     if (number !== null) {
         var accnumber = number.accnumber;
         if (accnumber !== undefined) {
-            if(sessionStorage.ROLE !== 'Concejo Municipal' && sessionStorage.ROLE !== 'Secretaria de Alcaldia')
-                window.location.replace('/Kronos/loginError.jsp');
+            if(sessionStorage.ROLE !== undefined && sessionStorage.ROLE !== 'Concejo Municipal' && sessionStorage.ROLE !== 'Secretaria de Alcaldia')
+                window.location.replace('/Kronos/authenticationError.jsp#popup');
             
             let _url = "api/accord/getaccord/" + accnumber;
 
@@ -137,12 +136,12 @@ $(document).ready(function(){
 
         }
     } 
-    else{
-             if(sessionStorage.ROLE !== 'Concejo Municipal')
-                window.location.replace('/Kronos/loginError.jsp');
+        else{
+             if(sessionStorage.ROLE !== undefined && sessionStorage.ROLE !== 'Concejo Municipal')
+                window.location.replace('/Kronos/authenticationError.jsp#popup');
     }
-    
-});
+}
+$(document).ready(ready);
 
 //This function validates if a given date is weekend or holiday
 function isValidDate(date) {
