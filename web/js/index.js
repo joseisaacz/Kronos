@@ -4,22 +4,82 @@
  * and open the template in the editor.
  */
 
+function stateToString(state) {
+    let stateInt = parseInt(state, 10);
+    switch (stateInt) {
+        case 0:
+            return 'Cumplido';
+        case 1:
+            return 'Incumplido';
+        case 2:
+            return 'Pendiente';
+
+        case 3:
+            return 'Recibido';
+
+        case 4:
+            return 'Desestimado';
+
+        default:
+            return '';
+    }
+}
+
+// converts the value of the given char type to the string description
+function typeToString(type) {
+    switch (type) {
+        case 'A':
+            return 'Administración Municipal';
+        case 'B':
+            return 'Auditoria Interna';
+        case 'C':
+
+            return 'Lic';
+
+        case 'D':
+            return 'Obras';
+
+        case 'E':
+            return 'Plan Regulador';
+
+        case 'F':
+            return 'Hacienda';
+
+        case 'G':
+            return 'Juridicos';
+
+        case 'H':
+            return 'Sociales';
+
+        case 'I':
+            return 'Ambiente';
+
+        case 'J':
+            return 'Varios';
+
+        default:
+            return '';
+
+
+    }
+}
 
 
 function searchAccordsByExpiredMonth(){
         let _url = "api/accord/getaccord/expiredtoday";
     fetch(_url)
-            .then(res =>
-                res.json()
-            )
+            .then(res => res.json() )
             .then(accords => {
+                 $('#tableAcc').DataTable().clear().destroy();
+                console.log(accords);
                 var parent = $("#accordList");
                 parent.html("");
                 accords.forEach(item => {
                     list(parent, item);
                 });
-
+                console.log(document.getElementById('accordList'));
             }).then(()=>{
+                 console.log(document.getElementById('accordList'));
                     initTable();
             })
             .catch(error => {
@@ -68,4 +128,5 @@ function list(parent, accord) {
             + "<i class=\"fas fa-edit\">" + "</i>" + "</button>" + "</td>"
             );
     parent.append(tr);
+    
 }

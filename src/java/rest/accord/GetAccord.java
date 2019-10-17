@@ -145,6 +145,7 @@ public class GetAccord {
         
     }
 
+        @GET
         @Path("/getaccord/expiredtoday")
         @Produces(MediaType.APPLICATION_JSON)
         public List<ToRestAccord> getExpiredAccordsToday(){
