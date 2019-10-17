@@ -10,6 +10,7 @@ import java.io.File;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import javax.ws.rs.GET;
 import javax.ws.rs.NotFoundException;
@@ -79,7 +80,7 @@ public class GetAccord {
     @Produces(MediaType.APPLICATION_JSON)
     public List<ToRestAccord> getAccordBySessionDate(@PathParam("sessiondate") String sessiondate) {
         try {
-             DateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+            DateFormat format = new SimpleDateFormat("yyyy-MM-dd");
 
             List<Accord> list = Dao.getDao().searchAccordBySessionDate(format.parse(sessiondate));
             List<ToRestAccord> result = new ArrayList();
@@ -97,7 +98,7 @@ public class GetAccord {
     @Produces(MediaType.APPLICATION_JSON)
     public List<ToRestAccord> getAccordByType(@PathParam("type") char type) {
         try {
-             DateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+            DateFormat format = new SimpleDateFormat("yyyy-MM-dd");
 
             List<Accord> list = Dao.getDao().searchAccordByType(type);
             List<ToRestAccord> result = new ArrayList();
@@ -116,7 +117,7 @@ public class GetAccord {
     public List<ToRestAccord> getAccordByIncorDate(@PathParam("incordate") String incordate) {
         try {
             DateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-            Date date=format.parse(incordate);
+            Date date = format.parse(incordate);
             List<Accord> list = Dao.getDao().searchAccordByIcorporatedDate(format.parse(incordate));
             List<ToRestAccord> result = new ArrayList();
             for (Accord item : list) {
@@ -142,29 +143,51 @@ public class GetAccord {
         } catch (Exception e) {
             throw new NotFoundException();
         }
-        
-    }
-
-        @GET
-        @Path("/getaccord/expiredtoday")
-        @Produces(MediaType.APPLICATION_JSON)
-        public List<ToRestAccord> getExpiredAccordsToday(){
-            try{
-                Date notify = new Date();
-                List<Accord> list= Dao.getDao().searchAccordByExpiredDate(notify, notify );
-                List<ToRestAccord> result= new ArrayList();
-                for(Accord item: list){
-                    result.add(ToRestAccord.toRestAcc(item));
-                }
-                System.out.println(result.toString());
-                return result;
 
     }
-    catch (Exception e) {
-        throw new NotFoundException();
+
+    @GET
+    @Path("/getaccord/expiredtoday")
+    @Produces(MediaType.APPLICATION_JSON)
+    public List<ToRestAccord> getExpiredAccordsToday() {
+        try {
+            Date notify = new Date();
+            List<Accord> list = Dao.getDao().searchAccordByExpiredDate(notify, notify);
+            List<ToRestAccord> result = new ArrayList();
+            for (Accord item : list) {
+                result.add(ToRestAccord.toRestAcc(item));
+            }
+            System.out.println(result.toString());
+            return result;
+
+        } catch (Exception e) {
+            throw new NotFoundException();
+        }
+
     }
 
-}
+    @GET
+    @Path("/getaccord/allExpired")
+    @Produces({MediaType.APPLICATION_JSON})
+    public List<ToRestAccord> getAllExpiredAccords() {
+        try {
+            Calendar calendar = Calendar.getInstance();
+            calendar.set(Calendar.MONTH, calendar.get(Calendar.MONTH) - 1);
+            Date limit = calendar.getTime();
+            Date actual = new Date();
+            List<Accord> list = Dao.getDao().searchAccordByExpiredDate(actual, limit);
+            List<ToRestAccord> result = new ArrayList();
+            for (Accord item : list) {
+                result.add(ToRestAccord.toRestAcc(item));
+            }
+            System.out.println(result.toString());
+            return result;
+
+        } catch (Exception e) {
+            throw new NotFoundException();
+        }
+
+    }
 
 //    @GET
 //    @Path("/getaccord/notify")
@@ -203,8 +226,6 @@ public class GetAccord {
 //
 //
 //    }
-
-
     @POST
     @Path("updateSessionDate/{accNumber}/{newSessionDate}")
     public Response updateSessionDate(@PathParam("accNumber") String accNumber,
@@ -213,34 +234,32 @@ public class GetAccord {
         try {
             DateFormat format = new SimpleDateFormat("yyyy-MM-dd");
             Dao.getDao().updateAccordSessionDate(accNumber, format.parse(newSessionDate));
-              ResponseBuilder response = Response.ok("Fecha de Sesion Actualizada");
-              return response.build();
+            ResponseBuilder response = Response.ok("Fecha de Sesion Actualizada");
+            return response.build();
         } catch (Exception e) {
             throw new NotFoundException();
         }
-}
+    }
 
-        @GET
-        @Path("/getaccord/expiredmonth")
-        @Produces(MediaType.APPLICATION_JSON)
-        public List<ToRestAccord> getExpiredAccordsToday(@PathParam("initdate") String initdate, @PathParam("finaldate") String finaldate){
-            try{
-                DateFormat format= new SimpleDateFormat("yyyy-dd-MM");
-                
-                List<Accord> list= Dao.getDao().searchAccordByExpiredDate(format.parse(initdate), format.parse(finaldate));
-                List<ToRestAccord> result= new ArrayList();
-                for(Accord item: list){
-                    result.add(ToRestAccord.toRestAcc(item));
-                }
-                System.out.println(result.toString());
-                return result;
+    @GET
+    @Path("/getaccord/expiredmonth")
+    @Produces(MediaType.APPLICATION_JSON)
+    public List<ToRestAccord> getExpiredAccordsToday(@PathParam("initdate") String initdate, @PathParam("finaldate") String finaldate) {
+        try {
+            DateFormat format = new SimpleDateFormat("yyyy-dd-MM");
+
+            List<Accord> list = Dao.getDao().searchAccordByExpiredDate(format.parse(initdate), format.parse(finaldate));
+            List<ToRestAccord> result = new ArrayList();
+            for (Accord item : list) {
+                result.add(ToRestAccord.toRestAcc(item));
             }
-            catch(Exception e){
-                throw new NotFoundException();
-            }
-        
+            System.out.println(result.toString());
+            return result;
+        } catch (Exception e) {
+            throw new NotFoundException();
         }
-          
+
+    }
 
     @POST
     @Path("updateDeadline/{accNumber}/{newDeadline}")
@@ -251,7 +270,7 @@ public class GetAccord {
             DateFormat format = new SimpleDateFormat("yyyy-MM-dd");
             Dao.getDao().updateAccordDeadline(accNumber, format.parse(newDeadline));
             ResponseBuilder response = Response.ok("Fecha de vencimiento Actualizada");
-              return response.build();
+            return response.build();
 
         } catch (Exception e) {
             throw new NotFoundException();
@@ -266,14 +285,13 @@ public class GetAccord {
 
         try {
             Dao.getDao().updateAccordType(accNumber, Type);
-                 ResponseBuilder response = Response.ok("Tipo Actualizado");
-              return response.build();
+            ResponseBuilder response = Response.ok("Tipo Actualizado");
+            return response.build();
         } catch (Exception e) {
             throw new NotFoundException();
         }
 
     }
-
 
     @POST
     @Path("updateState/{accNumber}/{state}")
@@ -282,8 +300,8 @@ public class GetAccord {
 
         try {
             Dao.getDao().updateAccordState(accNumber, state);
-             ResponseBuilder response = Response.ok("Estado Actualizado");
-              return response.build();
+            ResponseBuilder response = Response.ok("Estado Actualizado");
+            return response.build();
 
         } catch (Exception e) {
             throw new NotFoundException();
@@ -294,35 +312,33 @@ public class GetAccord {
     @POST
     @Path("deletePDF/{accNumber}")
     @Consumes({MediaType.APPLICATION_JSON})
-    public Response deletePDF(@PathParam("accNumber") String accNumber, List<String> url){
+    public Response deletePDF(@PathParam("accNumber") String accNumber, List<String> url) {
 
-        try{
-        for(String item : url ){
-            File file=new File(item);
-            file.delete();
-            Dao.getDao().deletePdf(accNumber, item);
-        }
+        try {
+            for (String item : url) {
+                File file = new File(item);
+                file.delete();
+                Dao.getDao().deletePdf(accNumber, item);
+            }
 
-         ResponseBuilder response = Response.ok("PDFs Eliminados");
-              return response.build();
-        }
-        catch(Exception e){
+            ResponseBuilder response = Response.ok("PDFs Eliminados");
+            return response.build();
+        } catch (Exception e) {
             throw new NotFoundException();
         }
 
     }
+
     @POST
     @Path("deleteAccord/{accNumber}")
-    public Response deleteAccord(@PathParam("accNumber") String accNumber){
-        try{
+    public Response deleteAccord(@PathParam("accNumber") String accNumber) {
+        try {
 
             Dao.getDao().deleteAccord(accNumber);
-             ResponseBuilder response = Response.ok("Acuerdo Eliminado");
-              return response.build();
+            ResponseBuilder response = Response.ok("Acuerdo Eliminado");
+            return response.build();
 
-        }
-
-        catch(Exception e){
+        } catch (Exception e) {
 
             throw new NotFoundException();
         }

@@ -40,7 +40,14 @@ function changeSelect(value) {
         button.style.visibility = 'visible';
         combo.value = 'A';
         combo.style.visibility = 'hidden';
-    } else {
+    } else if (value === 'expiredAccords') {
+        field.value = "";
+        field.type = 'hidden';
+        button.style.visibility = 'visible';
+        combo.value = 'A';
+        combo.style.visibility = 'hidden';
+    } 
+    else {
         field.value = "";
         combo.value = 'A';
         field.type = 'hidden';
@@ -300,6 +307,30 @@ function searchAllAccords() {
             });
 }
 
+function searchExpiredAccords(){
+    
+      let _url = 'api/accord/getaccord/allExpired';
+    fetch(_url)
+            .then(res => {
+                console.log(res);
+                return res.json();
+            })
+            .then(accords => {
+                $('#tableAcc').DataTable().clear().destroy();
+                var parent = $("#accordList");
+                parent.html("");
+                accords.forEach(item => {
+                    list(parent, item);
+                });
+            }).then(()=>{
+
+                 initTable();
+            })
+        
+            .catch(error => {
+                console.log(error);
+            });
+}
 // button function depending of the option selected in the main combo box
 function searchAccord() {
     let parameter = document.getElementById('serchType').value;
@@ -324,6 +355,10 @@ function searchAccord() {
 
             case 'allAccords':
                 searchAllAccords();
+                break;
+                
+            case 'expiredAccords':
+                searchExpiredAccords();
                 break;
         }
     }

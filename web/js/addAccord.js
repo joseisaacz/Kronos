@@ -338,6 +338,7 @@ function editAccord(accord) {
     okButton.onclick=editButton;
     okButton.innerHTML="";
     okButton.innerHTML="Modificar Acuerdo";
+    okButton.disabled=true;
     divDeleteButton.style.visibility='hidden';     
     divSwitch.style.visibility='hidden';
         
