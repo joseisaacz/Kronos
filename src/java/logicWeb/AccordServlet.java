@@ -67,9 +67,7 @@ public class AccordServlet extends HttpServlet {
             throw new Exception();
         }
         try {
-            int ai=1;
-            if(ai==1)
-                throw new Exception();
+
             
             Accord acc = new Accord();
 
@@ -126,7 +124,7 @@ public class AccordServlet extends HttpServlet {
                                 String newAccNumber = "MSPH-CM-ACUER-" + accNumber;
                                 acc.setAccNumber(newAccNumber);
                                 break;
-                            case "sessionDate": {
+                            case "generalSession": {
                                 String date = new String(item.get());
                                 Date sessDate = format.parse(date);
                                 acc.setSessionDate(sessDate);
@@ -211,7 +209,7 @@ public class AccordServlet extends HttpServlet {
                 acc.setState(2);
                 Dao.getDao().insertAccord(acc);
                 
-                 if (flag) 
+                if (flag) 
                     Dao.getDao().insertUserAccord(tmp, acc);
 
             }

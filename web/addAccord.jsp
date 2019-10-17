@@ -5,7 +5,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Agregar acuerdo</title>
+        <title id="prinTitle">Agregar acuerdo</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link href="css/bootstrap.css" rel="stylesheet" type="text/css"/>
@@ -27,7 +27,7 @@
                 </div>
             </div>
             <div class="container" id="container" style="border-radius: 1px 50px 50px 50px; border: solid #003366">
-                <form id="uploadForm"  enctype="multipart/form-data" method="POST">
+                <form id="uploadForm"  enctype="multipart/form-data" method="POST" action="javascript:addAccord()">
                     <div class="border-bottom">
                         <div class="row">
                             <div class="col-3">
@@ -40,12 +40,12 @@
                             <div class="col-4">
                                 <div class="form-group">
                                     <div class="col-sm-8">
-                                        <input id="generalSession" name="generalSession"class="form-control" type="date">
+                                        <input id="generalSession" name="generalSession"class="form-control" type="date" required>
                                     </div>
                                 </div>
                          
                             </div>
-                                    <div class="custom-control custom-switch">
+                                    <div class="custom-control custom-switch" id='divSwitch'>
                                 <input type="checkbox" class="custom-control-input" id="customSwitch1" checked onchange="changeSwitch(this)">
                                 <label class="custom-control-label" for="customSwitch1">Click para editar Fecha</label>
                             </div>
@@ -100,7 +100,7 @@
                             <div class="form-group ">
                                 <div class="col-8">
                                     <label for="form-control col-6" class="form-label"> Tipo de acuerdo: </label>
-                                    <select  class="form-control" id="comboTypes" name="comboTypes" onchange="changeComboType(this.value)"></select>
+                                    <select  class="form-control" id="comboTypes" name="comboTypes" onchange="changeComboType()"></select>
                                 </div>
                                   <div class="col-8">   
                                 <label for="form-control col-6" class="form-label" id="labelState" style="visibility: hidden">Estado:</label>
@@ -159,10 +159,10 @@
                     </div>
                     <div class="row">
                         <div class="col-md-4">
-                            <button type="button" class="btn btn-outline-success" id="okButton" onclick="addAccord()">Agregar</button>
+                            <button type="submit" class="btn btn-outline-success" id="okButton" >Agregar</button>
                         </div>
                         <div class="col-md-4">
-                            <button type="button" class="btn btn-outline-danger" id="cancelButton" >Cancelar</button>
+                            <button type="button" class="btn btn-outline-danger" id="cancelButton" onclick='javascript:cancelAction()'>Cancelar</button>
                         </div>
                         
                         <div id="divDeleteButton" class="col-md-4" style="visibility: hidden">
@@ -174,6 +174,7 @@
         </div>
         <script src="js/bootstrap.js" type="text/javascript"></script>
         <script src="js/jquery-3.3.1.min.js" type="text/javascript"></script>
+        <script src="js/login.js" type="text/javascript"></script>
         <script src="js/addAccord.js" type="text/javascript"></script>
     </body>
 </html>

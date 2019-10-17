@@ -209,6 +209,43 @@ update T_ACCPDF set FINALRESPONSE=finalResponse where ACCORD=accord and URL=antu
 end$$
 DELIMITER ;
 
+
+USE `KRONOS`;
+DROP procedure IF EXISTS getUserRole;
+DELIMITER $$
+USE `KRONOS`$$
+create procedure getUserRole( in _user varchar(45))
+begin
+SELECT USER_NAME, ROLE_NAME, T_USER.DEPARTMENT FROM T_USERROLE,T_USER WHERE T_USERROLE.USER_NAME=_user AND T_USER.T_TEMPUSER=_user; 
+end$$
+DELIMITER ;
+
+
+USE `KRONOS`;
+DROP procedure IF EXISTS getUser;
+DELIMITER $$
+USE `KRONOS`$$
+create procedure getUser( in _user varchar(45), in _password varchar(100))
+begin
+SELECT T_TEMPUSER, PASSWORD, DEPARTMENT FROM T_USER WHERE T_TEMPUSER=_user AND PASSWORD=_password; 
+end$$
+DELIMITER ;
+
+
+
+USE `KRONOS`;
+DROP procedure IF EXISTS getUserSecure;
+DELIMITER $$
+USE `KRONOS`$$
+create procedure getUserSecure( in _user varchar(45))
+begin
+SELECT T_TEMPUSER, DEPARTMENT FROM T_USER WHERE T_TEMPUSER=_user; 
+end$$
+DELIMITER ;
+
+
+
+
 USE `KRONOS`;
 DROP procedure IF EXISTS searchAllStates;
 DELIMITER $$
@@ -218,6 +255,8 @@ begin
 select  ID , DESCRIPTION from T_STATE;
 end$$
 DELIMITER ; 
+
+
 
 USE `KRONOS`;
 DROP procedure IF EXISTS searchAllTypes;
