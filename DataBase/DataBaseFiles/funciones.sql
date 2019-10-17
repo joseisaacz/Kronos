@@ -273,12 +273,12 @@ USE `KRONOS`;
 DROP procedure IF EXISTS searchExpiredAccords;
 DELIMITER $$
 USE `KRONOS`$$
-create procedure searchExpiredAccords(in actual date, in limt date)
+create procedure searchExpiredAccords(in actual date, in _limit date)
 begin
 select ACCNUMBER, INCORDATE, 
-DEADLINE, SESSIONDATE, TYPE_ID, OBSERVATIONS, PUBLIC, NOTIFIED,  STATE, NOTIFDATE, T_ACCPDF.URL  from T_ACCORD, T_ACCPDF where ACCNUMBER= T_ACCPDF.ACCORD and limt < DEADLINE < actual;
+DEADLINE, SESSIONDATE, TYPE_ID, OBSERVATIONS, PUBLIC, NOTIFIED,  STATE, NOTIFDATE, T_ACCPDF.URL  from T_ACCORD, T_ACCPDF where ACCNUMBER= T_ACCPDF.ACCORD and T_ACCORD.DEADLINE <=actual and T_ACCORD.DEADLINE >=_limit;
 end$$
-DELIMITER ; 
+DELIMITER ;
 
 USE `KRONOS`;
 DROP procedure IF EXISTS deletePdf;
