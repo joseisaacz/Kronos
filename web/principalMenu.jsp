@@ -6,6 +6,7 @@
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<script src="js/login.js" type="text/javascript"></script>
 <link href="css/menu.css" rel="stylesheet" type="text/css"/>
 <!DOCTYPE html>
 <div class="wrapperMenu">
@@ -43,7 +44,7 @@
                 <a href="#">Perfil</a>
             </li>
             <li class="last">
-                <a href="#">Salir</a>
+                <a href="javascript:logout()">Salir</a>
             </li>
         </ul>
     </nav>

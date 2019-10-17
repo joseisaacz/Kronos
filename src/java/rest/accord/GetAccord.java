@@ -167,42 +167,42 @@ public class GetAccord {
 
 }
 
-    @GET
-    @Path("/getaccord/notify")
-    @Produces(MediaType.APPLICATION_JSON)
-    public List<ToRestAccord> getNotifyAccordsToday() {
-        try {
-            Date notify = new Date();
-            List<Accord> list = Dao.getDao().searchAccordByNotifyDate(notify);
-            List<ToRestAccord> result = new ArrayList();
-            for (Accord item : list) {
-                result.add(ToRestAccord.toRestAcc(item));
+//    @GET
+//    @Path("/getaccord/notify")
+//    @Produces(MediaType.APPLICATION_JSON)
+//    public List<ToRestAccord> getNotifyAccordsToday() {
+//        try {
+//            Date notify = new Date();
+//            List<Accord> list = Dao.getDao().searchAccordByNotifyDate(notify);
+//            List<ToRestAccord> result = new ArrayList();
+//            for (Accord item : list) {
+//                result.add(ToRestAccord.toRestAcc(item));
+//
+//            }
+//            return result;
+//        } catch (Exception e) {
+//            throw new NotFoundException();
+//        }
+//
+//    }
 
-            }
-            return result;
-        } catch (Exception e) {
-            throw new NotFoundException();
-        }
-
-    }
-
-    @GET
-    @Path("/getaccord/notify")
-    @Produces(MediaType.APPLICATION_JSON)
-    public List<ToRestAccord> getNotifyAccordsLess() {
-        try {
-            Date notify = new Date();
-            List<Accord> list = Dao.getDao().searchAccordByNotifyDate(notify);
-            List<ToRestAccord> result = new ArrayList();
-            for (Accord item : list) {
-                result.add(ToRestAccord.toRestAcc(item));
-            }
-            return result;
-        } catch (Exception e) {
-            throw new NotFoundException();
-        }
-
-    }
+//    @GET
+//    @Path("/getaccord/notify")
+//    @Produces(MediaType.APPLICATION_JSON)
+//    public List<ToRestAccord> getNotifyAccordsLess() {
+//        try {
+//            Date notify = new Date();
+//            List<Accord> list = Dao.getDao().searchAccordByNotifyDate(notify);
+//            List<ToRestAccord> result = new ArrayList();
+//            for (Accord item : list) {
+//                result.add(ToRestAccord.toRestAcc(item));
+//            }
+//            return result;
+//        } catch (Exception e) {
+//            throw new NotFoundException();
+//        }
+//
+//    }
 
     @POST
     @Path("updateSessionDate/{accNumber}/{newSessionDate}")

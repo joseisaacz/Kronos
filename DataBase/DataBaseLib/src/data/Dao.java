@@ -20,6 +20,7 @@ import logic.State;
 import logic.TempUser;
 import logic.Type;
 import logic.User;
+import logic.User_Role;
 
 
 /**
@@ -317,21 +318,47 @@ public class Dao {
     public User getUser(User us) throws Exception{
           this.db.connect();
           
-          String sql="select DEPARTMENT,password,t_tempuser from t_user where t_tempuser='"+us.getTempUser()+"' and password='"+us.getPassword()+"'";
-         CallableStatement statement = this.db.getConnection().prepareCall(sql);
-         ResultSet rs=statement.executeQuery(sql);
+         CallableStatement statement = this.db.getConnection().prepareCall("call getUser(?, ?)");
+         statement.setString(1, us.getTempUser());
+         statement.setString(1, us.getPassword());
+         ResultSet rs=statement.executeQuery();
          
          User result=null;
          while(rs.next()){
              result=new User();
-             result.setTempUser(rs.getString("t_tempuser"));
-             result.setPassword(rs.getString("password"));
+             result.setTempUser(rs.getString("T_TEMPUSER"));
+             result.setPassword(rs.getString("PASSWORD"));
+             result.setDeparment(rs.getInt("DEPARTMENT"));
          }
          statement.close();
         this.db.disconnect();
         return result;
          
     }
+    
+    
+     public User_Role getUserRole(User us) throws Exception{
+          this.db.connect();
+          
+         CallableStatement statement = this.db.getConnection().prepareCall("call getUserRole(?, ?)");
+         statement.setString(1, us.getTempUser());
+         statement.setString(2, us.getPassword());
+         ResultSet rs=statement.executeQuery();
+         
+         User_Role result=null;
+         while(rs.next()){
+             result=new User_Role();
+             result.getUser().setTempUser(rs.getString("USER_NAME"));
+             result.getUser().setDeparment(rs.getInt("DEPARTMENT"));
+             result.setRole(rs.getString("ROLE_NAME"));
+         }
+         statement.close();
+        this.db.disconnect();
+        return result;
+         
+    }
+    
+    
     public List<Type> getAllType() throws Exception{
         this.db.connect();
          CallableStatement statement = this.db.getConnection().prepareCall("{call searchAllTypes()}"); 
@@ -528,4 +555,5 @@ public class Dao {
                
                
            }
+           
 }

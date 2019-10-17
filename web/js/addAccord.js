@@ -70,12 +70,21 @@ function openPdf(pdf){
 }
 function list(parent, pdf) {
     var tr = $("<tr/>");
+     if(sessionStorage.ROLE !== 'Concejo Municipal'){
     tr.html(
+            "<td>" + pdf.substring(23,pdf.length) + "</td>"
+            +"<td>" +"<button type=\"button\" class=\"btn btn-success\" onclick=\"javascript:openPdf('"+pdf+"')\">Ver</button>" + "</td>"+
+            "<td>" +"<button type=\"button\" class=\"btn btn-danger\" onclick=\"javascript:deletePdf(this,'"+pdf+"')\" disabled>Borrar</button>" + "</td>"
+            
+            );
+     }
+     else
+            tr.html(
             "<td>" + pdf.substring(23,pdf.length) + "</td>"
             +"<td>" +"<button type=\"button\" class=\"btn btn-success\" onclick=\"javascript:openPdf('"+pdf+"')\">Ver</button>" + "</td>"+
             "<td>" +"<button type=\"button\" class=\"btn btn-danger\" onclick=\"javascript:deletePdf(this,'"+pdf+"')\">Borrar</button>" + "</td>"
             
-            );
+            ); 
     parent.append(tr);
 }
 
@@ -94,13 +103,25 @@ function getUrlVars() {
     return vars;
 }
 
-document.addEventListener("DOMContentLoaded", function () {
-    setTypeOptions();
+$(document).ready(function(){
+
+    if(sessionStorage.ROLE=== undefined)        
+          window.location.replace('/Kronos/login.jsp');
+
+
+     setTypeOptions();
     setStateOptions();
+//   
+      
     var number = getUrlVars();
+
+    
     if (number !== null) {
         var accnumber = number.accnumber;
-        if (accnumber !== 'undefined') {
+        if (accnumber !== undefined) {
+            if(sessionStorage.ROLE !== 'Concejo Municipal' && sessionStorage.ROLE !== 'Secretaria de Alcaldia')
+                window.location.replace('/Kronos/loginError.jsp');
+            
             let _url = "api/accord/getaccord/" + accnumber;
 
             fetch(_url)
@@ -116,10 +137,12 @@ document.addEventListener("DOMContentLoaded", function () {
 
         }
     } 
-  
+    else{
+             if(sessionStorage.ROLE !== 'Concejo Municipal')
+                window.location.replace('/Kronos/loginError.jsp');
+    }
+    
 });
-
-
 
 //This function validates if a given date is weekend or holiday
 function isValidDate(date) {
@@ -169,7 +192,8 @@ function isValidDate(date) {
 }
 
 
-function changeComboType(combo) {
+function changeComboType() {
+    let combo=document.getElementById('comboTypes').value;
     let labelName = document.getElementById('labelName');
     let labelEmail = document.getElementById('labelEmail');
     let textName = document.getElementById('username');
@@ -193,6 +217,7 @@ function changeComboType(combo) {
 
 }
 
+
 function addAccord() {
    
 //    if (!isValidDate(deadline.value)) {
@@ -201,6 +226,9 @@ function addAccord() {
 //    }
     let deadline = document.getElementById('deadline');
     deadline.disabled=false;
+    let generalSession=document.getElementById('generalSession');
+    let disabled =generalSession.disabled;
+    generalSession.disabled=false;
     let _url = '/Kronos/accord/addAccord';
 
     var form = document.getElementById('uploadForm');
@@ -226,6 +254,28 @@ function addAccord() {
             else
             alert("OCURRIO UN ERROR");
         }
+    }).then(()=>{
+       document.getElementById('office').value='';
+       document.getElementById('notDate').value='';
+       document.getElementById('days').value='';
+       document.getElementById('notDate').value='';
+       document.getElementById('deadline').value='';
+       document.getElementById('deadline').disabled=true;
+       document.getElementById('comboTypes').onchange=changeComboType;
+       document.getElementById('comboTypes').value='A';
+       document.getElementById('username').value='';
+       document.getElementById('username').type='hidden';
+        document.getElementById('email').type='hidden';
+       document.getElementById('email').value='';
+       document.getElementById('observations').value='';
+       document.getElementById('accord').value='';
+       document.getElementById('labelName').style.visibility='hidden';
+       document.getElementById('labelEmail').style.visibility='hidden';
+       if(document.getElementById('customSwitch1').checked)
+           document.getElementById('generalSession').value='';
+       else
+            document.getElementById('generalSession').disabled=true;
+       
     });
     
 
@@ -258,11 +308,42 @@ function editAccord(accord) {
     let divDeleteButton=document.getElementById('divDeleteButton');
     let divDeadline=document.getElementById('divDeadline');
     let deleteButton=document.getElementById('deleteButton');
+    let pageTitle=document.getElementById('prinTitle');
+    let divSwitch=document.getElementById('divSwitch');
+
+    pageTitle.innerHTML="";
+    pageTitle.innerHTML='Modificar Acuerdo';
     title.innerHTML="";
     title.innerHTML='Modificar Acuerdo';
     sessionDate.value=accord.sessionDate;
-    office.value=accord.accNumber.substring(9, accord.accNumber.length);
+    sessionDate.disabled=true;
+    office.value=accord.accNumber.substring(8, accord.accNumber.length);
     office.disabled=true;
+        if(sessionStorage.ROLE !== 'Concejo Municipal'){
+    notDate.value=accord.notificationDate;
+    notDate.disabled=true;
+    observations.value=accord.observations;
+    observations.disabled=true;
+    deadline.value=accord.deadline;
+    deadline.disabled=true;
+    comboStates.value=accord.state;
+    comboStates.disabled=true;
+    comboTypes.value=accord.type;
+    comboTypes.disabled=true;
+    comboStates.style.visibility='visible';
+    labelStates.style.visibility='visible';
+    daysButton.style.visibility='hidden';
+    divFile.style.display = 'none'; 
+    divDeadline.style.display='none';
+    table.style.display='block';
+    okButton.onclick=editButton;
+    okButton.innerHTML="";
+    okButton.innerHTML="Modificar Acuerdo";
+    divDeleteButton.style.visibility='hidden';     
+    divSwitch.style.visibility='hidden';
+        
+    }
+    else{
     notDate.value=accord.notificationDate;
     observations.value=accord.observations;
     deadline.value=accord.deadline;
@@ -281,11 +362,16 @@ function editAccord(accord) {
     deleteButton.onclick=deleteAccord;
     divDeleteButton.style.visibility='visible';
     console.log(okButton);
-    var parent = $("#pdfList");
+
+  
+    }
+    
+        var parent = $("#pdfList");
                 parent.html("");
                 accord.URL.forEach(item => {
                     list(parent, item); });
-  }
+                }
+    
 
 //-----------DRAG AND DROP---------
 //function ($) {
@@ -687,6 +773,9 @@ function deleteAccord(){
         
     });
  
+}
+function cancelAction(){
+    window.location.replace(document.referrer);
 }
 /*
  * 
