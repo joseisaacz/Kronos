@@ -1,6 +1,6 @@
 insert into T_TEMPUSER(NAME,EMAIL) values ('Concejo Municipal','concejomunicipal@sanpablo.go.cr');
 insert into T_TEMPUSER(NAME,EMAIL) values ('Secretaria de Alcaldia','alcaldia@sanpablo.go.cr');
-insert T_DEPARTMET (ID,NAME) values (1,'SUPERUSER');
+insert T_DEPARTMENT (ID,NAME) values (1,'SUPERUSER');
 ALTER TABLE T_USER change PASSWORD PASSWORD VARCHAR(100);
 insert into T_USER (T_TEMPUSER,PASSWORD,DEPARTMENT) values ('Concejo Municipal',SHA2('concejo',256),1);
 insert into T_USER (T_TEMPUSER,PASSWORD,DEPARTMENT) values ('Secretaria de Alcaldia',SHA2('alcaldia',256),1);
