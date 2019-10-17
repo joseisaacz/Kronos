@@ -111,7 +111,8 @@ function initTable() {
             "sProcessing": "Procesando..."
         },
         "lengthChange": false,
-         "destroy": true
+         "destroy": true,
+         "scrollX": false
     });
 }
 

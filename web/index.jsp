@@ -16,10 +16,10 @@
         </div> 
         <div id="wrapper">
             <h4 align="center">Acuerdos Vencidos</h4>
-            <div class="container">
+            <div class="container-fluid">
                 <div class="row">
                     <div class="col-lg-12">
-                        <div class="table-responsive">        
+                        <div class="table-responsive col-lg-12">        
                             <table id="tableAcc" class="table table-striped table-bordered border-info" style="width:100%">
                                 <thead>
                                     <tr>  
