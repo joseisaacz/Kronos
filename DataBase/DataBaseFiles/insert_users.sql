@@ -2,8 +2,8 @@ insert into T_TEMPUSER(NAME,EMAIL) values ('Concejo Municipal','concejomunicipal
 insert into T_TEMPUSER(NAME,EMAIL) values ('Secretaria de Alcaldia','alcaldia@sanpablo.go.cr');
 insert T_DEPARTMENT (ID,NAME) values (1,'SUPERUSER');
 ALTER TABLE T_USER change PASSWORD PASSWORD VARCHAR(100);
-insert into T_USER (T_TEMPUSER,PASSWORD,DEPARTMENT) values ('Concejo Municipal',SHA2('concejo',256),1);
-insert into T_USER (T_TEMPUSER,PASSWORD,DEPARTMENT) values ('Secretaria de Alcaldia',SHA2('alcaldia',256),1);
+insert into T_USER (T_TEMPUSER,PASSWORD,DEPARTMENT) values ('concejomunicipal@sanpablo.go.cr',SHA2('concejo',256),1);
+insert into T_USER (T_TEMPUSER,PASSWORD,DEPARTMENT) values ('alcaldia@sanpablo.go.cr',SHA2('alcaldia',256),1);
 insert into T_ROLE values ('Concejo Municipal');
 insert into T_ROLE values ('Secretaria de Alcaldia');
 insert into T_USERROLE (USER_NAME,ROLE_NAME) values ('concejomunicipal@sanpablo.go.cr','Concejo Municipal');
@@ -19,3 +19,4 @@ SELECT USER_NAME, ROLE_NAME, T_USER.DEPARTMENT FROM T_USERROLE,T_USER WHERE T_US
 AND T_USER.PASSWORD=_password); 
 end$$
 DELIMITER ;
+
