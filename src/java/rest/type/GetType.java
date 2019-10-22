@@ -29,7 +29,7 @@ public class GetType {
         public List<Type> getAllTypes(){
             
             try{
-                return Dao.getDao().getAllType();
+               return Dao.getDao().getAllType();
                 
             }
             

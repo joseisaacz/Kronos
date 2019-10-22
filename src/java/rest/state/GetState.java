@@ -14,6 +14,9 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import logic.State;
+import javax.ejb.*;
+
+
 
 /**
  *
@@ -22,6 +25,10 @@ import logic.State;
 
 @Path("/state")
 public class GetState {
+    
+   
+    
+    
     
         @GET
 	@Path("/getall")

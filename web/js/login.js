@@ -4,35 +4,39 @@
  * and open the template in the editor.
  */
 
-
 function login(){
-       
-//    if (!isValidDate(deadline.value)) {
-//        alert("La Fecha de Vencimiento no es válida");
-//        return;
-//    }
-    let _url= 'api/login/log';
+
+    let _url= 'api/login/login';
     let _username=document.getElementById('j_username').value;
     let _password=document.getElementById('j_password').value;
     let user={
-        username:_username,
-        password:_password
+        tempUser:_username,
+        password:_password,
+        department:null
     };
     $.ajax({
         type: "POST",
         url: _url ,
         contentType: "application/json",
         data: JSON.stringify(user),
-        success: function (msg) {
-          alert("ACUERDO AGREGADO EXITOSAMENTE");
+        success: function (user_role) {
+            sessionStorage.USER= user_role.user.tempUser;
+            sessionStorage.ROLE=user_role.role;
+         if(document.referrer==='http://localhost:8080/Kronos/addAccord.jsp' && user_role.role==='Concejo Municipal')
+              window.location.replace("/Kronos/addAccord.jsp");
+          else
+             window.location.replace("/Kronos/index.jsp"); 
       },
         error: function (response) {
-            console.log(response);
-            if(response.status===503){
-                alert("NO HAY ACUERDOS");
-            }
-            else
-            alert("OCURRIO UN ERROR");
+            document.getElementById('alertDiv').style.display='block';
         }
     });
+    
+   
+}
+
+function logout(){
+   delete sessionStorage.USER;
+   delete sessionStorage.ROLE;
+   window.location.replace("/Kronos/index.jsp"); 
 }

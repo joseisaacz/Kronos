@@ -5,11 +5,11 @@ USE `KRONOS`$$
 CREATE PROCEDURE insertAccord (IN accNumber VARCHAR(45), IN incorDate DATE, 
 IN deadLine DATE, IN sessionDate DATE, IN type_id
 CHAR(1), IN observations longtext, IN publics TINYINT(4),
-IN notified TINYINT(4), IN states INT, IN notifDate date)
+IN notified TINYINT(4), IN states INT)
 BEGIN
 INSERT INTO T_ACCORD (ACCNUMBER, INCORDATE, 
-DEADLINE, SESSIONDATE, OBSERVATIONS, PUBLIC, NOTIFIED,  STATE, TYPE_ID, NOTIFDATE) 
-VALUES (accNumber, incorDate, deadLine, sessionDate, observations, publics, notified, states, type_id, notifDate);
+DEADLINE, SESSIONDATE, OBSERVATIONS, PUBLIC, NOTIFIED,  STATE, TYPE_ID) 
+VALUES (accNumber, incorDate, deadLine, sessionDate, observations, publics, notified, states, type_id);
 commit; 
 END$$
 DELIMITER ;
@@ -57,7 +57,7 @@ USE `KRONOS`$$
 create procedure searchAccordType(in type_id char(1))
 begin
 select ACCNUMBER, INCORDATE, 
-DEADLINE, SESSIONDATE, TYPE_ID, OBSERVATIONS, PUBLIC, NOTIFIED,  STATE, NOTIFDATE, T_ACCPDF.URL  from T_ACCORD, T_ACCPDF where ACCNUMBER= T_ACCPDF.ACCORD and T_ACCORD.TYPE_ID = type_id;
+DEADLINE, SESSIONDATE, TYPE_ID, OBSERVATIONS, PUBLIC, NOTIFIED,  STATE, T_ACCPDF.URL  from T_ACCORD, T_ACCPDF where ACCNUMBER= T_ACCPDF.ACCORD and T_ACCORD.TYPE_ID = type_id;
 end$$
 DELIMITER ;
 
@@ -69,7 +69,7 @@ create procedure searchAccordNumber(in accNumber varchar(45)
 )
 begin
 select ACCNUMBER, INCORDATE, 
-DEADLINE, SESSIONDATE, TYPE_ID, OBSERVATIONS, PUBLIC, NOTIFIED,  STATE, NOTIFDATE, T_ACCPDF.URL  from T_ACCORD, T_ACCPDF where ACCNUMBER= T_ACCPDF.ACCORD and T_ACCORD.ACCNUMBER = accNumber;
+DEADLINE, SESSIONDATE, TYPE_ID, OBSERVATIONS, PUBLIC, NOTIFIED,  STATE, T_ACCPDF.URL  from T_ACCORD, T_ACCPDF where ACCNUMBER= T_ACCPDF.ACCORD and T_ACCORD.ACCNUMBER = accNumber;
 end$$
 DELIMITER ; 
 
@@ -81,7 +81,7 @@ create procedure searchAccordIncorDate(in incorDate  date
 )
 begin
 select ACCNUMBER, INCORDATE, 
-DEADLINE, SESSIONDATE, TYPE_ID, OBSERVATIONS, PUBLIC, NOTIFIED,  STATE, NOTIFDATE, T_ACCPDF.URL  from T_ACCORD, T_ACCPDF where ACCNUMBER= T_ACCPDF.ACCORD and T_ACCORD.INCORDATE = incorDate;
+DEADLINE, SESSIONDATE, TYPE_ID, OBSERVATIONS, PUBLIC, NOTIFIED,  STATE, T_ACCPDF.URL  from T_ACCORD, T_ACCPDF where ACCNUMBER= T_ACCPDF.ACCORD and T_ACCORD.INCORDATE = incorDate;
 end$$
 DELIMITER ; 
 
@@ -93,7 +93,7 @@ create procedure searchAccordsessionDate(in sessionDate date
 )
 begin
 select ACCNUMBER, INCORDATE, 
-DEADLINE, SESSIONDATE, TYPE_ID, OBSERVATIONS, PUBLIC, NOTIFIED,  STATE, NOTIFDATE, T_ACCPDF.URL  from T_ACCORD, T_ACCPDF where ACCNUMBER= T_ACCPDF.ACCORD and T_ACCORD.SESSIONDATE = sessionDate;
+DEADLINE, SESSIONDATE, TYPE_ID, OBSERVATIONS, PUBLIC, NOTIFIED,  STATE, T_ACCPDF.URL  from T_ACCORD, T_ACCPDF where ACCNUMBER= T_ACCPDF.ACCORD and T_ACCORD.SESSIONDATE = sessionDate;
 end$$
 DELIMITER ; 
 
@@ -104,9 +104,9 @@ USE `KRONOS`$$
 create procedure deleteAccord(in accord varchar(45)  
 )
 begin
-delete from T_USERACC where ACCORD = accord;
-delete from T_ACCPDF where ACCORD = accord;
-delete from T_ACCORD where ACCNUMBER = accord; 
+delete from T_USERACC where T_USERACC.ACCORD = accord;
+delete from T_ACCPDF where T_ACCPDF.ACCORD = accord;
+delete from T_ACCORD where T_ACCORD.ACCNUMBER = accord; 
 end$$
 DELIMITER ; 
 
@@ -125,7 +125,7 @@ USE `KRONOS`$$
 create procedure searchAllAccords()
 begin
 select ACCNUMBER, INCORDATE, 
-DEADLINE, SESSIONDATE, TYPE_ID, OBSERVATIONS, PUBLIC, NOTIFIED,  STATE, NOTIFDATE,  T_ACCPDF.URL  from T_ACCORD, T_ACCPDF where T_ACCORD.ACCNUMBER= T_ACCPDF.ACCORD;
+DEADLINE, SESSIONDATE, TYPE_ID, OBSERVATIONS, PUBLIC, NOTIFIED,  STATE,  T_ACCPDF.URL  from T_ACCORD, T_ACCPDF where T_ACCORD.ACCNUMBER= T_ACCPDF.ACCORD;
 end$$
 DELIMITER ; 
 
@@ -209,6 +209,44 @@ update T_ACCPDF set FINALRESPONSE=finalResponse where ACCORD=accord and URL=antu
 end$$
 DELIMITER ;
 
+
+USE `KRONOS`;
+DROP procedure IF EXISTS getUserRole;
+DELIMITER $$
+USE `KRONOS`$$
+create procedure getUserRole( in _user varchar(45), in _password varchar(100))
+begin
+SELECT USER_NAME, ROLE_NAME, T_USER.DEPARTMENT FROM T_USERROLE,T_USER WHERE T_USERROLE.USER_NAME=_user AND (T_USER.T_TEMPUSER=_user
+AND T_USER.PASSWORD=_password); 
+end$$
+DELIMITER ;
+
+
+USE `KRONOS`;
+DROP procedure IF EXISTS getUser;
+DELIMITER $$
+USE `KRONOS`$$
+create procedure getUser( in _user varchar(45), in _password varchar(100))
+begin
+SELECT T_TEMPUSER, PASSWORD, DEPARTMENT FROM T_USER WHERE T_TEMPUSER=_user AND PASSWORD=_password; 
+end$$
+DELIMITER ;
+
+
+
+USE `KRONOS`;
+DROP procedure IF EXISTS getUserSecure;
+DELIMITER $$
+USE `KRONOS`$$
+create procedure getUserSecure( in _user varchar(45))
+begin
+SELECT T_TEMPUSER, DEPARTMENT FROM T_USER WHERE T_TEMPUSER=_user; 
+end$$
+DELIMITER ;
+
+
+
+
 USE `KRONOS`;
 DROP procedure IF EXISTS searchAllStates;
 DELIMITER $$
@@ -218,6 +256,8 @@ begin
 select  ID , DESCRIPTION from T_STATE;
 end$$
 DELIMITER ; 
+
+
 
 USE `KRONOS`;
 DROP procedure IF EXISTS searchAllTypes;
@@ -233,10 +273,21 @@ USE `KRONOS`;
 DROP procedure IF EXISTS searchExpiredAccords;
 DELIMITER $$
 USE `KRONOS`$$
-create procedure searchExpiredAccords(in actual date, in limt date)
+create procedure searchExpiredAccords(in actual date, in _limit date)
 begin
 select ACCNUMBER, INCORDATE, 
-DEADLINE, SESSIONDATE, TYPE_ID, OBSERVATIONS, PUBLIC, NOTIFIED,  STATE, NOTIFDATE, T_ACCPDF.URL  from T_ACCORD, T_ACCPDF where ACCNUMBER= T_ACCPDF.ACCORD and limt < DEADLINE < actual;
+DEADLINE, SESSIONDATE, TYPE_ID, OBSERVATIONS, PUBLIC, NOTIFIED,  STATE, T_ACCPDF.URL  from T_ACCORD, T_ACCPDF where ACCNUMBER= T_ACCPDF.ACCORD and T_ACCORD.DEADLINE <=actual and T_ACCORD.DEADLINE >=_limit;
 end$$
-DELIMITER ; 
+DELIMITER ;
 
+USE `KRONOS`;
+DROP procedure IF EXISTS deletePdf;
+DELIMiTER $$
+USE `KRONOS`$$
+create procedure deletePdf(
+in accord varchar(45), in url varchar(100))
+begin
+delete from T_ACCPDF where ACCORD=accord and URL= url; 
+commit;  
+end$$ 
+DELIMITER ;

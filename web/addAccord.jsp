@@ -5,14 +5,12 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Agregar acuerdo</title>
+        <title id="prinTitle">Agregar acuerdo</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link href="css/bootstrap.css" rel="stylesheet" type="text/css"/>
         <link href="css/default.css" rel="stylesheet" type="text/css"/>
         <link href="css/menu.css" rel="stylesheet" type="text/css"/>
-        <script src="js/addAccord.js" type="text/javascript"></script>
-        <script src="js/bootstrap.js" type="text/javascript"></script>
     </head>
     <body>
         <div>
@@ -21,15 +19,15 @@
         <div id="wrapper">
             <div class="container" >
                 <div class="border-bottom" style="width: 97%">
-                     <div class="row" style="background-color: white; width: 50%; border-radius: 50px 50px 1px 1px;">
+                    <div class="row" style="background-color: white; width: 50%; border-radius: 50px 50px 1px 1px; background-color: #1f3140; border: solid #003366">
                         <div class="col-12">
-                            <h3 align="center">Agregar Acuerdo1</h3>
+                            <h3 align="center" style="color: #BBC9B4"id="pageTitle">Agregar Acuerdo</h3>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="container" id="container" style="border-radius: 1px 50px 50px 50px">
-                <form id="uploadForm"  enctype="multipart/form-data" method="POST">
+            <div class="container" id="container" style="border-radius: 1px 50px 50px 50px; border: solid #003366">
+                <form id="uploadForm"  enctype="multipart/form-data" method="POST" action="javascript:addAccord()">
                     <div class="border-bottom">
                         <div class="row">
                             <div class="col-3">
@@ -42,9 +40,14 @@
                             <div class="col-4">
                                 <div class="form-group">
                                     <div class="col-sm-8">
-                                        <input id="generalSession" class="form-control" type="date">
+                                        <input id="generalSession" name="generalSession"class="form-control" type="date" required>
                                     </div>
                                 </div>
+                         
+                            </div>
+                                    <div class="custom-control custom-switch" id='divSwitch'>
+                                <input type="checkbox" class="custom-control-input" id="customSwitch1" checked onchange="changeSwitch(this)">
+                                <label class="custom-control-label" for="customSwitch1">Click para editar Fecha</label>
                             </div>
                         </div>
                     </div>
@@ -57,20 +60,13 @@
                                         <input type="text" class="form-control" name="desc" value="MSPH-CM-ACUER-" disabled>
                                     </div>
                                     <div class="col-sm-6">
-                                        <input type="text" class="form-control" name="office" required>
+                                        <input type="text" class="form-control" id="office" name="office" required>
                                     </div>
                                 </div>
                             </span>
                         </div>
-                        <div class="col">
-                            <div class="form-group">
-                                <div class="col-sm-11">
-                                    <label for="form-control" class="form-label" >Fecha de Notificacion:</label>
-                                    <input type="date" class="form-control" name="notDate" id="notDate" required>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col">
+                        
+                        <div id="divDeadline" class="col">
                             <div class="form-group">
                                 <div class="col-sm-11">
                                     <label for="form-control" class="form-label" >Plazo(Dias):</label>
@@ -87,7 +83,7 @@
                                 <div class="col-sm-11">
                                     <label for="form-control" class="form-label" >Vencimiento:</label>
                                     <input type="date" class="form-control" name="deadline" id="deadline" disabled="true">
-                                    <button class="btn btn-outline-primary" type="button" onclick="javascript:setDeadline()" name="daysButton">Confirmar Plazo</button>
+                                    <button class="btn btn-outline-primary" type="button" onclick="javascript:setDeadline()" id="daysButton" name="daysButton">Confirmar Plazo</button>
                                 </div>
                             </div>
                         </div>
@@ -97,9 +93,13 @@
                             <div class="form-group ">
                                 <div class="col-8">
                                     <label for="form-control col-6" class="form-label"> Tipo de acuerdo: </label>
-                                    <select  class="form-control" id="comboTypes" name="comboTypes" onchange="changeComboType(this.value)"></select>
+                                    <select  class="form-control" id="comboTypes" name="comboTypes" onchange="changeComboType()"></select>
                                 </div>
-                            </div>
+                                  <div class="col-8">   
+                                <label for="form-control col-6" class="form-label" id="labelState" style="visibility: hidden">Estado:</label>
+                                <select  class="form-control" id="comboStates" name="comboStates" style="visibility: hidden"> </select>
+                                  </div>
+                                  </div>
                         </div>
                         <div class="col">
                             <div class="form-group ">
@@ -113,34 +113,53 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-2">
-                            <div class="form-group ">
-                                <label for="form-control col-6" class="form-label" style="visibility: hidden">Estado:</label>
-                                <select  class="form-control" id="comboStates" name="comboStates" style="visibility: hidden"> </select>
-                            </div>
+                        <div class="col-md-5">
+                        
                         </div>
                     </div>
                     <div class="row">
                         <div class="col">
                             <div class="form-group ">
-                                <label for="" class="form-label" > Observaciones</label>
-                                <textarea  placeholder="Digite en este espacio sus observaciones" class="form-control" rows="5" cols="40" name ="observations" rows="3" style ="resize: none"></textarea>
+                                <div class="col-12">
+                                    <label for="" class="form-label" > Observaciones</label>
+                                    <textarea  placeholder="Digite en este espacio sus observaciones" class="form-control" rows="5" cols="40" name ="observations" id="observations" rows="3" style ="resize: none"></textarea>
+                                </div>
                             </div>
                         </div>
                         <%-- DRAG and DROP zone --%>
                         <div class="col">
-                            <div class="form-group files">
+                            <div class="form-group files" id="files">
                                 <label for="form-control" class="form-label"> Inserte aquí el pdf </label>
                                 <input type="file" class="form-control" name="accord" id="accord" placeholder="Inserte aquí el PDF" required multiple  accept="application/pdf">
                             </div>
+                            <div class="table-responsive" id="table" style="display: none">   
+                                 <label for="table table-striped table-bordered border-info" class="form-label"> PDF </label>
+                            <table id="tablePdf" class="table table-striped table-bordered border-info">
+                                <thead>
+                                    <tr>
+                                        <th style="text-align: center">Nombre</th> 
+                                        <th style="text-align: center">Ver PDF</th>
+                                        <th style="text-align: center">Borrar PDF</th>
+                                       
+                                    </tr>
+                                </thead>
+                                <tbody id="pdfList">
+                                </tbody>
+                            </table>
+                              
+                        </div>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-6">
-                            <button type="button" class="btn btn-outline-success" onclick="javascript:addAccord()">Agregar</button>
+                        <div class="col-md-4">
+                            <button type="submit" class="btn btn-outline-success" id="okButton" >Agregar</button>
                         </div>
-                        <div class="col-6">
-                            <button type="button" class="btn btn-outline-danger" >Cancelar</button>
+                        <div class="col-md-4">
+                            <button type="button" class="btn btn-outline-danger" id="cancelButton" onclick='javascript:cancelAction()'>Cancelar</button>
+                        </div>
+                        
+                        <div id="divDeleteButton" class="col-md-4" style="visibility: hidden">
+                            <button type="button" class="btn btn-outline-danger" id="deleteButton" >Eliminar Acuerdo</button>
                         </div>
                     </div>
                 </form>
@@ -148,6 +167,7 @@
         </div>
         <script src="js/bootstrap.js" type="text/javascript"></script>
         <script src="js/jquery-3.3.1.min.js" type="text/javascript"></script>
+        <script src="js/login.js" type="text/javascript"></script>
         <script src="js/addAccord.js" type="text/javascript"></script>
     </body>
 </html>

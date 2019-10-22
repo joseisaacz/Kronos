@@ -20,6 +20,7 @@ import logic.State;
 import logic.TempUser;
 import logic.Type;
 import logic.User;
+import logic.User_Role;
 
 
 /**
@@ -64,7 +65,6 @@ public class Dao {
         statement.setBoolean(7, acc.isPublished());
         statement.setBoolean(8, acc.isNotified());
         statement.setInt(9, acc.getState());
-        statement.setDate(10, new java.sql.Date(acc.getNotificationDate().getTime()));
        // String command="call insertAccord('%s','%s','%s','%s','%c','%s',%b,%b,%d);";
       // String.format(command,acc.getAccNumber(),incordate,deadline,sessDate,acc.getType(),acc.getObservations(),false,false,acc.getState() );
         statement.executeUpdate();
@@ -146,7 +146,6 @@ public class Dao {
                 a.setSessionDate(rs.getDate("SESSIONDATE"));
                 a.setType(rs.getString("TYPE_ID").charAt(0));
                 a.setObservations(rs.getString("OBSERVATIONS"));
-                a.setNotificationDate(rs.getDate("NOTIFDATE")); 
                 a.setNotified(rs.getBoolean("NOTIFIED"));
                 a.setPublished(rs.getBoolean("PUBLIC"));
                 a.setState(rs.getInt("STATE"));
@@ -182,7 +181,6 @@ public class Dao {
                 a.setSessionDate(rs.getDate("SESSIONDATE"));
                 a.setType(rs.getString("TYPE_ID").charAt(0));
                 a.setObservations(rs.getString("OBSERVATIONS"));
-                a.setNotificationDate(rs.getDate("NOTIFDATE"));
                 a.setNotified(rs.getBoolean("NOTIFIED"));
                 a.setPublished(rs.getBoolean("PUBLIC"));
                 a.setState(rs.getInt("STATE"));
@@ -221,7 +219,6 @@ public class Dao {
                 a.setSessionDate(rs.getDate("SESSIONDATE"));
                 a.setType(rs.getString("TYPE_ID").charAt(0));
                 a.setObservations(rs.getString("OBSERVATIONS"));
-                a.setNotificationDate(rs.getDate("NOTIFDATE"));
                 a.setNotified(rs.getBoolean("NOTIFIED"));
                 a.setPublished(rs.getBoolean("PUBLIC"));
                 a.setState(rs.getInt("STATE"));
@@ -256,7 +253,6 @@ public class Dao {
                 a.setIncorporatedDate(rs.getDate("INCORDATE"));
                 a.setDeadline(rs.getDate("DEADLINE"));
                 a.setSessionDate(rs.getDate("SESSIONDATE"));
-                a.setNotificationDate(rs.getDate("NOTIFDATE"));
                 a.setType(rs.getString("TYPE_ID").charAt(0));
                 a.setObservations(rs.getString("OBSERVATIONS"));
                 a.setNotified(rs.getBoolean("NOTIFIED"));
@@ -291,9 +287,7 @@ public class Dao {
                 a.setAccNumber(accNumber);
                 a.setIncorporatedDate(rs.getDate("INCORDATE"));
                 a.setDeadline(rs.getDate("DEADLINE"));
-                a.setNotificationDate(rs.getDate("NOTIFDATE"));
-                a.setSessionDate(rs.getDate("SESSIONDATE"));
-                a.setNotificationDate(rs.getDate("NOTIFDATE"));  
+                a.setSessionDate(rs.getDate("SESSIONDATE")); 
                 a.setType(rs.getString("TYPE_ID").charAt(0));
                 a.setObservations(rs.getString("OBSERVATIONS"));
                 a.setNotified(rs.getBoolean("NOTIFIED"));
@@ -314,40 +308,50 @@ public class Dao {
        return new ArrayList<>(map.values());
     }
     
-    
-    
-    public void deleteAccord(Accord acc) throws Exception{
-        
-       this.db.connect();
-
-        CallableStatement statement = this.db.getConnection().prepareCall("{call insertAccord(?)}"); 
-        statement.setString(1,acc.getAccNumber());
-        statement.executeUpdate();
-        statement.close();
-        
-        this.db.disconnect();
-        
-        
-    }
-    
     public User getUser(User us) throws Exception{
           this.db.connect();
           
-          String sql="select DEPARTMENT,password,t_tempuser from t_user where t_tempuser='"+us.getTempUser()+"' and password='"+us.getPassword()+"'";
-         CallableStatement statement = this.db.getConnection().prepareCall(sql);
-         ResultSet rs=statement.executeQuery(sql);
+         CallableStatement statement = this.db.getConnection().prepareCall("call getUser(?, ?)");
+         statement.setString(1, us.getTempUser());
+         statement.setString(1, us.getPassword());
+         ResultSet rs=statement.executeQuery();
          
          User result=null;
          while(rs.next()){
              result=new User();
-             result.setTempUser(rs.getString("t_tempuser"));
-             result.setPassword(rs.getString("password"));
+             result.setTempUser(rs.getString("T_TEMPUSER"));
+             result.setPassword(rs.getString("PASSWORD"));
+             result.setDeparment(rs.getInt("DEPARTMENT"));
          }
          statement.close();
         this.db.disconnect();
         return result;
          
     }
+    
+    
+     public User_Role getUserRole(User us) throws Exception{
+          this.db.connect();
+          
+         CallableStatement statement = this.db.getConnection().prepareCall("call getUserRole(?, ?)");
+         statement.setString(1, us.getTempUser());
+         statement.setString(2, us.getPassword());
+         ResultSet rs=statement.executeQuery();
+         
+         User_Role result=null;
+         while(rs.next()){
+             result=new User_Role();
+             result.getUser().setTempUser(rs.getString("USER_NAME"));
+             result.getUser().setDeparment(rs.getInt("DEPARTMENT"));
+             result.setRole(rs.getString("ROLE_NAME"));
+         }
+         statement.close();
+        this.db.disconnect();
+        return result;
+         
+    }
+    
+    
     public List<Type> getAllType() throws Exception{
         this.db.connect();
          CallableStatement statement = this.db.getConnection().prepareCall("{call searchAllTypes()}"); 
@@ -368,7 +372,7 @@ public class Dao {
     
     public List<State> getAllState() throws Exception{
         this.db.connect();
-         CallableStatement statement = this.db.getConnection().prepareCall("{call ssearchAllStates()}"); 
+         CallableStatement statement = this.db.getConnection().prepareCall("{call searchAllStates()}"); 
          ResultSet rs=statement.executeQuery();
          List<State> result= new ArrayList();
          while(rs.next()){
@@ -381,15 +385,18 @@ public class Dao {
          statement.close();
         this.db.disconnect();
         return result;
+           
+           
+           
+           
     }
     
-    
-    
-        //this function returns the accords list less than a notification date 
-      public List<Accord> searchAccordByNotifyDateLess(Date NotifyDate) throws Exception {
+    public List<Accord> searchExpiredAccords(Date actual, Date limit) throws Exception{
         this.db.connect();
-        CallableStatement statement = this.db.getConnection().prepareCall("{call searchAccordNotifyLess(? )}");
-        statement.setDate(1, new java.sql.Date(NotifyDate.getTime()));
+        CallableStatement statement = this.db.getConnection().prepareCall("{call searchExpiredAccords(?, ?)}");
+        statement.setDate(1, new java.sql.Date(actual.getTime()));
+        statement.setDate(2, new java.sql.Date(limit.getTime()));
+        
         ResultSet rs = statement.executeQuery();
         Map<String, Accord> map = new HashMap();
 
@@ -404,7 +411,47 @@ public class Dao {
                 a.setSessionDate(rs.getDate("SESSIONDATE"));
                 a.setType(rs.getString("TYPE_ID").charAt(0));
                 a.setObservations(rs.getString("OBSERVATIONS"));
-                a.setNotificationDate(rs.getDate("NOTIFDATE"));
+                a.setNotified(rs.getBoolean("NOTIFIED"));
+                a.setPublished(rs.getBoolean("PUBLIC"));
+                a.setState(rs.getInt("STATE"));
+                a.getURL().add(rs.getString("URL"));
+                map.put(accNumber, a);
+            }
+            else {
+                    //if the result isn't  in the map or the map isn't empty, just add the URL into result
+                    map.get(accNumber).getURL().add(rs.getString("URL"));
+                
+            }
+        }
+       
+        statement.close();
+        this.db.disconnect();
+       return new ArrayList<>(map.values());
+        
+        
+    }
+    
+    
+    //this function return the accord list that experedby specific date
+      public List<Accord> searchAccordByExpiredDate(Date date1, Date limit) throws Exception {
+        this.db.connect();
+        CallableStatement statement = this.db.getConnection().prepareCall("{call searchExpiredAccords(? , ?)}");        
+        statement.setDate(1, new java.sql.Date(date1.getTime()));
+        statement.setDate(2,new java.sql.Date( limit.getTime()));
+        ResultSet rs = statement.executeQuery();
+        Map<String, Accord> map = new HashMap();
+
+        while (rs.next()) {
+            
+            String accNumber = rs.getString("ACCNUMBER");
+            if (map.isEmpty() || ! map.containsKey(accNumber)) { //if the map is empty or the result isn't
+                Accord a = new Accord();                                                 //in the map
+                a.setAccNumber(accNumber);
+                a.setIncorporatedDate(rs.getDate("INCORDATE"));
+                a.setDeadline(rs.getDate("DEADLINE"));
+                a.setSessionDate(rs.getDate("SESSIONDATE"));
+                a.setType(rs.getString("TYPE_ID").charAt(0));
+                a.setObservations(rs.getString("OBSERVATIONS"));
                 a.setNotified(rs.getBoolean("NOTIFIED"));
                 a.setPublished(rs.getBoolean("PUBLIC"));
                 a.setState(rs.getInt("STATE"));
@@ -422,44 +469,82 @@ public class Dao {
         this.db.disconnect();
        return new ArrayList<>(map.values());
     }
-    
-    //this function return the accord list that notify by specific date
-      public List<Accord> searchAccordByNotifyDate(Date NotifyDate) throws Exception {
-        this.db.connect();
-        CallableStatement statement = this.db.getConnection().prepareCall("{call searchAccordNotifyDate(? )}");
-        statement.setDate(1, new java.sql.Date(NotifyDate.getTime()));
-        ResultSet rs = statement.executeQuery();
-        Map<String, Accord> map = new HashMap();
-
-        while (rs.next()) {
-            
-            String accNumber = rs.getString("ACCNUMBER");
-            if (map.isEmpty() || ! map.containsKey(accNumber)) { //if the map is empty or the result isn't
-                Accord a = new Accord();                                                 //in the map
-                a.setAccNumber(accNumber);
-                a.setIncorporatedDate(rs.getDate("INCORDATE"));
-                a.setDeadline(rs.getDate("DEADLINE"));
-                a.setSessionDate(rs.getDate("SESSIONDATE"));
-                a.setType(rs.getString("TYPE_ID").charAt(0));
-                a.setObservations(rs.getString("OBSERVATIONS"));
-                a.setNotificationDate(rs.getDate("NOTIFDATE"));
-                a.setNotified(rs.getBoolean("NOTIFIED"));
-                a.setPublished(rs.getBoolean("PUBLIC"));
-                a.setState(rs.getInt("STATE"));
-                a.getURL().add(rs.getString("URL"));
-                map.put(accNumber, a);
-            }
-            else {
-                    //if the result isn't  in the map or the map isn't empty, just add the URL into result
-                    map.get(accNumber).getURL().add(rs.getString("URL"));
-                
-            }
-        }
-       
-        statement.close();
-        this.db.disconnect();
-       return new ArrayList<>(map.values());
-    }
-
-    
+      
+      public void updateAccordSessionDate(String accNumber, Date sessionDate) throws Exception{
+           this.db.connect();
+        CallableStatement statement = this.db.getConnection().prepareCall("{call updateAccordSessionDate(? , ?)}");
+           statement.setString(1, accNumber);
+           statement.setDate(2, new java.sql.Date(sessionDate.getTime()));
+           statement.execute();
+           statement.close();
+           this.db.disconnect();
+          
+      }
+      
+         public void updateAccordDeadline(String accNumber, Date deadLine) throws Exception{
+           this.db.connect();
+        CallableStatement statement = this.db.getConnection().prepareCall("{call updateAccordDeadline(? , ?)}");
+           statement.setString(1, accNumber);
+           statement.setDate(2, new java.sql.Date(deadLine.getTime()));
+           statement.execute();
+           statement.close();
+           this.db.disconnect();
+          
+      }
+      
+              public void updateAccordType(String accNumber, String type) throws Exception{
+           this.db.connect();
+        CallableStatement statement = this.db.getConnection().prepareCall("{call updateAccordType(? , ?)}");
+           statement.setString(1, accNumber);
+           statement.setString(2, type);
+           statement.execute();
+           statement.close();
+           this.db.disconnect();
+          
+      }  
+              
+              
+             public void updateAccordState(String accNumber, int state) throws Exception{
+           this.db.connect();
+           CallableStatement statement = this.db.getConnection().prepareCall("{call updateAccordState(? , ?)}");
+           statement.setString(1, accNumber);
+           statement.setInt(2, state);
+           statement.execute();
+           statement.close();
+           this.db.disconnect();
+          
+      }      
+             
+           public void updateAccordUser(String accNumber, String newUser, String oldUser) throws Exception{
+           this.db.connect();
+           CallableStatement statement = this.db.getConnection().prepareCall("{call updateAccordUser(? , ? ,?)}");
+           statement.setString(1, accNumber);
+           statement.setString(2, newUser);
+           statement.setString(3, oldUser);
+           statement.execute();
+           statement.close();
+           this.db.disconnect();
+          
+      } 
+           public void deletePdf(String accNumber, String pdf) throws Exception{
+               this.db.connect();
+               CallableStatement statement = this.db.getConnection().prepareCall("{call deletePdf(? ,?)}");
+               statement.setString(1, accNumber);
+               statement.setString(2, pdf);
+               statement.execute();
+               statement.close();
+               this.db.disconnect();
+           }
+      
+           public void deleteAccord(String accNumber) throws Exception{
+               this.db.connect();
+               CallableStatement statement = this.db.getConnection().prepareCall("{call deleteAccord(?)}");
+               statement.setString(1, accNumber);
+               statement.execute();
+               statement.close();
+               this.db.disconnect();
+               
+               
+           }
+           
 }

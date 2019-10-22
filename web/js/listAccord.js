@@ -40,7 +40,14 @@ function changeSelect(value) {
         button.style.visibility = 'visible';
         combo.value = 'A';
         combo.style.visibility = 'hidden';
-    } else {
+    } else if (value === 'expiredAccords') {
+        field.value = "";
+        field.type = 'hidden';
+        button.style.visibility = 'visible';
+        combo.value = 'A';
+        combo.style.visibility = 'hidden';
+    } 
+    else {
         field.value = "";
         combo.value = 'A';
         field.type = 'hidden';
@@ -83,6 +90,7 @@ function setTypeOptions() {
 //});
 
 // list the values of the accord and append it to the table body.
+var accCounter=0;
 function list(parent, accord) {
     var tr = $("<tr/>");
     tr.html(
@@ -91,11 +99,26 @@ function list(parent, accord) {
             + "<td>" + accord.sessionDate + "</td>"
             + "<td>" + accord.deadline + "</td>"
             + "<td>" + typeToString(accord.type) + "</td>"
-            + "<td>" + stateToString(accord.state) + "</td>"
+            + "<td id=\"stateTD"+accCounter+"\">" + stateToString(accord.state) + "</td>"
             + "<td>" + "<button type=\"button\" style='text-align: center' class=\"bnt btn-primary\" onclick=\"location.href='addAccord.jsp?accnumber=" + accord.accNumber + "'\">"
             + "<i class=\"fas fa-edit\">" + "</i>" + "</button>" + "</td>"
             );
     parent.append(tr);
+    let state='stateTD'+accCounter;
+        if(parseInt(accord.state,10) === 0){
+              document.getElementById(state).style.backgroundColor='#00D781';
+        }
+    
+
+    else
+        if (parseInt(accord.state,10)===1)
+            document.getElementById(state).style.color='red';
+    
+    else   if (parseInt(accord.state,10)===2)
+             document.getElementById(state).style.backgroundColor='#FFE57A';
+    
+    accCounter++;
+    
 }
 
 // it converts the int value of the state to the string description 
@@ -124,7 +147,7 @@ function stateToString(state) {
 function typeToString(type) {
     switch (type) {
         case 'A':
-            return 'Administración Municipal';
+            return 'Administracion Municipal';
         case 'B':
             return 'Auditoria Interna';
         case 'C':
@@ -168,6 +191,7 @@ function SearchBySessionDate() {
                 res.json()
             )
             .then(accords => {
+                $('#tableAcc').DataTable().clear().destroy();
                 var parent = $("#accordList");
                 parent.html("");
                 accords.forEach(item => {
@@ -176,7 +200,6 @@ function SearchBySessionDate() {
 
             })
             .then(()=>{
-                    $("#tableAcc").destroy();
                     initTable();
             })
             .catch(error => {
@@ -194,6 +217,7 @@ function searchBySessionType() {
                 res.json()
             )
             .then(accords => {
+                 $('#tableAcc').DataTable().clear().destroy();
                 var parent = $("#accordList");
                 parent.html("");
                 accords.forEach(item => {
@@ -202,7 +226,6 @@ function searchBySessionType() {
 
             })
             .then(()=>{
-                    $("#tableAcc").destroy();
                     initTable();
             })
             .catch(error => {
@@ -220,6 +243,7 @@ function searchByIncorDate() {
                 res.json()
             )
             .then(accords => {
+               $('#tableAcc').DataTable().clear().destroy();
                 var parent = $("#accordList");
                 parent.html("");
                 accords.forEach(item => {
@@ -227,8 +251,7 @@ function searchByIncorDate() {
                 });
 
             }).then(()=>{
-                    $("#tableAcc").destroy();
-                    initTable();
+              initTable();
             })
             .catch(error => {
                 console.log(error);
@@ -245,6 +268,7 @@ function searchByAccNumber() {
                 res.json()
             )
             .then(accords => {
+                $('#tableAcc').DataTable().clear().destroy();
                 var parent = $("#accordList");
                 parent.html("");
                 accords.forEach(item => {
@@ -252,7 +276,6 @@ function searchByAccNumber() {
                 });
 
             }).then(()=>{
-                    $("#tableAcc").destroy();
                     initTable();
             })
             .catch(error => {
@@ -268,14 +291,15 @@ function searchAllAccords() {
                 return res.json();
             })
             .then(accords => {
+                $('#tableAcc').DataTable().clear().destroy();
                 var parent = $("#accordList");
                 parent.html("");
                 accords.forEach(item => {
                     list(parent, item);
                 });
             }).then(()=>{
-                    $("#tableAcc").destroy();
-                    initTable();
+
+                 initTable();
             })
         
             .catch(error => {
@@ -283,6 +307,30 @@ function searchAllAccords() {
             });
 }
 
+function searchExpiredAccords(){
+    
+      let _url = 'api/accord/getaccord/allExpired';
+    fetch(_url)
+            .then(res => {
+                console.log(res);
+                return res.json();
+            })
+            .then(accords => {
+                $('#tableAcc').DataTable().clear().destroy();
+                var parent = $("#accordList");
+                parent.html("");
+                accords.forEach(item => {
+                    list(parent, item);
+                });
+            }).then(()=>{
+
+                 initTable();
+            })
+        
+            .catch(error => {
+                console.log(error);
+            });
+}
 // button function depending of the option selected in the main combo box
 function searchAccord() {
     let parameter = document.getElementById('serchType').value;
@@ -308,6 +356,10 @@ function searchAccord() {
             case 'allAccords':
                 searchAllAccords();
                 break;
+                
+            case 'expiredAccords':
+                searchExpiredAccords();
+                break;
         }
     }
 }
@@ -331,15 +383,13 @@ function initTable() {
             },
             "sProcessing": "Procesando..."
         },
-        "lengthChange": false
+        "lengthChange": false,
+         "destroy": true
     });
 }
 
-
-
-function searchAccordsByNotifyToday(){
-        let _url = "api/accord/getaccord/notify/";
-
+function searchAccordsByExpiredMonth(){
+        let _url = "api/accord/getaccord/expiredtoday";
     fetch(_url)
             .then(res =>
                 res.json()
@@ -352,19 +402,12 @@ function searchAccordsByNotifyToday(){
                 });
 
             }).then(()=>{
-                    $("#tableAccNotify").destroy();
+                    $("#tableAcc").destroy();
+                    $("#tableAccNotify").DataTable().destroy();
                     initTable();
             })
             .catch(error => {
                 console.log(error);
-            });
-    
-    
+            });    
 }
 
-function initTableNotifyToday(){
-    
-    
-    
-    
-}

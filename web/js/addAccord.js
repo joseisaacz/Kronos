@@ -4,6 +4,91 @@
  * and open the template in the editor.
  */
 
+var oldAccord=null;
+var oldURL=null;
+
+function example(input){
+    console.log(input.files);
+    var parent = $("#pdfList");
+    for(let i=0; i<input.files.length; i++){
+        listNewFile(parent,input.files[i]);
+    }
+    //input.files.forEach(file=>{
+   //    listNewFile(parent,file);
+   // });
+}
+
+
+function changeSwitch(input){
+    if(input.checked)
+        document.getElementById('generalSession').disabled=false;
+    else
+        document.getElementById('generalSession').disabled=true;
+}
+//function openfile(file){
+//    window.open(URL.createObjectURL(file));
+//}
+
+//function listNewFile(parent,file){
+//    var tr = $("<tr/>");
+//    tr.html(
+//            "<td>" + file.name + "</td>"
+//            +"<td>" +"<button type=\"button\" class=\"btn btn-success\" id=\""+file.name+"\" >Ver</button>" + "</td>"+
+//            "<td>" +"<button type=\"button\" class=\"btn btn-danger\" disabled>Borrar</button>" + "</td>"
+//            
+//            );
+//      parent.append(tr);
+//  //  console.log("filename: "+file.name);
+//    //console.log(document.getElementById(file.name));
+//    document.getElementById(file.name).onclick=()=>{
+//      openfile(file);  
+//    };
+//  
+//}
+function deletePdf(parent,pdf) {
+   
+    let newURL=[];
+  for(let i=0; i<oldAccord.URL.length; i++){
+      if(oldAccord.URL[i]===pdf)
+          oldURL.push(oldAccord.URL[i]);
+      else
+          newURL.push(oldAccord.URL[i]);
+          
+  }
+  oldAccord.URL=newURL;
+  var row = parent.parentNode.parentNode;
+  row.parentNode.removeChild(row);
+  
+}
+function openPdf(pdf){
+    console.log(pdf);
+ let _url='api/accord/getfile?filepath='+pdf;
+ console.log(_url);
+ fetch(_url)
+ .then(response => response.blob())
+ .then(data => window.open(URL.createObjectURL(data)));
+}
+function list(parent, pdf) {
+    var tr = $("<tr/>");
+     if(sessionStorage.ROLE !== 'Concejo Municipal'){
+    tr.html(
+            "<td>" + pdf.substring(23,pdf.length) + "</td>"
+            +"<td>" +"<button type=\"button\" class=\"btn btn-success\" onclick=\"javascript:openPdf('"+pdf+"')\">Ver</button>" + "</td>"+
+            "<td>" +"<button type=\"button\" class=\"btn btn-danger\" onclick=\"javascript:deletePdf(this,'"+pdf+"')\" disabled>Borrar</button>" + "</td>"
+            
+            );
+     }
+     else
+            tr.html(
+            "<td>" + pdf.substring(23,pdf.length) + "</td>"
+            +"<td>" +"<button type=\"button\" class=\"btn btn-success\" onclick=\"javascript:openPdf('"+pdf+"')\">Ver</button>" + "</td>"+
+            "<td>" +"<button type=\"button\" class=\"btn btn-danger\" onclick=\"javascript:deletePdf(this,'"+pdf+"')\">Borrar</button>" + "</td>"
+            
+            ); 
+    parent.append(tr);
+}
+
+
 //this fuction adds into an array the parameters of the url 
 function getUrlVars() {
     var vars = {};
@@ -18,11 +103,24 @@ function getUrlVars() {
     return vars;
 }
 
-document.addEventListener("DOMContentLoaded", function () {
+function ready(){
+    console.log(sessionStorage.ROLE);
+    if(sessionStorage.ROLE=== undefined)        
+          window.location.replace('/Kronos/login.jsp');
+
+
+     setTypeOptions();
+    setStateOptions(); 
+      
     var number = getUrlVars();
+
+    
     if (number !== null) {
         var accnumber = number.accnumber;
-        if (accnumber !== 'undefined') {
+        if (accnumber !== undefined) {
+            if(sessionStorage.ROLE !== undefined && sessionStorage.ROLE !== 'Concejo Municipal' && sessionStorage.ROLE !== 'Secretaria de Alcaldia')
+                window.location.replace('/Kronos/authenticationError.jsp#popup');
+            
             let _url = "api/accord/getaccord/" + accnumber;
 
             fetch(_url)
@@ -38,10 +136,12 @@ document.addEventListener("DOMContentLoaded", function () {
 
         }
     } 
-    setTypeOptions();
-});
-
-
+        else{
+             if(sessionStorage.ROLE !== undefined && sessionStorage.ROLE !== 'Concejo Municipal')
+                window.location.replace('/Kronos/authenticationError.jsp#popup');
+    }
+}
+$(document).ready(ready);
 
 //This function validates if a given date is weekend or holiday
 function isValidDate(date) {
@@ -90,55 +190,9 @@ function isValidDate(date) {
     return true;
 }
 
-/*
- * -------------------------------------------------------------------------------------
- * 
- **/
-var states = null;
-var types = null;
 
-
-//this function initialize all functions of formulary
-function init() {
-    fullComboStay();
-
-
-}
-function initData1(newData) {
-    stays = newData;
-
-}
-
-//this funtion upload the stay of accord on comboBox
-function fullComboState()
-{
-    var comboState = document.getElementsByName("comboState");
-    if (comboState) {
-        comboState.options.length = 0;
-
-
-        {
-            var opc = document.createElement("OPTION");
-            opc.setAttribute("value", "null");
-            opc.setAttribute("selected", "selected");
-            opc.appendChild(document.createTextNode("(Estado)"));
-            refMenu.appendChild(opc);
-        }
-
-        for (var i = 0; i < states.length; i++) {
-            var sta = comercios[i];
-
-            var opc = document.createElement("OPTION");
-            opc.setAttribute("value", sta.id + " " + sta.description);
-            opc.appendChild(document.createTextNode(local.ciudad + " " + local.direccion));
-            refMenu.appendChild(opc);
-
-        }
-
-    }
-}
-
-function changeComboType(combo) {
+function changeComboType() {
+    let combo=document.getElementById('comboTypes').value;
     let labelName = document.getElementById('labelName');
     let labelEmail = document.getElementById('labelEmail');
     let textName = document.getElementById('username');
@@ -162,6 +216,7 @@ function changeComboType(combo) {
 
 }
 
+
 function addAccord() {
    
 //    if (!isValidDate(deadline.value)) {
@@ -170,6 +225,9 @@ function addAccord() {
 //    }
     let deadline = document.getElementById('deadline');
     deadline.disabled=false;
+    let generalSession=document.getElementById('generalSession');
+    let disabled =generalSession.disabled;
+    generalSession.disabled=false;
     let _url = '/Kronos/accord/addAccord';
 
     var form = document.getElementById('uploadForm');
@@ -195,6 +253,26 @@ function addAccord() {
             else
             alert("OCURRIO UN ERROR");
         }
+    }).then(()=>{
+       document.getElementById('office').value='';
+       document.getElementById('days').value='';
+       document.getElementById('deadline').value='';
+       document.getElementById('deadline').disabled=true;
+       document.getElementById('comboTypes').onchange=changeComboType;
+       document.getElementById('comboTypes').value='A';
+       document.getElementById('username').value='';
+       document.getElementById('username').type='hidden';
+        document.getElementById('email').type='hidden';
+       document.getElementById('email').value='';
+       document.getElementById('observations').value='';
+       document.getElementById('accord').value='';
+       document.getElementById('labelName').style.visibility='hidden';
+       document.getElementById('labelEmail').style.visibility='hidden';
+       if(document.getElementById('customSwitch1').checked)
+           document.getElementById('generalSession').value='';
+       else
+            document.getElementById('generalSession').disabled=true;
+       
     });
     
 
@@ -202,13 +280,92 @@ function addAccord() {
 
 function editAccord(accord) {
 
-    document.getElementsByName("office")[0].value = accord.accNumber;
-    document.getElementsByName("incorporatedDate")[0].value = accord.incorporatedDate;
-    document.getElementsByName("deadline")[0].value = accord.deadline;
-    document.getElementsByName("observations")[0].value = accord.observations;
+    console.log(accord);
+    oldAccord=accord;
+    oldURL=[];
+    let sessionDate=document.getElementById('generalSession');
+    let office=document.getElementById('office');
+    let days=document.getElementById('days');
+    let comboDays=document.getElementById('comboDays');
+    let deadline=document.getElementById('deadline');
+    let daysButton=document.getElementById('daysButton');
+    let comboTypes=document.getElementById('comboTypes');
+    let username=document.getElementById('username');
+    let email=document.getElementById('email');
+    let comboStates=document.getElementById('comboStates');
+    let observations=document.getElementById('observations');
+    let labelStates=document.getElementById('labelState');
+    let pdf=document.getElementById('accord');
+    let divFile=document.getElementById('files');
+    let table=document.getElementById('table');
+    let cancelButton=document.getElementById('cancelButton');
+    let title=document.getElementById('pageTitle');
+    let okButton=document.getElementById('okButton');
+    let divDeleteButton=document.getElementById('divDeleteButton');
+    let divDeadline=document.getElementById('divDeadline');
+    let deleteButton=document.getElementById('deleteButton');
+    let pageTitle=document.getElementById('prinTitle');
+    let divSwitch=document.getElementById('divSwitch');
 
-}
+    pageTitle.innerHTML="";
+    pageTitle.innerHTML='Modificar Acuerdo';
+    title.innerHTML="";
+    title.innerHTML='Modificar Acuerdo';
+    sessionDate.value=accord.sessionDate;
+    sessionDate.disabled=true;
+    office.value=accord.accNumber.substring(8, accord.accNumber.length);
+    office.disabled=true;
+        if(sessionStorage.ROLE !== 'Concejo Municipal'){
+    observations.value=accord.observations;
+    observations.disabled=true;
+    deadline.value=accord.deadline;
+    deadline.disabled=true;
+    comboStates.value=accord.state;
+    comboStates.disabled=true;
+    comboTypes.value=accord.type;
+    comboTypes.disabled=true;
+    comboStates.style.visibility='visible';
+    labelStates.style.visibility='visible';
+    daysButton.style.visibility='hidden';
+    divFile.style.display = 'none'; 
+    divDeadline.style.display='none';
+    table.style.display='block';
+    okButton.onclick=editButton;
+    okButton.innerHTML="";
+    okButton.innerHTML="Modificar Acuerdo";
+    okButton.disabled=true;
+    divDeleteButton.style.visibility='hidden';     
+    divSwitch.style.visibility='hidden';
+        
+    }
+    else{
+    observations.value=accord.observations;
+    deadline.value=accord.deadline;
+    deadline.disabled=false;
+    comboStates.value=accord.state;
+    comboTypes.value=accord.type;
+    comboStates.style.visibility='visible';
+    labelStates.style.visibility='visible';
+    daysButton.style.visibility='hidden';
+    divFile.style.display = 'none'; 
+    divDeadline.style.display='none';
+    table.style.display='block';
+    okButton.onclick=editButton;
+    okButton.innerHTML="";
+    okButton.innerHTML="Modificar Acuerdo";
+    deleteButton.onclick=deleteAccord;
+    divDeleteButton.style.visibility='visible';
+    console.log(okButton);
 
+  
+    }
+    
+        var parent = $("#pdfList");
+                parent.html("");
+                accord.URL.forEach(item => {
+                    list(parent, item); });
+                }
+    
 
 //-----------DRAG AND DROP---------
 //function ($) {
@@ -249,17 +406,6 @@ function editAccord(accord) {
 //    }
 //
 //}(jQuery);
-
-function editAccord(accord) {
-
-    document.getElementsByName("office")[0].value = accord.accNumber;
-    document.getElementsByName("incorporatedDate")[0].value = accord.incorporatedDate;
-    document.getElementsByName("deadline")[0].value = accord.deadline;
-    document.getElementsByName("observations")[0].value = accord.observations;
-
-}
-
-
 
 //it adds an amount of days the the date
 //even if it has to change the month or the year
@@ -379,6 +525,21 @@ function setTypeOptions(){
     
 }
 
+function setStateOptions(){
+    let select= document.getElementById('comboStates');
+    let url="api/state/getall";
+     fetch(url)
+     .then(response =>response.json())
+     .then(data=>{
+     data.forEach(item=>{
+       var opt = document.createElement('option'); 
+         opt.value = item.id;
+         opt.innerHTML = item.description;
+         select.appendChild(opt);
+     });
+ }).catch(error => console.log(error));
+}
+
 
 function formatDate(d) {
     var month = '' + (d.getMonth() + 1),
@@ -417,6 +578,197 @@ function alertDay(){
   
 }
 
+function deletedPdf(oldArray,newArray){
+    
+    return_array=[];
+ oldArray.forEach(item=>{
+    let _it=newArray.find(string => string !== item); 
+    if(_it !== undefined)
+        return_array.push(_it);
+        
+ });
+ return return_array;
+}
+
+
+function editButton(){
+    let newAccord=getNewAccord();
+    let noError=compareAccords(oldAccord,newAccord);
+    oldAccord=null;
+    oldURL=null;
+    if(!noError)
+        alert("Ha Ocurrido un error");
+    else
+        alert("Acuerdo Actualizado Correctamente");
+    
+    window.location.replace("/Kronos/listAccord.jsp"); 
+    
+}
+function getNewAccord(){
+    
+    let sessionDate=document.getElementById('generalSession');
+    let office=document.getElementById('office');
+    let days=document.getElementById('days');
+    let comboDays=document.getElementById('comboDays');
+    let deadline=document.getElementById('deadline');
+    let daysButtons=document.getElementById('daysButtons');
+    let comboTypes=document.getElementById('comboTypes');
+    let username=document.getElementById('username');
+    let email=document.getElementById('email');
+    let comboStates=document.getElementById('comboStates');
+    let observations=document.getElementById('observations');
+    let labelStates=document.getElementById('labelState');
+    let pdf=document.getElementById('accord');
+    let divFile=document.getElementById('files');
+    let table=document.getElementById('table');
+    let cancelButton=document.getElementById('cancelButton');
+    var newAccord={};
+    newAccord.accNumber=oldAccord.accNumber;
+    newAccord.deadline=deadline.value;
+    newAccord.type=comboTypes.value;
+    sessionDate.disabled=false;
+    newAccord.sessionDate=sessionDate.value;
+    newAccord.observations=observations.value;
+    newAccord.state=comboStates.value;
+    return newAccord;
+}
+function compareAccords(oldAccord,newAccord){
+    let noError=true;
+    
+    if(oldAccord.sessionDate !== newAccord.sessionDate)
+        updateSessionDate(newAccord,()=>noError=false);
+    
+    if(oldAccord.deadline !== newAccord.deadline)
+        updateDeadline(newAccord,()=>noError=false);
+    
+//    if(oldAccord.notificationDate !== newAccord.notificationDate)
+//        noError=updateNotDate(newAccord);
+//    
+//    if(oldAccord.observation !== newAccord.observations)
+//        noError=updateObservations(newAccord);
+    
+    if(oldAccord.type !== newAccord.type)
+        updateType(newAccord,()=> noError=false);
+    
+    if(oldAccord.state !== parseInt(newAccord.state,10))
+        updateState(newAccord,()=> noError=false);
+    
+    if(oldURL.length > 0)
+        updateDeletedPdf(newAccord, oldURL,()=>noError=false);
+    
+    console.log("ERROR :"+noError);
+    return noError;
+    
+}
+
+function updateSessionDate(newAccord,callback){
+    let url='api/accord/updateSessionDate/'+newAccord.accNumber+'/'+newAccord.sessionDate;
+        $.ajax({
+        type: "POST",
+        async: false,
+         url: url,
+         success:function (msg){
+             console.log("SUCCESS");
+         },
+         error: callback
+        
+    });  
+}
+
+
+function updateDeadline(newAccord,callback){
+    let url='api/accord/updateDeadline/'+newAccord.accNumber+'/'+newAccord.deadline;
+            $.ajax({
+        type: "POST",
+        async: false,
+         url: url,
+         success:function (msg){
+             console.log("SUCCESS");
+         },
+         error: callback
+        
+    });  
+}
+
+function updateType(newAccord,callback){
+    let url='api/accord/updateType/'+newAccord.accNumber+'/'+newAccord.type;
+    
+          $.ajax({
+        type: "POST",
+        async: false,
+         url: url,
+         success:function (msg){
+             console.log("SUCCESS");
+         },
+         error: callback
+        
+    });    
+}
+
+
+function updateState(newAccord,callback){
+    let url='api/accord/updateState/'+newAccord.accNumber+'/'+newAccord.state;
+    
+        $.ajax({
+        type: "POST",
+        async: false,
+         url: url,
+         success:function (msg){
+             console.log("SUCCESS");
+         },
+         error: callback
+        
+    });       
+
+}
+
+function updateDeletedPdf(newAccord,oldURL,callback){
+    let url='api/accord/deletePDF/'+newAccord.accNumber;
+    
+     var noError=true;
+    $.ajax({
+        type: "POST",
+         url: url,
+         async:false,
+        contentType: "application/json",
+        data:JSON.stringify(oldURL),
+       
+        success: function (msg) {
+          console.log(msg);
+      },
+        error: callback
+        
+    });
+  
+}
+
+function deleteAccord(){
+     let url='api/accord/deleteAccord/'+oldAccord.accNumber;
+     
+    $.ajax({
+        type: "POST",
+         url: url,
+         success: function (msg) {
+          console.log(msg);
+            oldAccord=null;
+             oldURL=null;
+             alert("Acuerdo Eliminado Correctamente");
+              window.location.replace("/Kronos/listAccord.jsp"); 
+      },
+        error: function(msg){
+            console.log(msg);
+            alert("Ocurrio Un Error");
+             oldAccord=null;
+             oldURL=null;
+
+        }
+        
+    });
+ 
+}
+function cancelAction(){
+    window.location.replace(document.referrer);
+}
 /*
  * 
  * get the pdf and display it in a new browser tab
@@ -437,21 +789,21 @@ function alertDay(){
 
 /* this function call the pop up and print date */
 
-function alertDay(){
-    var txt = 0;
-    var deadline = document.getElementsByName("deadline").value;
-    
-    if (deadline > 60){
-        if (confirm("Usted ha seleccionado un plazo de: " + deadline.values())) {
-            txt = "El plazo es de " + deadline + " días";
-        }        
-    }
-    else {
-        txt= "La fecha es " + deadline;
-        
-    }
-    document.getElementById("days").innerHTML = txt;
-}
+//function alertDay(){
+//    var txt = 0;
+//    var deadline = document.getElementsByID("deadline").value;
+//    
+//    if (deadline > 60){
+//        if (confirm("Usted ha seleccionado un plazo de: " + deadline.values())) {
+//            txt = "El plazo es de " + deadline + " días";
+//        }        
+//    }
+//    else {
+//        txt= "La fecha es " + deadline;
+//        
+//    }
+//    document.getElementById("days").innerHTML = txt;
+//}
 
 
 /*this function confirm the funtion add Accord*/
