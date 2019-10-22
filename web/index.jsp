@@ -7,7 +7,6 @@
         <link href="css/default.css" rel="stylesheet" type="text/css"/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link href="css/bootstrap.css" rel="stylesheet" type="text/css"/>
-        <script src="js/listAccord.js" type="text/javascript"></script>
         <script src="js/bootstrap.js" type="text/javascript"></script>
     </head>
     <body>

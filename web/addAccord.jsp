@@ -65,14 +65,7 @@
                                 </div>
                             </span>
                         </div>
-                        <div class="col">
-                            <div class="form-group">
-                                <div class="col-sm-11">
-                                    <label for="form-control" class="form-label" >Fecha de Notificacion:</label>
-                                    <input type="date" class="form-control" name="notDate" id="notDate" required>
-                                </div>
-                            </div>
-                        </div>
+                        
                         <div id="divDeadline" class="col">
                             <div class="form-group">
                                 <div class="col-sm-11">

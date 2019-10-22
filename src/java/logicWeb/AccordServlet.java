@@ -180,13 +180,7 @@ public class AccordServlet extends HttpServlet {
                                 }
                             }
                             break;
-                            case "notDate": {
-                                String date = new String(item.get());
-                                Date notDate = format.parse(date);
-                                acc.setNotificationDate(notDate);
-                            }
-                            break;
-
+                        
                             default:
                                 break;
                         }

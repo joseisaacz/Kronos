@@ -29,7 +29,7 @@ function stateToString(state) {
 function typeToString(type) {
     switch (type) {
         case 'A':
-            return 'Administración Municipal';
+            return 'Administracion Municipal';
         case 'B':
             return 'Auditoria Interna';
         case 'C':
@@ -89,7 +89,9 @@ function searchAccordsByExpiredMonth(){
 
 
 document.addEventListener("DOMContentLoaded", function () {
+   // initTable();
     searchAccordsByExpiredMonth();
+    
 });
 
 
@@ -116,6 +118,7 @@ function initTable() {
     });
 }
 
+var accCounter1=0;
 function list(parent, accord) {
     var tr = $("<tr/>");
     tr.html(
@@ -124,10 +127,25 @@ function list(parent, accord) {
             + "<td>" + accord.sessionDate + "</td>"
             + "<td>" + accord.deadline + "</td>"
             + "<td>" + typeToString(accord.type) + "</td>"
-            + "<td>" + stateToString(accord.state) + "</td>"
+            + "<td id=\"stateTD"+accCounter1+"\">" + stateToString(accord.state) + "</td>"
             + "<td>" + "<button type=\"button\" style='text-align: center' class=\"bnt btn-primary\" onclick=\"location.href='addAccord.jsp?accnumber=" + accord.accNumber + "'\">"
             + "<i class=\"fas fa-edit\">" + "</i>" + "</button>" + "</td>"
             );
     parent.append(tr);
+    let state='stateTD'+accCounter1;
+    console.log(document.getElementById(state));
+        if(parseInt(accord.state,10) === 0){
+              document.getElementById(state).style.backgroundColor='#00D781';
+        }
+    
+
+    else
+        if (parseInt(accord.state,10)===1)
+            document.getElementById(state).style.color='red';
+    
+    else   if (parseInt(accord.state,10)===2)
+             document.getElementById(state).style.backgroundColor='#FFE57A';
+    
+    accCounter1++;
     
 }

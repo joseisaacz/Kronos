@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", function () {
     if(sessionStorage.ROLE === undefined){
         loginAnchor.innerHTML='';
         loginAnchor.innerHTML='LOGIN';
-        loginAnchor.href='/Kronos/login.jsp';
+        loginAnchor.href='/Kronos/login';
         
     }
     else{

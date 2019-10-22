@@ -147,7 +147,7 @@ function stateToString(state) {
 function typeToString(type) {
     switch (type) {
         case 'A':
-            return 'Administración Municipal';
+            return 'Administracion Municipal';
         case 'B':
             return 'Auditoria Interna';
         case 'C':

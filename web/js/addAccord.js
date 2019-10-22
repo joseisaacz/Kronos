@@ -255,9 +255,7 @@ function addAccord() {
         }
     }).then(()=>{
        document.getElementById('office').value='';
-       document.getElementById('notDate').value='';
        document.getElementById('days').value='';
-       document.getElementById('notDate').value='';
        document.getElementById('deadline').value='';
        document.getElementById('deadline').disabled=true;
        document.getElementById('comboTypes').onchange=changeComboType;
@@ -287,7 +285,6 @@ function editAccord(accord) {
     oldURL=[];
     let sessionDate=document.getElementById('generalSession');
     let office=document.getElementById('office');
-    let notDate=document.getElementById('notDate');
     let days=document.getElementById('days');
     let comboDays=document.getElementById('comboDays');
     let deadline=document.getElementById('deadline');
@@ -319,8 +316,6 @@ function editAccord(accord) {
     office.value=accord.accNumber.substring(8, accord.accNumber.length);
     office.disabled=true;
         if(sessionStorage.ROLE !== 'Concejo Municipal'){
-    notDate.value=accord.notificationDate;
-    notDate.disabled=true;
     observations.value=accord.observations;
     observations.disabled=true;
     deadline.value=accord.deadline;
@@ -344,7 +339,6 @@ function editAccord(accord) {
         
     }
     else{
-    notDate.value=accord.notificationDate;
     observations.value=accord.observations;
     deadline.value=accord.deadline;
     deadline.disabled=false;
@@ -614,7 +608,6 @@ function getNewAccord(){
     
     let sessionDate=document.getElementById('generalSession');
     let office=document.getElementById('office');
-    let notDate=document.getElementById('notDate');
     let days=document.getElementById('days');
     let comboDays=document.getElementById('comboDays');
     let deadline=document.getElementById('deadline');
@@ -636,7 +629,6 @@ function getNewAccord(){
     sessionDate.disabled=false;
     newAccord.sessionDate=sessionDate.value;
     newAccord.observations=observations.value;
-    newAccord.notificationDate=notDate.value;
     newAccord.state=comboStates.value;
     return newAccord;
 }
