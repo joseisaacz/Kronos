@@ -10,6 +10,7 @@ import java.sql.SQLException;
 import java.text.DateFormat;
 import logic.Accord;
 import java.util.Date;
+import java.time.LocalTime;
 import java.sql.ResultSet;
 import java.text.SimpleDateFormat;
 import java.time.LocalTime;
@@ -558,6 +559,29 @@ public class Dao {
                this.db.disconnect();
                
                
+           }
+           
+           public List<Accord> emailInfo(Date actual, Date limit) throws Exception{
+               this.db.connect();
+        CallableStatement statement = this.db.getConnection().prepareCall("{call searchExpiredAccords(? , ?)}");        
+        statement.setDate(1, new java.sql.Date(actual.getTime()));
+        statement.setDate(2,new java.sql.Date( limit.getTime()));
+        ResultSet rs = statement.executeQuery();
+        Map<String, Accord> map = new HashMap();
+
+        while (rs.next()) {
+            
+                String accNumber = rs.getString("ACCNUMBER");
+                Accord a = new Accord();                                                 //in the map
+                a.setAccNumber(accNumber);
+                a.setIncorporatedDate(rs.getDate("INCORDATE"));
+               // a.setIncorporatedTime(rs.getTime("INCORTIME").toLocalTime());
+               map.put(accNumber, a);
+        }
+       
+        statement.close();
+        this.db.disconnect();
+       return new ArrayList<>(map.values());
            }
            
 }
