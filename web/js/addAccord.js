@@ -225,9 +225,18 @@ function addAccord() {
 //    }
     let deadline = document.getElementById('deadline');
     deadline.disabled=false;
+    if(deadline.value === ''){
+        alert("Por favor agregue una fecha de vencimiento");
+        return;
+    }
     let generalSession=document.getElementById('generalSession');
     let disabled =generalSession.disabled;
     generalSession.disabled=false;
+    var generalSessionValue=generalSession.value;
+    if(generalSession.value === ''){
+        alert("Por favor agregue la fecha de Sesión");
+        return;
+    }
     let _url = '/Kronos/accord/addAccord';
 
     var form = document.getElementById('uploadForm');
@@ -248,31 +257,25 @@ function addAccord() {
         error: function (response) {
             console.log(response);
             if(response.status===503){
-                alert("NO HAY ACUERDOS");
+                alert("OCURRIO UN ERROR");
             }
             else
             alert("OCURRIO UN ERROR");
         }
     }).then(()=>{
-       document.getElementById('office').value='';
-       document.getElementById('days').value='';
-       document.getElementById('deadline').value='';
-       document.getElementById('deadline').disabled=true;
-       document.getElementById('comboTypes').onchange=changeComboType;
-       document.getElementById('comboTypes').value='A';
-       document.getElementById('username').value='';
-       document.getElementById('username').type='hidden';
-        document.getElementById('email').type='hidden';
-       document.getElementById('email').value='';
-       document.getElementById('observations').value='';
-       document.getElementById('accord').value='';
-       document.getElementById('labelName').style.visibility='hidden';
-       document.getElementById('labelEmail').style.visibility='hidden';
-       if(document.getElementById('customSwitch1').checked)
-           document.getElementById('generalSession').value='';
-       else
-            document.getElementById('generalSession').disabled=true;
+        let value=document.getElementById('customSwitch1').checked;
        
+            
+            
+        form.reset();
+         
+         if(!value){
+              document.getElementById('generalSession').value=generalSessionValue;
+               document.getElementById('generalSession').disabled=true;
+         }
+         document.getElementById('customSwitch1').checked=value;
+       document.getElementById('deadline').disabled=true;
+
     });
     
 
@@ -367,45 +370,6 @@ function editAccord(accord) {
                 }
     
 
-//-----------DRAG AND DROP---------
-//function ($) {
-//    'use strict';
-//
-//    // UPLOAD CLASS DEFINITION
-//    // ======================
-//
-//    var dropZone = document.getElementById('drop-zone');
-//    var uploadForm = document.getElementById('js-upload-form');
-//
-//    var startUpload = function (files) {
-//        console.log(files)
-//    }
-//
-//    uploadForm.addEventListener('submit', function (e) {
-//        var uploadFiles = document.getElementById('js-upload-files').files;
-//        e.preventDefault()
-//
-//        startUpload(uploadFiles)
-//    })
-//
-//    dropZone.ondrop = function (e) {
-//        e.preventDefault();
-//        this.className = 'upload-drop-zone';
-//
-//        startUpload(e.dataTransfer.files)
-//    }
-//
-//    dropZone.ondragover = function () {
-//        this.className = 'upload-drop-zone drop';
-//        return false;
-//    }
-//
-//    dropZone.ondragleave = function () {
-//        this.className = 'upload-drop-zone';
-//        return false;
-//    }
-//
-//}(jQuery);
 
 //it adds an amount of days the the date
 //even if it has to change the month or the year

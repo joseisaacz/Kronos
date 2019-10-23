@@ -5,6 +5,7 @@
  */
 package logic;
 
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -16,6 +17,7 @@ public class Accord {
 
     private String accNumber;
     private Date incorporatedDate;
+    private LocalTime incorporatedTime;
     private Date deadline;
     private  Date sessionDate; 
     private char type;
@@ -33,9 +35,11 @@ public class Accord {
          this.incorporatedDate=null;
          this.sessionDate=null;
          this.state=-1;
+         this.incorporatedTime=null;
     }
 
-    public Accord(String accNumber, Date incorporatedDate, Date deadline, char type, String observations, boolean published, boolean notified, int state, Date sessionDate) {
+    public Accord(String accNumber, Date incorporatedDate, Date deadline, char type, String observations, boolean published, boolean notified, int state, Date sessionDate,
+            LocalTime incorporatedTime) {
         this.accNumber = accNumber;
         this.incorporatedDate = incorporatedDate;
         this.deadline = deadline;
@@ -46,6 +50,7 @@ public class Accord {
         this.state = state;
         this.sessionDate=sessionDate;
         this.URL= new ArrayList();
+        this.incorporatedTime=incorporatedTime;
     }
     
     
@@ -123,6 +128,14 @@ public class Accord {
 
     public List<String> getURL() {
         return URL;
+    }
+
+    public LocalTime getIncorporatedTime() {
+        return incorporatedTime;
+    }
+
+    public void setIncorporatedTime(LocalTime incorporatedTime) {
+        this.incorporatedTime = incorporatedTime;
     }
 
     public void setURL(List<String> URL) {
