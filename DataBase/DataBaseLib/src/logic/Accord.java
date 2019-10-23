@@ -37,7 +37,9 @@ public class Accord {
          this.incorporatedTime=null;
          this.sessionDate=null;
          this.state=-1;
+         this.incorporatedTime=null;
     }
+
 
     public Accord(String accNumber, Date incorporatedDate, LocalTime incorporatedTime, Date deadline, char type, String observations, boolean published, boolean notified, int state, Date sessionDate) {
         this.accNumber = accNumber;
@@ -51,6 +53,7 @@ public class Accord {
         this.state = state;
         this.sessionDate=sessionDate;
         this.URL= new ArrayList();
+        this.incorporatedTime=incorporatedTime;
     }
     
     
@@ -136,6 +139,14 @@ public class Accord {
 
     public List<String> getURL() {
         return URL;
+    }
+
+    public LocalTime getIncorporatedTime() {
+        return incorporatedTime;
+    }
+
+    public void setIncorporatedTime(LocalTime incorporatedTime) {
+        this.incorporatedTime = incorporatedTime;
     }
 
     public void setURL(List<String> URL) {

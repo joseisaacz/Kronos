@@ -43,7 +43,7 @@ public class AccordServlet extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    private static final String UPLOAD_DIRECTORY = "/home/jonathan/uploads/";
+    private static final String UPLOAD_DIRECTORY = "/home/jonathan/uploads";
     private static final int MEMORY_THRESHOLD = 1024 * 1024 * 10;  // 10MB
     private static final int MAX_FILE_SIZE = 1024 * 1024 * 40; // 40MB
     private static final int MAX_REQUEST_SIZE = 1024 * 1024 * 50; // 50MB
@@ -190,7 +190,6 @@ public class AccordServlet extends HttpServlet {
 
             acc.setIncorporatedDate(new Date());
             acc.setPublished(false);
-            acc.setNotified(false);
             boolean flag=false;
             if (acc.getType() != 'A' && acc.getType() != 'Z') {
                 flag=true;
@@ -199,17 +198,23 @@ public class AccordServlet extends HttpServlet {
                     if (temp == null) 
                         Dao.getDao().insertTempUser(tmp);
                 }
+                acc.setNotified(false);
             }
+            else
+                acc.setNotified(true);
+            
                 acc.setState(2);
                 Dao.getDao().insertAccord(acc);
                 
                 if (flag) 
                     Dao.getDao().insertUserAccord(tmp, acc);
+                else
+                    Dao.getDao().insertAccordNotification(acc.getAccNumber());
 
             }
             catch (Exception ex) {
-
-            throw new ServletException("No hay acuerdos");
+                String m=ex.getMessage();
+            throw new ServletException("Error al Agregar acuerdo");
         }
         }
 

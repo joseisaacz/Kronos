@@ -46,8 +46,7 @@ function changeSelect(value) {
         button.style.visibility = 'visible';
         combo.value = 'A';
         combo.style.visibility = 'hidden';
-    } 
-    else {
+    } else {
         field.value = "";
         combo.value = 'A';
         field.type = 'hidden';
@@ -90,8 +89,12 @@ function setTypeOptions() {
 //});
 
 // list the values of the accord and append it to the table body.
-var accCounter=0;
+var accCounter = 0;
 function list(parent, accord) {
+    let now = new Date();
+    console.log(now);
+    let date = new Date(accord.deadline);
+
     var tr = $("<tr/>");
     tr.html(
             "<td>" + accord.accNumber + "</td>"
@@ -99,26 +102,30 @@ function list(parent, accord) {
             + "<td>" + accord.sessionDate + "</td>"
             + "<td>" + accord.deadline + "</td>"
             + "<td>" + typeToString(accord.type) + "</td>"
-            + "<td id=\"stateTD"+accCounter+"\">" + stateToString(accord.state) + "</td>"
+            + "<td id=\"stateTD" + accCounter + "\">" + stateToString(accord.state) + "</td>"
             + "<td>" + "<button type=\"button\" style='text-align: center' class=\"bnt btn-primary\" onclick=\"location.href='addAccord.jsp?accnumber=" + accord.accNumber + "'\">"
             + "<i class=\"fas fa-edit\">" + "</i>" + "</button>" + "</td>"
             );
     parent.append(tr);
-    let state='stateTD'+accCounter;
-        if(parseInt(accord.state,10) === 0){
-              document.getElementById(state).style.backgroundColor='#00D781';
-        }
-    
+    let state = 'stateTD' + accCounter;
+    if (now > date)
+        tr.css('backgroundColor', 'rgb(242, 110, 110)');
+    else
+    if (parseInt(accord.state, 10) === 0)
+        document.getElementById(state).style.backgroundColor = '#00D781';
 
     else
-        if (parseInt(accord.state,10)===1)
-            document.getElementById(state).style.color='red';
-    
-    else   if (parseInt(accord.state,10)===2)
-             document.getElementById(state).style.backgroundColor='#FFE57A';
-    
+    if (parseInt(accord.state, 10) === 1)
+        document.getElementById(state).style.color = 'red';
+
+    else if (parseInt(accord.state, 10) === 2)
+        document.getElementById(state).style.backgroundColor = '#FFE57A';
+
+
+
+
     accCounter++;
-    
+
 }
 
 // it converts the int value of the state to the string description 
@@ -199,8 +206,8 @@ function SearchBySessionDate() {
                 });
 
             })
-            .then(()=>{
-                    initTable();
+            .then(() => {
+                initTable();
             })
             .catch(error => {
                 console.log(error);
@@ -217,7 +224,7 @@ function searchBySessionType() {
                 res.json()
             )
             .then(accords => {
-                 $('#tableAcc').DataTable().clear().destroy();
+                $('#tableAcc').DataTable().clear().destroy();
                 var parent = $("#accordList");
                 parent.html("");
                 accords.forEach(item => {
@@ -225,8 +232,8 @@ function searchBySessionType() {
                 });
 
             })
-            .then(()=>{
-                    initTable();
+            .then(() => {
+                initTable();
             })
             .catch(error => {
                 console.log(error);
@@ -243,16 +250,16 @@ function searchByIncorDate() {
                 res.json()
             )
             .then(accords => {
-               $('#tableAcc').DataTable().clear().destroy();
+                $('#tableAcc').DataTable().clear().destroy();
                 var parent = $("#accordList");
                 parent.html("");
                 accords.forEach(item => {
                     list(parent, item);
                 });
 
-            }).then(()=>{
-              initTable();
-            })
+            }).then(() => {
+        initTable();
+    })
             .catch(error => {
                 console.log(error);
             });
@@ -275,9 +282,9 @@ function searchByAccNumber() {
                     list(parent, item);
                 });
 
-            }).then(()=>{
-                    initTable();
-            })
+            }).then(() => {
+        initTable();
+    })
             .catch(error => {
                 console.log(error);
             });
@@ -297,19 +304,19 @@ function searchAllAccords() {
                 accords.forEach(item => {
                     list(parent, item);
                 });
-            }).then(()=>{
+            }).then(() => {
 
-                 initTable();
-            })
-        
+        initTable();
+    })
+
             .catch(error => {
                 console.log(error);
             });
 }
 
-function searchExpiredAccords(){
-    
-      let _url = 'api/accord/getaccord/allExpired';
+function searchExpiredAccords() {
+
+    let _url = 'api/accord/getaccord/allExpired';
     fetch(_url)
             .then(res => {
                 console.log(res);
@@ -322,11 +329,11 @@ function searchExpiredAccords(){
                 accords.forEach(item => {
                     list(parent, item);
                 });
-            }).then(()=>{
+            }).then(() => {
 
-                 initTable();
-            })
-        
+        initTable();
+    })
+
             .catch(error => {
                 console.log(error);
             });
@@ -356,7 +363,7 @@ function searchAccord() {
             case 'allAccords':
                 searchAllAccords();
                 break;
-                
+
             case 'expiredAccords':
                 searchExpiredAccords();
                 break;
@@ -384,12 +391,12 @@ function initTable() {
             "sProcessing": "Procesando..."
         },
         "lengthChange": false,
-         "destroy": true
+        "destroy": true
     });
 }
 
-function searchAccordsByExpiredMonth(){
-        let _url = "api/accord/getaccord/expiredtoday";
+function searchAccordsByExpiredMonth() {
+    let _url = "api/accord/getaccord/expiredtoday";
     fetch(_url)
             .then(res =>
                 res.json()
@@ -401,13 +408,13 @@ function searchAccordsByExpiredMonth(){
                     list(parent, item);
                 });
 
-            }).then(()=>{
-                    $("#tableAcc").destroy();
-                    $("#tableAccNotify").DataTable().destroy();
-                    initTable();
-            })
+            }).then(() => {
+        $("#tableAcc").destroy();
+        $("#tableAccNotify").DataTable().destroy();
+        initTable();
+    })
             .catch(error => {
                 console.log(error);
-            });    
+            });
 }
 

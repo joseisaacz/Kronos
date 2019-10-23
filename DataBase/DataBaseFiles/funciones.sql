@@ -7,12 +7,13 @@ IN deadLine DATE, IN sessionDate DATE, IN type_id
 CHAR(1), IN observations longtext, IN publics TINYINT(4),
 IN notified TINYINT(4), IN states INT)
 BEGIN
-INSERT INTO T_ACCORD (ACCNUMBER, INCORDATE, 
+INSERT INTO T_ACCORD (ACCNUMBER, INCORDATE,INCORTIME, 
 DEADLINE, SESSIONDATE, OBSERVATIONS, PUBLIC, NOTIFIED,  STATE, TYPE_ID) 
 VALUES (accNumber, incorDate, incorTime, deadLine, sessionDate, observations, publics, notified, states, type_id);
 commit; 
 END$$
 DELIMITER ;
+
 
 USE `KRONOS`;
 DROP procedure IF EXISTS insertAccPdf;
@@ -25,6 +26,20 @@ insert into T_ACCPDF (ACCORD, URL) values (accord, url);
 commit;  
 end$$ 
 DELIMITER ;
+
+
+USE `KRONOS`;
+DROP procedure IF EXISTS insertAccNotification;
+DELIMiTER $$
+USE `KRONOS`$$
+create procedure insertAccNotification(
+in accord varchar(45))
+begin
+insert into T_NOTIFICATION (ACCORD) values (accord);
+commit;  
+end$$ 
+DELIMITER ;
+
 
 USE `KRONOS`;
 DROP procedure IF EXISTS insertTempUser;
