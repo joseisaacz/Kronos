@@ -2,14 +2,14 @@ USE `KRONOS`;
 DROP procedure IF EXISTS insertAccord;
 DELIMITER $$
 USE `KRONOS`$$
-CREATE PROCEDURE insertAccord (IN accNumber VARCHAR(45), IN incorDate DATE, 
+CREATE PROCEDURE insertAccord (IN accNumber VARCHAR(45), IN incorDate DATE, IN incorTime TIME, 
 IN deadLine DATE, IN sessionDate DATE, IN type_id
 CHAR(1), IN observations longtext, IN publics TINYINT(4),
 IN notified TINYINT(4), IN states INT)
 BEGIN
 INSERT INTO T_ACCORD (ACCNUMBER, INCORDATE, 
 DEADLINE, SESSIONDATE, OBSERVATIONS, PUBLIC, NOTIFIED,  STATE, TYPE_ID) 
-VALUES (accNumber, incorDate, deadLine, sessionDate, observations, publics, notified, states, type_id);
+VALUES (accNumber, incorDate, incorTime, deadLine, sessionDate, observations, publics, notified, states, type_id);
 commit; 
 END$$
 DELIMITER ;
@@ -289,5 +289,17 @@ in accord varchar(45), in url varchar(100))
 begin
 delete from T_ACCPDF where ACCORD=accord and URL= url; 
 commit;  
+end$$ 
+DELIMITER ;
+
+USE `KRONOS`;
+DROP procedure IF EXISTS emailInfo;
+DELIMiTER $$
+USE `KRONOS`$$
+create procedure emailInfo(
+in today date, in limt date)
+begin
+  select ACCNUMBER, INCORDATE, INCORTIME
+  from T_ACCORD where T_ACCORD.INCORDATE <= today and T_ACCORD.INCORDATE >=limt;
 end$$ 
 DELIMITER ;
