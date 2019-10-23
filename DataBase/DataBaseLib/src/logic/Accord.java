@@ -5,6 +5,8 @@
  */
 package logic;
 
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -16,6 +18,7 @@ public class Accord {
 
     private String accNumber;
     private Date incorporatedDate;
+    private LocalTime incorporatedTime;
     private Date deadline;
     private  Date sessionDate; 
     private char type;
@@ -31,13 +34,15 @@ public class Accord {
          this.accNumber=null;
          this.deadline=null;
          this.incorporatedDate=null;
+         this.incorporatedTime=null;
          this.sessionDate=null;
          this.state=-1;
     }
 
-    public Accord(String accNumber, Date incorporatedDate, Date deadline, char type, String observations, boolean published, boolean notified, int state, Date sessionDate) {
+    public Accord(String accNumber, Date incorporatedDate, LocalTime incorporatedTime, Date deadline, char type, String observations, boolean published, boolean notified, int state, Date sessionDate) {
         this.accNumber = accNumber;
         this.incorporatedDate = incorporatedDate;
+        this.incorporatedTime=incorporatedTime;
         this.deadline = deadline;
         this.type = type;
         this.observations = observations;
@@ -60,9 +65,17 @@ public class Accord {
     public Date getIncorporatedDate() {
         return incorporatedDate;
     }
+    
+    public LocalTime getIncorporatedTime() {
+        return incorporatedTime;
+    }
 
     public void setIncorporatedDate(Date incorporatedDate) {
         this.incorporatedDate = incorporatedDate;
+    }
+    
+    public void setIncorporatedTime(LocalTime incorporatedTime) {
+        this.incorporatedTime = incorporatedTime;
     }
 
     public Date getDeadline() {
@@ -143,7 +156,6 @@ public class Accord {
     @Override
     public String toString(){
     return String.format("%s", getAccNumber());
-    
     }
 }
     
