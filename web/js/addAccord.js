@@ -706,29 +706,31 @@ function updateDeletedPdf(newAccord,oldURL,callback){
   
 }
 
-function deleteAccord(){
-     let url='api/accord/deleteAccord/'+oldAccord.accNumber;
-     
-    $.ajax({
-        type: "POST",
-         url: url,
-         success: function (msg) {
-          console.log(msg);
-            oldAccord=null;
-             oldURL=null;
-             alert("Acuerdo Eliminado Correctamente");
-              window.location.replace("/Kronos/listAccord.jsp"); 
-      },
-        error: function(msg){
-            console.log(msg);
-            alert("Ocurrio Un Error");
-             oldAccord=null;
-             oldURL=null;
+function deleteAccord() {
+    let url = 'api/accord/deleteAccord/' + oldAccord.accNumber;
+    if (confirm("Esta seguro de que desea eliminar el acuerdo")) {
+        $.ajax({
+            type: "POST",
+            url: url,
+            success: function (msg) {
+                console.log(msg);
+                oldAccord = null;
+                oldURL = null;
+                alert("Acuerdo Eliminado Correctamente");
+                window.location.replace("/Kronos/listAccord.jsp");
+            },
+            error: function (msg) {
+                console.log(msg);
+                alert("Ocurrio Un Error");
+                oldAccord = null;
+                oldURL = null;
 
-        }
-        
-    });
- 
+            }
+
+        });
+    }
+    ;
+
 }
 function cancelAction(){
     window.location.replace(document.referrer);
