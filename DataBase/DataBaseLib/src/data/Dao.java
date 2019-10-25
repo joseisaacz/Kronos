@@ -550,10 +550,11 @@ public class Dao {
                this.db.disconnect();
            }
       
-           public void deleteAccord(String accNumber) throws Exception{
+           public void deleteAccord(String accNumber, String user) throws Exception{
                this.db.connect();
-               CallableStatement statement = this.db.getConnection().prepareCall("{call deleteAccord(?)}");
+               CallableStatement statement = this.db.getConnection().prepareCall("{call deleteAccord(?,?)}");
                statement.setString(1, accNumber);
+               statement.setString(2, user);
                statement.execute();
                statement.close();
                this.db.disconnect();

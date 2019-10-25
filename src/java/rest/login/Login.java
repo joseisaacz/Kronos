@@ -78,4 +78,16 @@ public class Login {
             throw new NotFoundException();
         }
     }
+    
+    @GET
+    @Path("getUsername")
+    @Produces(MediaType.TEXT_PLAIN)
+    public String getUserName(){
+           User_Role result= (User_Role)request.getSession().getAttribute("UserRole");
+            
+            if(result==null)
+                return " ";
+            
+            return result.getUser().getTempUser();
+    }
 }

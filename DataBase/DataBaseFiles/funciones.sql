@@ -116,22 +116,21 @@ USE `KRONOS`;
 DROP procedure IF EXISTS deleteAccord;
 DELIMITER $$
 USE `KRONOS`$$
-create procedure deleteAccord(in accord varchar(45)  
+create procedure deleteAccord(in accord varchar(45), in _user varchar(45) 
 )
 begin
 delete from T_USERACC where T_USERACC.ACCORD = accord;
+commit;
 delete from T_ACCPDF where T_ACCPDF.ACCORD = accord;
-delete from T_ACCORD where T_ACCORD.ACCNUMBER = accord; 
+commit;
+INSERT INTO T_DELETEDACCORDS values (accord,_user,CURRENT_TIMESTAMP());
+commit;
+delete from T_ACCORD where T_ACCORD.ACCNUMBER = accord;
+commit;
 end$$
 DELIMITER ; 
 
-DROP TABLE IF EXISTS `KRONOS`.`T_DELETEDACCORDS` ;
 
-CREATE TABLE IF NOT EXISTS `KRONOS`.`T_DELETEDACCORDS` (
-  `ACCORD` VARCHAR(45) NOT NULL,
-  action VARCHAR(50) DEFAULT NULL
-  )
-ENGINE = InnoDB;
 
 USE `KRONOS`;
 DROP procedure IF EXISTS searchAllAccords;
@@ -318,3 +317,14 @@ begin
   from T_ACCORD where T_ACCORD.INCORDATE <= today and T_ACCORD.INCORDATE >=limt;
 end$$ 
 DELIMITER ;
+
+USE `KRONOS`;
+DELIMITER ;
+CREATE TABLE IF NOT EXISTS `KRONOS`.`T_DELETEDACCORDS`(
+ACCORDNUMBER varchar(45) NOT NULL,
+USER varchar(45) NOT NULL,
+Date DATETIME NOT NULL	
+);
+
+
+

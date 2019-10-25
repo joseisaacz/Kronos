@@ -330,11 +330,11 @@ public class GetAccord {
     }
 
     @POST
-    @Path("deleteAccord/{accNumber}")
-    public Response deleteAccord(@PathParam("accNumber") String accNumber) {
+    @Path("deleteAccord/{accNumber}/{user}")
+    public Response deleteAccord(@PathParam("accNumber") String accNumber,@PathParam("user") String user) {
         try {
-
-            Dao.getDao().deleteAccord(accNumber);
+            
+            Dao.getDao().deleteAccord(accNumber,user);
             ResponseBuilder response = Response.ok("Acuerdo Eliminado");
             return response.build();
 

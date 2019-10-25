@@ -707,7 +707,8 @@ function updateDeletedPdf(newAccord,oldURL,callback){
 }
 
 function deleteAccord(){
-     let url='api/accord/deleteAccord/'+oldAccord.accNumber;
+    if(window.confirm("¿Está Seguro que desea eliminar este Acuerdo?")){
+     let url='api/accord/deleteAccord/'+oldAccord.accNumber+'/'+sessionStorage.USER;
      
     $.ajax({
         type: "POST",
@@ -722,12 +723,11 @@ function deleteAccord(){
         error: function(msg){
             console.log(msg);
             alert("Ocurrio Un Error");
-             oldAccord=null;
-             oldURL=null;
 
         }
         
     });
+    }
  
 }
 function cancelAction(){
