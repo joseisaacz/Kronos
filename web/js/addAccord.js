@@ -127,6 +127,7 @@ function ready() {
                         res.json()
                     )
                     .then(accord => {
+                        console.log(accord);
                         editAccord(accord);
                     })
                     .catch(error => {
@@ -313,7 +314,7 @@ function editAccord(accord) {
     title.innerHTML = 'Modificar Acuerdo';
     sessionDate.value = accord.sessionDate;
     sessionDate.disabled = true;
-    office.value = accord.accNumber.substring(8, accord.accNumber.length);
+    office.value = accord.accNumber.substring(14, accord.accNumber.length);
     office.disabled = true;
     if (sessionStorage.ROLE !== 'Concejo Municipal') {
         observations.value = accord.observations;
@@ -336,6 +337,8 @@ function editAccord(accord) {
         okButton.disabled = true;
         divDeleteButton.style.visibility = 'hidden';
         divSwitch.style.visibility = 'hidden';
+        comboTypes.disabled=true;
+        
 
     } else {
         observations.value = accord.observations;
@@ -354,6 +357,7 @@ function editAccord(accord) {
         okButton.innerHTML = "Modificar Acuerdo";
         deleteButton.onclick = deleteAccord;
         divDeleteButton.style.visibility = 'visible';
+        comboTypes.disabled=true;
         console.log(okButton);
 
 
@@ -590,7 +594,7 @@ function getNewAccord() {
     return newAccord;
 }
 function compareAccords(oldAccord, newAccord) {
-    let noError = true;
+    var noError = true;
 
     if (oldAccord.sessionDate !== newAccord.sessionDate)
         updateSessionDate(newAccord, () => noError = false);
@@ -601,8 +605,8 @@ function compareAccords(oldAccord, newAccord) {
 //    if(oldAccord.notificationDate !== newAccord.notificationDate)
 //        noError=updateNotDate(newAccord);
 //    
-//    if(oldAccord.observation !== newAccord.observations)
-//        noError=updateObservations(newAccord);
+    if(oldAccord.observation !== newAccord.observations)
+       updateObservations(newAccord,()=> noError=false);
 
     if (oldAccord.type !== newAccord.type)
         updateType(newAccord, () => noError = false);
@@ -613,11 +617,27 @@ function compareAccords(oldAccord, newAccord) {
     if (oldURL.length > 0)
         updateDeletedPdf(newAccord, oldURL, () => noError = false);
 
-    console.log("ERROR :" + noError);
+  
     return noError;
 
 }
 
+const updateObservations= (newAccord,callback)=>{
+      let url = 'api/accord/updateObservations/'+newAccord.accNumber;
+
+    $.ajax({
+        type: "POST",
+        async: false,
+        contentType: " text/plain; charset=utf-8",
+        data: newAccord.observations,
+        url: url,
+        success: function (msg) {
+            console.log("SUCCESS");
+        },
+        error: callback
+
+    });
+}
 function updateSessionDate(newAccord, callback) {
     let url = 'api/accord/updateSessionDate/' + newAccord.accNumber + '/' + newAccord.sessionDate;
     $.ajax({

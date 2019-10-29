@@ -55,20 +55,49 @@ public class GetAccord {
 
     }
 
-    @GET
+    
+     @GET
     @Path("/getaccord/{accnumber}")
     @Produces(MediaType.APPLICATION_JSON)
     public ToRestAccord getAccord(@PathParam("accnumber") String accnumber) {
 
         try {
-
+            
+            
             Accord a = Dao.getDao().getAccordByAccNumber(accnumber);
             ToRestAccord b = null;
             if (a != null) {
                 b = ToRestAccord.toRestAcc(a);
+                
             }
+           
+           return b;
+        } catch (Exception e) {
+            throw new NotFoundException();
+        }
 
-            return b;
+    }
+
+    
+    
+    
+    
+    @GET
+    @Path("/search/getaccord/{accnumber}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public List<ToRestAccord> getSearchAccord(@PathParam("accnumber") String accnumber) {
+
+        try {
+            List<ToRestAccord> result=new ArrayList();
+            
+            Accord a = Dao.getDao().getSearchAccordByAccNumber(accnumber);
+            ToRestAccord b = null;
+            if (a != null) {
+                b = ToRestAccord.toRestAcc(a);
+                 result.add(b);
+            }
+           
+            return result;
         } catch (Exception e) {
             throw new NotFoundException();
         }
@@ -328,13 +357,40 @@ public class GetAccord {
         }
 
     }
+    
+    
+        @POST
+    @Path("updateObservations/{accNumber}")
+    @Consumes({MediaType.TEXT_PLAIN})
+  public Response UpdateObservations(@PathParam("accNumber") String accNumber, String Observations) {
+
+        try {
+           Dao.getDao().updateAccordObservations(accNumber, Observations);
+
+            ResponseBuilder response = Response.ok("Observaciones Actualizadas");
+            return response.build();
+        } catch (Exception e) {
+            throw new NotFoundException();
+        }
+
+    }
+    
 
     @POST
     @Path("deleteAccord/{accNumber}/{user}")
     public Response deleteAccord(@PathParam("accNumber") String accNumber,@PathParam("user") String user) {
         try {
             
+            Accord acc=Dao.getDao().getAccordByAccNumber(accNumber);
             Dao.getDao().deleteAccord(accNumber,user);
+            
+            if(acc != null){
+              for(String item : acc.getURL()){
+                File file= new File(item);
+                file.delete();
+            }
+            }
+            
             ResponseBuilder response = Response.ok("Acuerdo Eliminado");
             return response.build();
 

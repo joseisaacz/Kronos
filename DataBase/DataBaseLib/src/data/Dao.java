@@ -180,6 +180,8 @@ public class Dao {
 
     public Accord getAccordByAccNumber(String AccNumber) throws Exception {
         this.db.connect();
+        String search="MSPH-CM-ACUER-";
+        search+=AccNumber;
         CallableStatement statement = this.db.getConnection().prepareCall("{call searchAccordNumber(? )}");
         statement.setString(1, AccNumber);
         ResultSet rs = statement.executeQuery();
@@ -214,6 +216,52 @@ public class Dao {
 
         return a;
     }
+    
+    
+    
+    
+    
+    public Accord getSearchAccordByAccNumber(String AccNumber) throws Exception {
+        this.db.connect();
+        String search="MSPH-CM-ACUER-";
+        search+=AccNumber;
+        CallableStatement statement = this.db.getConnection().prepareCall("{call searchAccordNumber(? )}");
+        statement.setString(1, search);
+        ResultSet rs = statement.executeQuery();
+        List<Accord> list = new ArrayList();
+        boolean flag = false;
+        Accord a = null;
+        while (rs.next()) {
+            if (!flag) {
+                a = new Accord();
+                a.setAccNumber(rs.getString("ACCNUMBER"));
+                a.setIncorporatedDate(rs.getDate("INCORDATE"));
+                a.setDeadline(rs.getDate("DEADLINE"));
+                a.setSessionDate(rs.getDate("SESSIONDATE"));
+                a.setType(rs.getString("TYPE_ID").charAt(0));
+                a.setObservations(rs.getString("OBSERVATIONS"));
+                a.setNotified(rs.getBoolean("NOTIFIED"));
+                a.setPublished(rs.getBoolean("PUBLIC"));
+                a.setState(rs.getInt("STATE"));
+                a.getURL().add(rs.getString("URL"));
+            } else {
+                String url =rs.getString("URL");
+                if(!a.getURL().contains(url))
+                    a.getURL().add(url);
+                    
+            }
+
+            flag = true;
+        }
+
+        statement.close();
+        this.db.disconnect();   
+
+        return a;
+    }
+    
+    
+    
 
       public List<Accord> searchAccordBySessionDate(Date SessionDate) throws Exception {
         this.db.connect();
@@ -516,7 +564,16 @@ public class Dao {
            this.db.disconnect();
           
       }  
-              
+         public void updateAccordObservations(String accNumber, String Observations) throws Exception{
+           this.db.connect();
+        CallableStatement statement = this.db.getConnection().prepareCall("{call updateAccordObservations(? , ?)}");
+           statement.setString(1, accNumber);
+           statement.setString(2, Observations);
+           statement.execute();
+           statement.close();
+           this.db.disconnect();
+          
+      }  
               
              public void updateAccordState(String accNumber, int state) throws Exception{
            this.db.connect();

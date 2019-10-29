@@ -193,6 +193,18 @@ update T_ACCORD set STATE = newstate where ACCNUMBER = accord;
 end$$
 DELIMITER ;  
 
+
+USE `KRONOS`;
+DROP procedure IF EXISTS updateAccordObservations;
+DELIMITER $$
+USE `KRONOS`$$
+create procedure updateAccordObservations( in accord varchar(45), in new_observations longtext)
+begin
+update T_ACCORD set OBSERVATIONS = new_observations where ACCNUMBER = accord;
+end$$
+DELIMITER ;  
+
+
 USE `KRONOS`;
 DROP procedure IF EXISTS updateAccordUser;
 DELIMITER $$
@@ -202,6 +214,9 @@ begin
 update T_USERACC set TEMPUSER = newuser where ACCORD = accord and TEMPUSER= antuser;
 end$$
 DELIMITER ; 
+
+
+
 
 USE `KRONOS`;
 DROP procedure IF EXISTS updateAccordUrls;

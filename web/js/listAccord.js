@@ -268,13 +268,15 @@ function searchByIncorDate() {
 // api call to get accords by accordNumber
 function searchByAccNumber() {
     let accnumber = document.getElementById('searchText').value;
-    let _url = "api/accord/getaccord/accord/" + accnumber;
+    let _url = "api/accord/search/getaccord/" + accnumber;
+ 
 
     fetch(_url)
             .then(res =>
                 res.json()
             )
             .then(accords => {
+                console.log(accords);
                 $('#tableAcc').DataTable().clear().destroy();
                 var parent = $("#accordList");
                 parent.html("");
@@ -381,7 +383,7 @@ function initTable() {
             "info": "Mostrando Acuerdos del _START_ al _END_ de un total de _TOTAL_ registros",
             "infoEmpty": "Mostrando Acuerdos del 0 al 0 de un total de 0 registros",
             "infoFiltered": "(filtrado de un total de _MAX_ Acuerdos)",
-            "sSearch": "Buscar:",
+            "sSearch": "Filtrar:",
             "oPaginate": {
                 "sFirst": "Primero",
                 "sLast": "Último",
