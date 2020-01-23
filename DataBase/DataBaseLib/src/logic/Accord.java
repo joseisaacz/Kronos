@@ -141,14 +141,6 @@ public class Accord {
         return URL;
     }
 
-    public LocalTime getIncorporatedTime() {
-        return incorporatedTime;
-    }
-
-    public void setIncorporatedTime(LocalTime incorporatedTime) {
-        this.incorporatedTime = incorporatedTime;
-    }
-
     public void setURL(List<String> URL) {
         this.URL = URL;
     }

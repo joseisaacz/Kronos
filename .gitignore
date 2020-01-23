@@ -25,5 +25,6 @@ hs_err_pid*
 /DataBase/DataBaseLib/nbproject/private/
 /DataBase/DataBaseLib/build/
 /DataBase/DataBaseLib/dist/
-/dist/
-/build/
+nbproject/
+build/
+dist/
